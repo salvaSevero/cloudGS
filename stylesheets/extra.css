@@ -1,0 +1,291 @@
+[data-md-color-scheme="default"] {
+  --md-default-bg-color:               rgb(218, 209, 209); 
+
+  h2 {
+     color: #0077b6;
+     border-left: 5px solid #0077b6;
+     padding-left: 10px;
+  }
+
+  h3 {
+    color: #ae5025;
+  }
+
+}
+/*
+[data-md-color-scheme="slate"] {
+    --md-primary-fg-color:        #0077b6;
+
+
+   --md-default-fg-color:               hsla(0, 0%, 100%, 1); 
+   --md-default-fg-color--light:        hsla(0, 0%, 100%, 0.87); 
+   --md-default-fg-color--lighter:      hsla(0, 0%, 100%, 0.32); 
+   --md-default-fg-color--lightest:     hsla(0, 0%, 100%, 0.12); 
+   --md-default-bg-color:               hsla(232, 15%, 21%, 1); 
+   --md-default-bg-color--light:        hsla(232, 15%, 21%, 0.54); 
+   --md-default-bg-color--lighter:      hsla(232, 15%, 21%, 0.26); 
+   --md-default-bg-color--lightest:     hsla(232, 15%, 21%, 0.07); 
+  
+  
+   --md-code-bg-color:                  hsla(232, 15%, 18%, 1); 
+   --md-code-fg-color:                  hsla(60, 30%, 96%, 1); 
+  
+  
+   --md-text-color:                     var(--md-default-fg-color--light); 
+   --md-text-link-color:                var(--md-primary-fg-color); 
+  
+   
+   --md-admonition-bg-color:            hsla(0, 0%, 100%, 0.025); 
+   --md-admonition-fg-color:            var(--md-default-fg-color); 
+  
+  
+   --md-footer-bg-color:                hsla(232, 15%, 12%, 0.87); 
+   --md-footer-bg-color--dark:          hsla(232, 15%, 10%, 1); 
+  } 
+  */
+
+[data-md-color-scheme="slate"] {
+
+    /* ========================================
+       COLORES GENERALES
+       ======================================== */
+
+    /* Color principal */
+    --md-primary-fg-color: #0096c7;
+    --md-primary-fg-color--light: #48cae4;
+    --md-primary-fg-color--dark: #0077b6;
+
+    /* Texto */
+    --md-default-fg-color: hsla(0, 0%, 100%, 0.95);
+    --md-default-fg-color--light: hsla(0, 0%, 100%, 0.82);
+    --md-default-fg-color--lighter: hsla(0, 0%, 100%, 0.55);
+    --md-default-fg-color--lightest: hsla(0, 0%, 100%, 0.25);
+
+    /* Fondo */
+    --md-default-bg-color: #1e2129;
+    --md-default-bg-color--light: #252933;
+    --md-default-bg-color--lighter: #2c303b;
+    --md-default-bg-color--lightest: #353a46;
+
+    /* Código */
+    --md-code-bg-color: #17191f;
+    --md-code-fg-color: #f1f3f5;
+
+    /* Enlaces */
+    --md-text-link-color: #48cae4;
+
+    /* Admonitions */
+    --md-admonition-bg-color: rgba(255, 255, 255, 0.045);
+    --md-admonition-fg-color: var(--md-default-fg-color);
+
+    /* Footer */
+    --md-footer-bg-color: #15171c;
+    --md-footer-bg-color--dark: #101216;
+
+
+    /* ========================================
+       NEGRITA
+       ======================================== */
+
+    .md-typeset strong {
+        color: #f04cd2;
+    }
+
+    --md-strong-color: #f04cd2;
+
+
+    /* ========================================
+       TABLAS
+       ======================================== */
+
+    .md-typeset table:not([class]) {
+        background-color: #252933;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .md-typeset table:not([class]) th {
+        background-color: #0077b6;
+        color: white;
+    }
+
+    .md-typeset table:not([class]) td {
+        border-color: #3a3f4b;
+    }
+
+
+    /* ========================================
+       CÓDIGO
+       ======================================== */
+
+    .md-typeset pre {
+        background-color: #15171c;
+        border: 1px solid #303540;
+        border-radius: 8px;
+    }
+
+    .md-typeset code {
+        background-color: #292d36;
+    }
+
+
+    /* ========================================
+       TÍTULOS
+       ======================================== */
+
+    .md-typeset h1 {
+        color: #b1d6de;
+    }
+    .md-typeset h2 {
+        color: #48cae4;
+    }
+
+    .md-typeset h3 {
+        color: #f0a94c;
+    }
+    .md-typeset h4,
+    .md-typeset h5,
+    .md-typeset h6 {
+        color: #90e0ef;
+    }
+   
+
+    .md-typeset h1 strong{
+        color: #b1d6de;
+    }
+    .md-typeset h2 strong{
+        color: #48cae4;
+    }
+
+    .md-typeset h3 strong{
+        color: #f0a94c;
+    }
+    .md-typeset h4 strong,
+    .md-typeset h5 strong,
+    .md-typeset h6 strong {
+        color: #90e0ef;
+    }
+
+/* El resaltado*/
+mark {
+    background-color: transparent;
+}
+
+ins, .critic {
+    background-color: transparent !important;
+}
+
+    /* ========================================
+       ENLACES
+       ======================================== */
+
+    .md-typeset a {
+        color: #48cae4;
+    }
+
+    .md-typeset a:hover {
+        color: #90e0ef;
+    }
+}
+
+
+    /* Center Markdown Tables (requires md_in_html extension) */
+.center-table {
+    text-align: center;
+}
+
+  ul li {
+    list-style-type: '✨';
+  }
+
+  /*body {
+    text-align: justify;
+  }*/
+
+  body {
+    text-align: left;
+  }
+
+  table {
+    margin-left: auto;
+    margin-right: auto;
+    margin: 0 auto;
+  }
+
+.md-typeset .admonition,
+.md-typeset details {
+  border-left-width: 6px;
+  font-size: 15px;
+  border-radius: 6px;
+}
+
+.md-main__inner.md-grid {
+    max-width: initial;
+}
+
+.md-nav{
+  font-weight: bold;
+}
+
+  /* Margen entre párrafos */
+.md-typeset ul li {
+    margin-bottom: 20px;
+}
+
+/* Indentación */
+.md-typeset ul {
+    padding-left: 2em;
+}
+
+/* Para la indentación dentro de los puntos */
+.ejemplo {
+    margin-top: 1em;
+}
+
+/* Tabla comparativa VM vs Contenedor */
+.md-typeset table:not([class]) {
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+/* Encabezado */
+.md-typeset table:not([class]) th {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.05em;
+}
+
+/* Primera columna */
+.md-typeset table:not([class]) td:first-child {
+    font-weight: bold;
+}
+
+/* Celdas */
+.md-typeset table:not([class]) td {
+    vertical-align: middle;
+}
+
+/* Separación entre filas */
+.md-typeset table:not([class]) tr {
+    height: 3em;
+}
+
+    h1 {
+    text-align: center;
+  }
+
+.md-typeset .admonition {
+    font-size: 1.05em;
+}
+
+.md-typeset .admonition-title {
+    font-size: 1.025em;
+}
+
+.md-typeset table tbody {
+    font-size: 1.2em;
+}
+

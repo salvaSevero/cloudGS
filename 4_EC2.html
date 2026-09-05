@@ -1,0 +1,1474 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://salvasevero.github.io/cloud/4_EC2.html">
+      
+      
+        <link rel="prev" href="3_Caracteristcas.html">
+      
+      
+        <link rel="next" href="5_WP.html">
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>EC2 - Introducción a la Nube Pública.</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ec2-amazon-elastic-compute-cloud" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="." title="Introducción a la Nube Pública." class="md-header__button md-logo" aria-label="Introducción a la Nube Pública." data-md-component="logo">
+      
+  <img src="imagenes/logofp.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Introducción a la Nube Pública.
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              EC2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo día"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo día" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo noche"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo noche" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Introducción a la Nube Pública." class="md-nav__button md-logo" aria-label="Introducción a la Nube Pública." data-md-component="logo">
+      
+  <img src="imagenes/logofp.png" alt="logo">
+
+    </a>
+    Introducción a la Nube Pública.
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cloud Computing
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Cloud Computing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="2_Nubes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cloud Computing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="3_Caracteristcas.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Características
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    AWS
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            AWS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    EC2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            EC2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    EC2
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="4_EC2.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    EC2
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#caracteristicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Características.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elementos-que-conforman-una-instancia-ec2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Elementos que conforman una instancia EC2.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracion-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración de Red.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#almacenamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Almacenamiento.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gestion-de-la-ec2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gestión de la EC2.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#video-explicativo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vídeo Explicativo.
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="5_WP.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    WordPress
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Almacenamiento
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Almacenamiento
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="8_Almacenamiento.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Almacenamiento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="7_EBS.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    EBS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="9_EFS.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    EFS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="6_S3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    S3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10_WebEstaticaS3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Web Estática
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12_Policies.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    S3 Policies
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    AWS CLI
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            AWS CLI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11_aws_cli.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuración
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    AMI
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            AMI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13_AMI.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Crear e Importar
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Balanceador de Carga
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Balanceador de Carga
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14_ELB.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Conocimientos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15_ELB_Practica.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Práctica Guiada
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    RDS
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            RDS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17_RDS.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RDS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18_WP_RDS.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    WP y RDS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<div><h1 id="ec2-amazon-elastic-compute-cloud">EC2 (Amazon Elastic Compute Cloud).<a class="headerlink" href="#ec2-amazon-elastic-compute-cloud" title="Permanent link">¶</a></h1>
+<h2 id="caracteristicas">Características.<a class="headerlink" href="#caracteristicas" title="Permanent link">¶</a></h2>
+<ul>
+<li>
+<p>Genera <mark class="critic"><strong>máquinas virtuales</strong></mark> en la nube.</p>
+</li>
+<li>
+<p>Se suele utilizar para desplegar <ins class="critic"><strong>servidores</strong></ins>:</p>
+<p>💥 <strong>Servidores Web.</strong></p>
+<p>💥 <strong>Servidores de Correo.</strong></p>
+<p>💥 <strong>Servidores de Archivos.</strong></p>
+</li>
+<li>
+<p>Su <ins class="critic"><strong>coste</strong></ins> depende de los recursos usados por dicho servidor.</p>
+<p>💥 <strong>Memoria RAM.</strong></p>
+<p>💥 <strong>Núcleos de CPU.</strong></p>
+<p>💥 <strong>Tipos de Discos.</strong></p>
+<p>💥 <strong>IP Pública estática.</strong></p>
+</li>
+<li>
+<p>Es un <ins class="critic"><strong>servicio escalable</strong></ins>, pudiendo añadir o quitar memoria o CPU dependiendo de las necesidades en cada momento.</p>
+</li>
+</ul>
+<h2 id="elementos-que-conforman-una-instancia-ec2">Elementos que conforman una instancia EC2.<a class="headerlink" href="#elementos-que-conforman-una-instancia-ec2" title="Permanent link">¶</a></h2>
+<center>
+<figure>
+<img src="imagenes/ec2/1.png" width="800">
+</figure>
+</center>
+
+<h3 id="ami-amazon-machine-image">AMI (Amazon Machine Image).<a class="headerlink" href="#ami-amazon-machine-image" title="Permanent link">¶</a></h3>
+<div class="admonition note">
+<p>Son imágenes donde vienen ya preconfigurados el sistema operativo y las aplicaciones.</p>
+</div>
+<p><strong>Tipos de AMI:</strong></p>
+<center>
+<figure>
+<img src="imagenes/ec2/8.png" width="1000">
+</figure>
+</center>
+
+<ul>
+<li>
+<p><strong>Quick Start AMI</strong>: Son AMIs prediseñadas por AWS, inclueyen Linux, Windows o Mac. </p>
+</li>
+<li>
+<p><strong>AMI personalizadas</strong>: Son AMI que hemos generado a partir de un sistema, ya sea en una máquina local o virtual mediante VmWare, VirtualBox, o incluso una propia EC2.</p>
+</li>
+<li>
+<p><strong>AWS Marketplace</strong>: Incluye miles de AMIs de terceros que se pueden comprar y tienen ya su software preinstalado y licencia incluida. Suelen ser de pago.</p>
+</li>
+<li>
+<p><strong>AMI de la comunidad</strong>: Incluye todas las AMI que cualquier persona quiera hacer pública, con el software y configuración pertinentes que exponga dicha persona. AWS no se responsabiliza del contenido de dichas AMI y por tanto es recomendable evitarlas en entornos corporativos o de producción.</p>
+</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">AVISO</p>
+<p></p><center>
+<strong>Cuando creamos una AMI, ésta solo existe en la región donde la hemos creado.</strong>
+</center>
+</div>
+<h3 id="instancias">Instancias<a class="headerlink" href="#instancias" title="Permanent link">¶</a></h3>
+<p>Las instancias son plantillas de <ins class="critic"><strong>hardware</strong></ins> de las que se compondrá nuestro servidor (CPU, Memoria y Familia).</p>
+<center>
+<figure>
+<img src="imagenes/ec2/4.png" width="600">
+</figure>
+</center>
+
+<div class="admonition note">
+<p class="admonition-title">Familia</p>
+<center>
+<p><strong>La Familia indica esa arquitectura de máquina virtual a qué tipo de servidor va asociado, es decir, si va a ser un servidor centrado en computación, memoria, almacenamiento, procesamiento gráfico o de ámbito general.</strong></p>
+<p><a href="https://aws.amazon.com/es/ec2/instance-types/"><strong>Tipos de Instancias</strong></a></p>
+</center>
+</div>
+<p>Dentro de cada familia existen multitud de <strong>categorías</strong> que nos permiten un rápido escalado de nuestro servidor.</p>
+<center>
+<figure>
+<img src="imagenes/ec2/9.png" width="1000">
+</figure>
+</center>
+
+<h3 id="par-de-claves">Par de Claves.<a class="headerlink" href="#par-de-claves" title="Permanent link">¶</a></h3>
+<p>Es necesario al crear una EC2 generar un par de claves (pública/privada) que usaremos para posteriormente <ins class="critic"><strong>acceder y gestionar</strong></ins> nuestra máquina.</p>
+<p>Podemos elegir una por defecto que nos genera AWS (vockey) o generar una nosotros.</p>
+<center>
+<figure>
+<img src="imagenes/ec2/5.png" width="1000">
+</figure>
+</center>
+
+<div class="admonition danger">
+<p class="admonition-title">PELIGRO</p>
+<p><strong>Si generamos nuestras propias claves, debemos descargarlas y guardarlas en un lugar seguro.</strong> </p>
+<p><strong>Esta es la única oportunidad de guardar el archivo de clave privada. Si perdemos las claves, tendremos que destruir la instancia y volver a crearla.</strong></p>
+</div>
+<h2 id="configuracion-de-red">Configuración de Red.<a class="headerlink" href="#configuracion-de-red" title="Permanent link">¶</a></h2>
+<center>
+<figure>
+<img src="imagenes/ec2/6.png" width="900">
+</figure>
+</center>
+
+<div class="admonition note">
+<p></p><center>
+<strong>Por el momento no vamos a entrar en detalle en la configuración de red ya que la veremos en otro apartado.</strong>
+</center>
+</div>
+<h2 id="almacenamiento">Almacenamiento.<a class="headerlink" href="#almacenamiento" title="Permanent link">¶</a></h2>
+<center>
+<figure>
+<img src="imagenes/ec2/7.png" width="900">
+</figure>
+</center>
+
+<h3 id="opciones-de-almacenamiento">Opciones de almacenamiento.<a class="headerlink" href="#opciones-de-almacenamiento" title="Permanent link">¶</a></h3>
+<ul>
+<li>
+<p><strong>Número de discos</strong> que queremos que tenga nuestro servidor.</p>
+</li>
+<li>
+<p><strong>Capacidad</strong>.</p>
+</li>
+<li>
+<p><strong>Velocidad</strong> del disco.</p>
+</li>
+<li>
+<p>Si queremos los datos del disco <strong>encriptado</strong>.</p>
+</li>
+<li>
+<p>Si queremos <strong>conservar los datos</strong> del disco aún cuando se elimine la EC2 (máquina virtual).</p>
+</li>
+</ul>
+<h2 id="gestion-de-la-ec2">Gestión de la EC2.<a class="headerlink" href="#gestion-de-la-ec2" title="Permanent link">¶</a></h2>
+<p>Para la gestión de la EC2, deberemos ir al apartado de <ins class="critic"><strong>Instancias</strong></ins> dentro del bloque EC2.</p>
+<center>
+<figure>
+<img src="imagenes/ec2/11.png" width="900">
+</figure>
+</center>
+
+<center>
+<figure>
+<img src="imagenes/ec2/12.png" width="900">
+</figure>
+</center>
+
+<div class="admonition danger">
+<p class="admonition-title">Usuario</p>
+<p></p><center>
+<strong>Es importante saber cual es el <mark class="critic">usuario por defecto</mark>, esta información podemos verla al escoger la AMI durante la instalación de la EC2.</strong>
+</center>
+</div>
+<h3 id="acceso-por-terminal">Acceso por terminal.<a class="headerlink" href="#acceso-por-terminal" title="Permanent link">¶</a></h3>
+<div class="admonition question">
+<p class="admonition-title">¿Qué sucede si no tenemos acceso a un navegador y queremos acceder desde la terminal de nuestro ordenador?</p>
+<p><strong>En ese caso deberemos acceder usando el par de claves de SSH de forma manual.</strong></p>
+</div>
+<h4 id="descargar-la-clave-privada">Descargar la clave privada.<a class="headerlink" href="#descargar-la-clave-privada" title="Permanent link">¶</a></h4>
+<center>
+<figure>
+<img src="imagenes/ec2/10.png" width="900">
+</figure>
+</center>
+
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p></p><center>
+<strong>Debemos almacenar la clave privada en algún sitio seguro, con ella pueden acceder a nuestro servidor.</strong>
+</center>
+</div>
+<h4 id="credenciales-de-la-maquina-ec2">Credenciales de la máquina EC2.<a class="headerlink" href="#credenciales-de-la-maquina-ec2" title="Permanent link">¶</a></h4>
+<p>Vamos al apartado de conexión de la EC2.</p>
+<center>
+<figure>
+<img src="imagenes/ec2/13.png" width="1100">
+</figure>
+</center>
+
+<p>Datos importantes para la conexión siguiendo el ejemplo:</p>
+<ul>
+<li>
+<p><strong>Nombre DNS</strong>: ec2-174-129-55-94.compute-1.amazonaws.com</p>
+</li>
+<li>
+<p><strong>Usuario</strong>: ubuntu</p>
+</li>
+<li>
+<p><strong>Clave Privada</strong>: vockey.pem</p>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Clave Privada</p>
+<p>Normalmente cuando la descargamos tiene el nombre de "labsuser.pem"</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="n">ssh</span> <span class="n">-i</span> <span class="s2">"labsuser.pem"</span> <span class="n">ubuntu</span><span class="nv">@ec2</span><span class="p">-</span><span class="n">54</span><span class="p">-</span><span class="n">221</span><span class="p">-</span><span class="n">43</span><span class="p">-</span><span class="n">103</span><span class="p">.</span><span class="n">compute</span><span class="p">-</span><span class="n">1</span><span class="p">.</span><span class="n">amazonaws</span><span class="p">.</span><span class="n">com</span>
+</code></pre></div>
+<h3 id="acceso-por-rdp-remote-desktop-protocol">Acceso por RDP (Remote Desktop Protocol).<a class="headerlink" href="#acceso-por-rdp-remote-desktop-protocol" title="Permanent link">¶</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">RDP</p>
+<p></p><center>
+<strong>RDP es un protocolo de acceso con interfaz gráfico para el acceso remoto al escritorio.</strong>
+</center>
+</div>
+<h4 id="descargar-la-clave-privada-pem">Descargar la clave privada (PEM).<a class="headerlink" href="#descargar-la-clave-privada-pem" title="Permanent link">¶</a></h4>
+<center>
+<figure>
+<img src="imagenes/ec2/10.png" width="900">
+</figure>
+</center>
+
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p></p><center>
+<strong>Debemos almacenar la clave privada en algún sitio seguro, con ella pueden acceder a nuestro servidor.</strong>
+</center>
+</div>
+<h4 id="ver-credenciales-de-la-maquina-ec2">Ver credenciales de la máquina EC2.<a class="headerlink" href="#ver-credenciales-de-la-maquina-ec2" title="Permanent link">¶</a></h4>
+<center>
+<figure>
+<img src="imagenes/ec2/14.png" width="1000">
+</figure>
+</center>
+
+<ul>
+<li>Deberemos subir la clave privada (.pem) que nos hemos descargado en el punto anterior.</li>
+</ul>
+<center>
+<figure>
+<img src="imagenes/ec2/15.png" width="600">
+</figure>
+</center>
+
+<ul>
+<li>Una vez subida la clave privada nos descifrará la clave de usuario de la máquina.</li>
+</ul>
+<center>
+<figure>
+<img src="imagenes/ec2/16.png" width="400">
+</figure>
+</center>
+
+<h4 id="acceso-a-la-maquina-ec2">Acceso a la máquina EC2.<a class="headerlink" href="#acceso-a-la-maquina-ec2" title="Permanent link">¶</a></h4>
+<ul>
+<li>Accedemos al apartado de conexión de la máquina EC2.</li>
+</ul>
+<center>
+<figure>
+<img src="imagenes/ec2/17.png" width="800">
+</figure>
+</center>
+
+<ul>
+<li>Debemos descargarnos el .rdp ya configurado simplemente para el acceso desde una aplicación que soporte RDP.</li>
+</ul>
+<center>
+<figure>
+<img src="imagenes/ec2/18.png" width="800">
+</figure>
+</center>
+
+<div class="admonition note">
+<p class="admonition-title">Acceso</p>
+<p><strong>Una vez descargado el fichero lo ejecutamos e introducimos la contraseña mostrada en el apartado anterior.</strong></p>
+</div>
+<h2 id="video-explicativo">Vídeo Explicativo.<a class="headerlink" href="#video-explicativo" title="Permanent link">¶</a></h2>
+<p><a href="">Creación y Gestión EC2</a></p>
+<center>
+
+<iframe width="1236" height="695" src="https://www.youtube.com/embed/ts9izrtvrqg" title="Creación EC2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+</center></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Salvador Serrano Pérez - Licencia CC BY-NC-SA
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": ".", "features": ["header.autohide", "toc.integrate", "toc.follow", "navigation.indexes", "content.code.copy", "navigation.instant", "navigation.instant.progress", "navigation.tracking"], "search": "assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+    
+  </body>
+</html>
