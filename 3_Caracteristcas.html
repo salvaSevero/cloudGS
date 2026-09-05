@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://salvasevero.github.io/cloud/3_Caracteristcas.html">
+        <link rel="canonical" href="https://salvasevero.github.io/cloudGS/3_Caracteristcas.html">
       
       
         <link rel="prev" href="2_Nubes.html">
@@ -1122,11 +1122,18 @@
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Región y Zona</p>
-<p>💥 <strong>Una región se compone de varias zonas de disponibilidad donde podemos desplegar nuestros servicios.</strong></p>
+<p>💥 Una región se compone de varias zonas de disponibilidad donde podemos desplegar nuestros servicios.</p>
+<p>💥 Si una zona deja de estar disponible, podemos mantener el servicio funcionando en otra zona (disponibilidad AZ).</p>
 <p></p><center>
 <figure>
 <img src="imagenes/nube/4.jpg" width="600">
 <figcaption>Regiones de AWS</figcaption>
+</figure>
+</center>
+<p></p><center>
+<figure>
+<img src="imagenes/nube/13.png" width="800">
+<figcaption>Disponibilidad dentro de una región</figcaption>
 </figure>
 </center>
 </div>
@@ -1139,16 +1146,57 @@
 </figure>
 </center>
 </div>
-<h2 id="modelo-de-responsabilidad-compartida">Modelo de Responsabilidad Compartida.<a class="headerlink" href="#modelo-de-responsabilidad-compartida" title="Permanent link">¶</a></h2>
-<p>Ante un fallo en nuestro servidor, ya sea por un ataque cibernético o por un error en el hardware, existe un <strong>Modelo de Responsabilidad Compartida</strong> que indica quién era el responsable de que esa parte no fallara.</p>
-<p>Esta responsabilidad variará dependiendo del tipo de servicio que estemos contratando (IaaS, PaaS, SaaS).</p>
-<h3 id="responsabilidad-del-proovedor-aws-azure-google-cloud-huawei-cloud">Responsabilidad del proovedor (AWS, Azure, Google Cloud, Huawei Cloud, ...).<a class="headerlink" href="#responsabilidad-del-proovedor-aws-azure-google-cloud-huawei-cloud" title="Permanent link">¶</a></h3>
+<h3 id="redundancia">Redundancia.<a class="headerlink" href="#redundancia" title="Permanent link">¶</a></h3>
+<p>Contar con diferentes regiones que a su vez disponen de varias zonas de disponibilidad nos permiten generar varias estrategias que nos aportan redundancia de nuestros servicios.</p>
 <ul>
 <li>
-<p><strong>Infraestructura física</strong>: Servidores, electricidad, seguridad física de los racks, cableado e interconexiones, equipos de red, ... </p>
+<p><strong>Alta Disponibilidad (HA)</strong>: Tener dos o más servicios ejecutándose en diferentes zonas de una misma región. En caso de fallo en una zona el resto de zonas seguirían funcionando y no habría problema.</p>
 </li>
 <li>
-<p><strong>Software</strong>: En el caso del software que sea suministrado por ellos, deben comprobar que no tiene un software malicioso incorporado <strong>durante la instalación</strong>, que es compatible con nuestra máquina virtual por ejemplo.</p>
+<p><strong>Backup</strong>: Tener almacenado una copia de nuestro servicio en un almacenamiento estático, en caso de fallo se podría restarurar manualmente.</p>
+</li>
+<li>
+<p><strong>Disaster Recovery (DR)</strong>: Ante un desastre grave en una región restaura el servicio en otra región.</p>
+</li>
+</ul>
+<div class="center-table">
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>¿Qué busca?</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🟢 <strong>Alta disponibilidad (HA)</strong></td>
+<td>Que el servicio siga funcionando ante un fallo</td>
+<td>Servidores repartidos entre varias AZ</td>
+</tr>
+<tr>
+<td>🟠 <strong>Disaster Recovery (DR)</strong></td>
+<td>Recuperar el servicio después de un desastre grave</td>
+<td>Restaurar la aplicación en otra región</td>
+</tr>
+<tr>
+<td>🔵 <strong>Backup</strong></td>
+<td>Disponer de una copia de los datos</td>
+<td>Copia diaria de una base de datos</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="modelo-de-responsabilidad-compartida">Modelo de Responsabilidad Compartida.<a class="headerlink" href="#modelo-de-responsabilidad-compartida" title="Permanent link">¶</a></h2>
+<p>Ante un fallo en nuestro servidor, ya sea por un ataque cibernético o por un error en el hardware, existe un <strong>Modelo de Responsabilidad Compartida</strong> que indica quién es el responsable, nosotros o nuestro proveedor de la nube (AWS, Azure, Google Cloud, ...).</p>
+<p>Esta responsabilidad variará dependiendo del tipo de servicio que estemos contratando (IaaS, PaaS, SaaS).</p>
+<h3 id="responsabilidad-del-proveedor-aws-azure-google-cloud-huawei-cloud">Responsabilidad del proveedor (AWS, Azure, Google Cloud, Huawei Cloud, ...).<a class="headerlink" href="#responsabilidad-del-proveedor-aws-azure-google-cloud-huawei-cloud" title="Permanent link">¶</a></h3>
+<ul>
+<li>
+<p><strong>Infraestructura física</strong>: El proveedor es responsable de la seguridad de la infraestructura que gestiona: servidores, electricidad, refrigeración, seguridad física de los racks, cableado e interconexiones, equipos de red, ... </p>
+</li>
+<li>
+<p><strong>Software</strong>: Si el software ha sido suministrado por el proveedor, debe estar bien actualizado, configurado y libre de malware.</p>
 </li>
 </ul>
 <h3 id="responsabilidades-del-cliente-nosotros">Responsabilidades del cliente (nosotros).<a class="headerlink" href="#responsabilidades-del-cliente-nosotros" title="Permanent link">¶</a></h3>
@@ -1193,7 +1241,7 @@
 <p>Habitualmente hay 4 aspectos que son los que generan el precio final de un servidor/servicio:</p>
 <ul>
 <li>
-<p><strong>Procesamiento</strong>: Se refiere a la cantidad y calidad de las CPUs y Memoria RAM seleccionadas. Se suele cobrar únicamente cuando la máquina está encendida (se cobra por uso).</p>
+<p><strong>Procesamiento</strong>: Se refiere a la cantidad y calidad de las CPUs y Memoria RAM seleccionadas. Se suele cobrar únicamente cuando la máquina está encendida (se cobra, mayormente, por uso).</p>
 </li>
 <li>
 <p><strong>Almacenamiento</strong>: Dependiendo de la calidad y capacidad del almacenamiento seleccionado. Este cobro es constante pues aunque desconectemos la máquina el almacenamiento sigue siendo usado.</p>

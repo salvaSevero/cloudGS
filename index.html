@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://salvasevero.github.io/cloud/index.html">
+        <link rel="canonical" href="https://salvasevero.github.io/cloudGS/index.html">
       
       
       
@@ -1035,10 +1035,19 @@
 
 <div><h1 id="computacion-en-la-nube">Computación en la Nube.<a class="headerlink" href="#computacion-en-la-nube" title="Permanent link">¶</a></h1>
 <h2 id="que-entendemos-por-computacion-en-la-nube">¿Qué entendemos por computación en la nube?<a class="headerlink" href="#que-entendemos-por-computacion-en-la-nube" title="Permanent link">¶</a></h2>
-<p>Hacer uso de infraestructura (almacenamiento, CPUS, RAM, ancho de banda, electricidad, refrigeración) y servicios (bases de datos, firewalls, servicios DNS, balanceadores, ...) de terceros y habitualmente pagando por uso.</p>
+<ul>
+<li>
+<p>Hacer uso de <strong>infraestructura</strong> (almacenamiento, CPUS, RAM, ancho de banda, electricidad, refrigeración) y <strong>servicios</strong> (bases de datos, firewalls, servicios DNS, balanceadores, ...) de terceros y habitualmente pagando por uso.</p>
+</li>
+<li>
+<p>La creación y configuración de estos recursos puede hacerse a través de interfaz gráfica o mediante línea de comandos o API (<strong>AWS CLI, Terraform, CloudFormation</strong>).</p>
+</li>
+</ul>
 <div class="admonition tip">
 <p class="admonition-title">Ventajas</p>
-<p>💥 <strong>Escalabilidad</strong>: Si necesito ampliar o reducir cualquier componente lo puedo hacer a través de unos pocos clicks. Puedo incrementar/decrementar los recursos según mis necesidades: cantidad de servidores, balanceadores de carga, no estoy limitado por falta de espacio físico o por falta de stock al no haber previsto algún acontecimiento, etc.</p>
+<p>💥 <strong>Escalabilidad Vertical</strong>: Si necesito ampliar o reducir cualquier componente (CPU/Memoria/Disco/Ancho de banda) lo puedo hacer a través de unos pocos clicks.</p>
+<p>💥 <strong>Escalabilidad horizontal</strong>: Incrementar o decrementar el número de elementos virtualizados (servidores, balanceadores de carga, bases de datos). No se está limitado por falta de espacio físico o por falta de stock al no haber previsto algún acontecimiento, etc.</p>
+<p>💥 <strong>Elasticidad</strong>: Capacidad de aumentar o disminuir recursos automáticamente según la demanda.</p>
 <p>💥 <strong>Centralizado</strong>: Se configura cualquier servicio, independientemente del tipo o de la localización desde la misma interfaz.</p>
 <p>💥 <strong>Agilidad</strong>: Con una serie de clicks podemos levantar y configurar un servidor (No es necesario montarlo y cablearlo físicamente).</p>
 <p>💥 <strong>Control de Coste</strong>: Se paga por uso del servicio, por ejemplo pagaremos dependiendo del uso que hagamos del ancho de banda, o del tiempo que esté la CPU encendida.</p>
@@ -1066,7 +1075,7 @@
 <p><mark class="critic"><strong>PaaS (Plataforma como Servicio)</strong></mark>:  Es un entorno completo para el desarrollo, la ejecución y gestión de aplicaciones (<ins class="critic"><strong>Desarrollo Software</strong></ins>). Es decir, ya no solo estamos contratando el hardware si no que también nos gestionan el tener instalado un sistema operativo, un entorno de programación (IDE), las actualizaciones, los paquetes de programación necesarias, el despliegue de la base de datos, etc.</p>
 </li>
 <li>
-<p><mark class="critic"><strong>SaaS (Software como Servicio)</strong></mark>: Permite que el proveedor te despliegue y gestione (actualizaciones, corrección de errores, mantenimiento, ...) una aplicación a la cual los clientes acceden normalmente mediante web o una API. Son las <ins class="critic"><strong>aplicaciones basadas en la nube</strong></ins></p>
+<p><mark class="critic"><strong>SaaS (Software como Servicio)</strong></mark>: El proveedor proporciona y gestiona la aplicación completa. Nosotros únicamente accedemos al servicio para su uso, normalmente a través de un navegador web o una aplicación cliente. Son las <ins class="critic"><strong>aplicaciones basadas en la nube</strong></ins> como por ejemplo GoogleDocs.</p>
 </li>
 </ul>
 <center>
@@ -1075,6 +1084,10 @@
 </figure>
 </center>
 
+<h3 id="ejemplo">Ejemplo.<a class="headerlink" href="#ejemplo" title="Permanent link">¶</a></h3>
+<p>Quieres crear una máquina virtual donde desarrollar y desplegar tu aplicación:</p>
+<p>📌 IaaS: Debes configurar el sistema operativo, instalar y configurar el "Runtime" (todos los paquetes de python, dependencias, librerías , el entorno, ...) y finalmente puedes ponerte a programar/compilar/ejecutar.</p>
+<p>📌 PaaS: La máquina virtual ya tiene todo instalado, solo tienes que centrarte en programar o lanzar tu aplicación.</p>
 <h2 id="tipos-de-nubes">Tipos de Nubes.<a class="headerlink" href="#tipos-de-nubes" title="Permanent link">¶</a></h2>
 <h3 id="nubes-publicas">Nubes Públicas.<a class="headerlink" href="#nubes-publicas" title="Permanent link">¶</a></h3>
 <ul>
