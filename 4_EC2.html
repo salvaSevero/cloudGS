@@ -1141,25 +1141,30 @@
 <h2 id="caracteristicas">Características.<a class="headerlink" href="#caracteristicas" title="Permanent link">¶</a></h2>
 <ul>
 <li>
-<p>Genera <mark class="critic"><strong>máquinas virtuales</strong></mark> en la nube.</p>
+<p>Genera <mark class="critic"><strong>máquinas virtuales</strong></mark> en la nube (<strong>IaaS</strong>).</p>
 </li>
 <li>
-<p>Se suele utilizar para desplegar <ins class="critic"><strong>servidores</strong></ins>:</p>
-<p>💥 <strong>Servidores Web.</strong></p>
-<p>💥 <strong>Servidores de Correo.</strong></p>
-<p>💥 <strong>Servidores de Archivos.</strong></p>
+<p>Se suele utilizar para desplegar <ins class="critic">servidores</ins>:</p>
+<p>💥 Servidores Web.</p>
+<p>💥 Servidores de Correo.</p>
+<p>💥 Servidores de Archivos.</p>
 </li>
 <li>
 <p>Su <ins class="critic"><strong>coste</strong></ins> depende de los recursos usados por dicho servidor.</p>
-<p>💥 <strong>Memoria RAM.</strong></p>
-<p>💥 <strong>Núcleos de CPU.</strong></p>
-<p>💥 <strong>Tipos de Discos.</strong></p>
-<p>💥 <strong>IP Pública estática.</strong></p>
+<p>💥 Memoria RAM.</p>
+<p>💥 Núcleos de CPU.</p>
+<p>💥 Tipos de Discos.</p>
+<p>💥 IP Pública estática.</p>
 </li>
 <li>
-<p>Es un <ins class="critic"><strong>servicio escalable</strong></ins>, pudiendo añadir o quitar memoria o CPU dependiendo de las necesidades en cada momento.</p>
+<p>Es un <ins class="critic"><strong>servicio escalable</strong></ins>:</p>
+<p>💥 Escalabilidad Vertical: Añadir o quitar memoria o CPU dependiendo de las necesidades en cada momento.</p>
+<p>💥 Escalabilidad Horizontal: Crear o eliminar instancias según necesidad.</p>
 </li>
 </ul>
+<div class="admonition tip">
+<p class="admonition-title">AutoScaling es el servicio de AWS para gestionar la escalabilidad de nuestros servicios.</p>
+</div>
 <h2 id="elementos-que-conforman-una-instancia-ec2">Elementos que conforman una instancia EC2.<a class="headerlink" href="#elementos-que-conforman-una-instancia-ec2" title="Permanent link">¶</a></h2>
 <center>
 <figure>
@@ -1171,7 +1176,7 @@
 <div class="admonition note">
 <p>Son imágenes donde vienen ya preconfigurados el sistema operativo y las aplicaciones.</p>
 </div>
-<p><strong>Tipos de AMI:</strong></p>
+<h4 id="tipos-de-ami">Tipos de AMI:<a class="headerlink" href="#tipos-de-ami" title="Permanent link">¶</a></h4>
 <center>
 <figure>
 <img src="imagenes/ec2/8.png" width="1000">
@@ -1183,23 +1188,20 @@
 <p><strong>Quick Start AMI</strong>: Son AMIs prediseñadas por AWS, inclueyen Linux, Windows o Mac. </p>
 </li>
 <li>
-<p><strong>AMI personalizadas</strong>: Son AMI que hemos generado a partir de un sistema, ya sea en una máquina local o virtual mediante VmWare, VirtualBox, o incluso una propia EC2.</p>
+<p><strong>AMI personalizadas</strong>: Son AMI que hemos generado nosotros a partir de un sistema, ya sea en una máquina local o virtual mediante VmWare, VirtualBox, o incluso una propia EC2.</p>
 </li>
 <li>
-<p><strong>AWS Marketplace</strong>: Incluye miles de AMIs de terceros que se pueden comprar y tienen ya su software preinstalado y licencia incluida. Suelen ser de pago.</p>
+<p><strong>AWS Marketplace</strong>: Incluye miles de AMIs de terceros que se pueden comprar y tienen ya su software preinstalado y licencia incluida. Suelen ser de pago o ser nececesaria una suscripción.</p>
 </li>
 <li>
-<p><strong>AMI de la comunidad</strong>: Incluye todas las AMI que cualquier persona quiera hacer pública, con el software y configuración pertinentes que exponga dicha persona. AWS no se responsabiliza del contenido de dichas AMI y por tanto es recomendable evitarlas en entornos corporativos o de producción.</p>
+<p><strong>AMI de la comunidad</strong>: Incluye todas las AMI que cualquier persona quiera hacer pública, con el software y configuración pertinentes que exponga dicha persona. AWS no se responsabiliza del contenido de dichas AMI y por tanto es recomendable no utilizarlas en producción sin verificar previamente su procedencia y contenido.</p>
 </li>
 </ul>
 <div class="admonition warning">
-<p class="admonition-title">AVISO</p>
-<p></p><center>
-<strong>Cuando creamos una AMI, ésta solo existe en la región donde la hemos creado.</strong>
-</center>
+<p class="admonition-title">Cuando creamos una AMI, ésta solo existe en la región donde la hemos creado</p>
 </div>
-<h3 id="instancias">Instancias<a class="headerlink" href="#instancias" title="Permanent link">¶</a></h3>
-<p>Las instancias son plantillas de <ins class="critic"><strong>hardware</strong></ins> de las que se compondrá nuestro servidor (CPU, Memoria y Familia).</p>
+<h3 id="tipos-de-instancias">Tipos de Instancias<a class="headerlink" href="#tipos-de-instancias" title="Permanent link">¶</a></h3>
+<p>Los tipos de instancias son plantillas de <ins class="critic"><strong>hardware</strong></ins> de las que se compondrá nuestro servidor (CPU, Memoria y Familia).</p>
 <center>
 <figure>
 <img src="imagenes/ec2/4.png" width="600">
@@ -1207,11 +1209,16 @@
 </center>
 
 <div class="admonition note">
-<p class="admonition-title">Familia</p>
-<center>
-<p><strong>La Familia indica esa arquitectura de máquina virtual a qué tipo de servidor va asociado, es decir, si va a ser un servidor centrado en computación, memoria, almacenamiento, procesamiento gráfico o de ámbito general.</strong></p>
-<p><a href="https://aws.amazon.com/es/ec2/instance-types/"><strong>Tipos de Instancias</strong></a></p>
-</center>
+<p class="admonition-title">Familias de instancias</p>
+<p>Las instancias EC2 se agrupan en familias según el tipo de carga de trabajo para el que están optimizadas:</p>
+<ul>
+<li><strong>Propósito general:</strong> equilibrio entre CPU, memoria y red.</li>
+<li><strong>Optimizadas para computación:</strong> mayor capacidad de CPU.</li>
+<li><strong>Optimizadas para memoria:</strong> mayor cantidad de RAM.</li>
+<li><strong>Optimizadas para almacenamiento:</strong> alto rendimiento de almacenamiento.</li>
+<li><strong>Computación acelerada:</strong> GPU u otros aceleradores.</li>
+</ul>
+<p></p><center>🟢 <a href="https://aws.amazon.com/es/ec2/instance-types/">Tipos de Instancias</a></center>
 </div>
 <p>Dentro de cada familia existen multitud de <strong>categorías</strong> que nos permiten un rápido escalado de nuestro servidor.</p>
 <center>
@@ -1221,7 +1228,7 @@
 </center>
 
 <h3 id="par-de-claves">Par de Claves.<a class="headerlink" href="#par-de-claves" title="Permanent link">¶</a></h3>
-<p>Es necesario al crear una EC2 generar un par de claves (pública/privada) que usaremos para posteriormente <ins class="critic"><strong>acceder y gestionar</strong></ins> nuestra máquina.</p>
+<p>Es necesario al crear una EC2 generar un par de <strong>claves (pública/privada)</strong> que usaremos para posteriormente <ins class="critic"><strong>acceder y gestionar</strong></ins> nuestra máquina.</p>
 <p>Podemos elegir una por defecto que nos genera AWS (vockey) o generar una nosotros.</p>
 <center>
 <figure>
@@ -1230,9 +1237,9 @@
 </center>
 
 <div class="admonition danger">
-<p class="admonition-title">PELIGRO</p>
-<p><strong>Si generamos nuestras propias claves, debemos descargarlas y guardarlas en un lugar seguro.</strong> </p>
-<p><strong>Esta es la única oportunidad de guardar el archivo de clave privada. Si perdemos las claves, tendremos que destruir la instancia y volver a crearla.</strong></p>
+<p class="admonition-title">IMPORTANTE</p>
+<p>🔥 Si generamos nuestras propias claves, <strong>debemos descargarlas y guardarlas</strong> en un lugar seguro.</p>
+<p>🔥 Esta es la única oportunidad de guardar el archivo de clave privada. Si perdemos las claves, tendremos que destruir la instancia y volver a crearla.</p>
 </div>
 <h2 id="configuracion-de-red">Configuración de Red.<a class="headerlink" href="#configuracion-de-red" title="Permanent link">¶</a></h2>
 <center>
@@ -1241,11 +1248,16 @@
 </figure>
 </center>
 
-<div class="admonition note">
-<p></p><center>
-<strong>Por el momento no vamos a entrar en detalle en la configuración de red ya que la veremos en otro apartado.</strong>
-</center>
-</div>
+<p>Una instancia EC2 se ejecuta dentro de una red virtual (<strong>VPC</strong>) y utiliza una interfaz de red virtual (<strong>ENI</strong>).</p>
+<p>La configuración de red incluye elementos como:</p>
+<ul>
+<li>Subred.</li>
+<li>Dirección IP privada.</li>
+<li>Dirección IP pública.</li>
+<li>Grupos de seguridad.</li>
+<li>Tabla de rutas.</li>
+</ul>
+<p>Estos conceptos se estudiarán en profundidad en el apartado de redes en AWS.</p>
 <h2 id="almacenamiento">Almacenamiento.<a class="headerlink" href="#almacenamiento" title="Permanent link">¶</a></h2>
 <center>
 <figure>
@@ -1256,19 +1268,19 @@
 <h3 id="opciones-de-almacenamiento">Opciones de almacenamiento.<a class="headerlink" href="#opciones-de-almacenamiento" title="Permanent link">¶</a></h3>
 <ul>
 <li>
-<p><strong>Número de discos</strong> que queremos que tenga nuestro servidor.</p>
+<p>Número de discos.</p>
 </li>
 <li>
-<p><strong>Capacidad</strong>.</p>
+<p>Capacidad.</p>
 </li>
 <li>
-<p><strong>Velocidad</strong> del disco.</p>
+<p>Velocidad.</p>
 </li>
 <li>
-<p>Si queremos los datos del disco <strong>encriptado</strong>.</p>
+<p>Encriptado.</p>
 </li>
 <li>
-<p>Si queremos <strong>conservar los datos</strong> del disco aún cuando se elimine la EC2 (máquina virtual).</p>
+<p>Conservación de los datos al eliminar la instancia.</p>
 </li>
 </ul>
 <h2 id="gestion-de-la-ec2">Gestión de la EC2.<a class="headerlink" href="#gestion-de-la-ec2" title="Permanent link">¶</a></h2>
@@ -1285,18 +1297,10 @@
 </figure>
 </center>
 
-<div class="admonition danger">
-<p class="admonition-title">Usuario</p>
-<p></p><center>
-<strong>Es importante saber cual es el <mark class="critic">usuario por defecto</mark>, esta información podemos verla al escoger la AMI durante la instalación de la EC2.</strong>
-</center>
+<div class="admonition important">
+<p class="admonition-title">Es importante saber cual es el <mark class="critic">usuario por defecto</mark>, esta información podemos verla al escoger la AMI durante la instalación de la EC2.</p>
 </div>
-<h3 id="acceso-por-terminal">Acceso por terminal.<a class="headerlink" href="#acceso-por-terminal" title="Permanent link">¶</a></h3>
-<div class="admonition question">
-<p class="admonition-title">¿Qué sucede si no tenemos acceso a un navegador y queremos acceder desde la terminal de nuestro ordenador?</p>
-<p><strong>En ese caso deberemos acceder usando el par de claves de SSH de forma manual.</strong></p>
-</div>
-<h4 id="descargar-la-clave-privada">Descargar la clave privada.<a class="headerlink" href="#descargar-la-clave-privada" title="Permanent link">¶</a></h4>
+<h3 id="descargar-la-clave-privada">Descargar la clave privada.<a class="headerlink" href="#descargar-la-clave-privada" title="Permanent link">¶</a></h3>
 <center>
 <figure>
 <img src="imagenes/ec2/10.png" width="900">
@@ -1304,12 +1308,9 @@
 </center>
 
 <div class="admonition danger">
-<p class="admonition-title">Danger</p>
-<p></p><center>
-<strong>Debemos almacenar la clave privada en algún sitio seguro, con ella pueden acceder a nuestro servidor.</strong>
-</center>
+<p class="admonition-title">Recuerda almacenar la clave privada en algún sitio seguro, con ella pueden acceder a nuestro servidor</p>
 </div>
-<h4 id="credenciales-de-la-maquina-ec2">Credenciales de la máquina EC2.<a class="headerlink" href="#credenciales-de-la-maquina-ec2" title="Permanent link">¶</a></h4>
+<h3 id="acceso-por-terminal">Acceso por terminal.<a class="headerlink" href="#acceso-por-terminal" title="Permanent link">¶</a></h3>
 <p>Vamos al apartado de conexión de la EC2.</p>
 <center>
 <figure>
@@ -1336,24 +1337,8 @@
 <div class="highlight"><pre><span></span><code><span class="n">ssh</span> <span class="n">-i</span> <span class="s2">"labsuser.pem"</span> <span class="n">ubuntu</span><span class="nv">@ec2</span><span class="p">-</span><span class="n">54</span><span class="p">-</span><span class="n">221</span><span class="p">-</span><span class="n">43</span><span class="p">-</span><span class="n">103</span><span class="p">.</span><span class="n">compute</span><span class="p">-</span><span class="n">1</span><span class="p">.</span><span class="n">amazonaws</span><span class="p">.</span><span class="n">com</span>
 </code></pre></div>
 <h3 id="acceso-por-rdp-remote-desktop-protocol">Acceso por RDP (Remote Desktop Protocol).<a class="headerlink" href="#acceso-por-rdp-remote-desktop-protocol" title="Permanent link">¶</a></h3>
-<div class="admonition warning">
-<p class="admonition-title">RDP</p>
-<p></p><center>
-<strong>RDP es un protocolo de acceso con interfaz gráfico para el acceso remoto al escritorio.</strong>
-</center>
-</div>
-<h4 id="descargar-la-clave-privada-pem">Descargar la clave privada (PEM).<a class="headerlink" href="#descargar-la-clave-privada-pem" title="Permanent link">¶</a></h4>
-<center>
-<figure>
-<img src="imagenes/ec2/10.png" width="900">
-</figure>
-</center>
-
-<div class="admonition danger">
-<p class="admonition-title">Danger</p>
-<p></p><center>
-<strong>Debemos almacenar la clave privada en algún sitio seguro, con ella pueden acceder a nuestro servidor.</strong>
-</center>
+<div class="admonition info">
+<p class="admonition-title">RDP es un protocolo de acceso con interfaz gráfico para el acceso remoto al escritorio.</p>
 </div>
 <h4 id="ver-credenciales-de-la-maquina-ec2">Ver credenciales de la máquina EC2.<a class="headerlink" href="#ver-credenciales-de-la-maquina-ec2" title="Permanent link">¶</a></h4>
 <center>
@@ -1380,7 +1365,7 @@
 </figure>
 </center>
 
-<h4 id="acceso-a-la-maquina-ec2">Acceso a la máquina EC2.<a class="headerlink" href="#acceso-a-la-maquina-ec2" title="Permanent link">¶</a></h4>
+<h4 id="acceder-a-la-maquina-ec2">Acceder a la máquina EC2.<a class="headerlink" href="#acceder-a-la-maquina-ec2" title="Permanent link">¶</a></h4>
 <ul>
 <li>Accedemos al apartado de conexión de la máquina EC2.</li>
 </ul>
@@ -1400,11 +1385,9 @@
 </center>
 
 <div class="admonition note">
-<p class="admonition-title">Acceso</p>
-<p><strong>Una vez descargado el fichero lo ejecutamos e introducimos la contraseña mostrada en el apartado anterior.</strong></p>
+<p class="admonition-title">Una vez descargado el fichero lo ejecutamos e introducimos la contraseña mostrada en el apartado anterior.</p>
 </div>
 <h2 id="video-explicativo">Vídeo Explicativo.<a class="headerlink" href="#video-explicativo" title="Permanent link">¶</a></h2>
-<p><a href="">Creación y Gestión EC2</a></p>
 <center>
 
 <iframe width="1236" height="695" src="https://www.youtube.com/embed/ts9izrtvrqg" title="Creación EC2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
