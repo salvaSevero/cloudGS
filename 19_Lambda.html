@@ -8,13 +8,11 @@
       
       
       
-        <link rel="canonical" href="https://salvasevero.github.io/cloudGS/12_Policies.html">
+        <link rel="canonical" href="https://salvasevero.github.io/cloudGS/19_Lambda.html">
       
       
-        <link rel="prev" href="10_WebEstaticaS3.html">
+        <link rel="prev" href="18_WP_RDS.html">
       
-      
-        <link rel="next" href="11_aws_cli.html">
       
       
       <link rel="icon" href="assets/images/favicon.png">
@@ -22,7 +20,7 @@
     
     
       
-        <title>S3 Policies - Introducción a la Nube Pública.</title>
+        <title>Lambda - Introducción a la Nube Pública.</title>
       
     
     
@@ -76,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#s3-policies" class="md-skip">
+        <a href="#funciones-lambda" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -111,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              S3 Policies
+              Lambda
             
           </span>
         </div>
@@ -482,10 +480,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -505,11 +501,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
         
           
           <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
@@ -525,7 +521,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_2">
             <span class="md-nav__icon md-icon"></span>
             Almacenamiento
@@ -651,32 +647,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    S3 Policies
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="12_Policies.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="12_Policies.html" class="md-nav__link">
         
   
   
@@ -687,80 +661,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tabla de contenidos
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#permiso-de-lectura-por-usuario-iam" class="md-nav__link">
-    <span class="md-ellipsis">
-      Permiso de Lectura por usuario IAM.
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#permiso-de-lectura-y-escritura-por-rolgrupo-iam" class="md-nav__link">
-    <span class="md-ellipsis">
-      Permiso de lectura y escritura por rol/grupo IAM.
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#denegar-todo-el-acceso-excepto-a-ciertas-direcciones-ip" class="md-nav__link">
-    <span class="md-ellipsis">
-      Denegar todo el acceso excepto a ciertas direcciones IP.
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#denegar-acceso-durante-ciertas-horas" class="md-nav__link">
-    <span class="md-ellipsis">
-      Denegar acceso durante ciertas horas.
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#permitir-acceso-solo-a-los-objetos-con-la-etiqueta-public" class="md-nav__link">
-    <span class="md-ellipsis">
-      Permitir acceso solo a los objetos con la etiqueta "public".
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#permitir-acceso-solo-a-aquellas-maquinas-que-vengan-de-cierta-red-vpc" class="md-nav__link">
-    <span class="md-ellipsis">
-      Permitir acceso solo a aquellas máquinas que vengan de cierta red (VPC).
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1120,8 +1020,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -1131,11 +1033,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" checked>
         
           
           <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
@@ -1151,7 +1053,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_7">
             <span class="md-nav__icon md-icon"></span>
             Serverless
@@ -1162,10 +1064,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="19_Lambda.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Lambda
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="19_Lambda.html" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1176,6 +1100,71 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#conceptos-de-una-funcion-lambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conceptos de una función lambda.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplos-teoricos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplos Teóricos:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-invocaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tipos de Invocaciones.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloudwatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      CloudWatch.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-practico-desde-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo Práctico desde AWS.
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1212,125 +1201,188 @@
 
 
 
-<div><h1 id="s3-policies">S3 Policies.<a class="headerlink" href="#s3-policies" title="Permanent link">¶</a></h1>
-<h2 id="permiso-de-lectura-por-usuario-iam">Permiso de Lectura por usuario IAM.<a class="headerlink" href="#permiso-de-lectura-por-usuario-iam" title="Permanent link">¶</a></h2>
-<div class="highlight"><pre><span></span><code>{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "ReadOnlyUser",
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "arn:aws:iam::xxxxxxxxxxxx:user/Miguelito"
-      },
-      "Action": ["s3:GetObject"],
-      "Resource": "arn:aws:s3:::mi-bucket-unico/*"
-    }
-  ]
-}
-</code></pre></div>
+<div><h1 id="funciones-lambda">Funciones Lambda.<a class="headerlink" href="#funciones-lambda" title="Permanent link">¶</a></h1>
+<ul>
+<li>
+<p>Servicio de computación <strong>serverless</strong> en el que se ejecuta código sin tener que aprovisionar ni administrar servidores. </p>
+</li>
+<li>
+<p>El <strong>coste</strong> se basa principalmente en la duración de ejecución y la RAM consumida para el procesamiento de cada petición.</p>
+</li>
+</ul>
 <div class="admonition tip">
-<p class="admonition-title">Las xxxxxxxx del arn del usuario hacen referencia a su ID en AWS.</p>
+<p class="admonition-title">Es un servicio que nos permite ejecutar código sin tener que preocuparnos del entorno de programación ni de la infraestructura.</p>
 </div>
-<h2 id="permiso-de-lectura-y-escritura-por-rolgrupo-iam">Permiso de lectura y escritura por rol/grupo IAM.<a class="headerlink" href="#permiso-de-lectura-y-escritura-por-rolgrupo-iam" title="Permanent link">¶</a></h2>
-<div class="highlight"><pre><span></span><code>{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "ReadWriteForRole",
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "arn:aws:iam::111122223333:role/DesarrolloWeb"
-      },
-      "Action": ["s3:GetObject", "s3:PutObject"],
-      "Resource": "arn:aws:s3:::mi-bucket-unico/*"
-    }
-  ]
-}
-</code></pre></div>
-<div class="admonition tip">
-<p class="admonition-title">El permiso de PutObject es un permiso de escritura.</p>
+<div class="admonition warning">
+<p class="admonition-title">Serverless</p>
+<p>No significa que no existan servidores, si no que el proveedor gestiona los servidores y nosotros no tenemos que administrarlos."</p>
 </div>
-<h2 id="denegar-todo-el-acceso-excepto-a-ciertas-direcciones-ip">Denegar todo el acceso excepto a ciertas direcciones IP.<a class="headerlink" href="#denegar-todo-el-acceso-excepto-a-ciertas-direcciones-ip" title="Permanent link">¶</a></h2>
-<div class="highlight"><pre><span></span><code>{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "AllowOnlyFromOffice",
-      "Effect": "Deny",
-      "Principal": "*",
-      "Action": "s3:*",
-      "Resource": ["arn:aws:s3:::mi-bucket-unico", "arn:aws:s3:::mi-bucket-unico/*"],
-      "Condition": {
-        "NotIpAddress": {"aws:SourceIp": "203.0.113.0/24"}
-      }
-    }
-  ]
-}
-</code></pre></div>
-<div class="admonition tip">
-<p class="admonition-title">Las acciones son los tipos de permisos (ejecución, lectura, escritura, etc). Por tant s3:* representa todos los tipos de permisos.</p>
+<h2 id="conceptos-de-una-funcion-lambda">Conceptos de una función lambda.<a class="headerlink" href="#conceptos-de-una-funcion-lambda" title="Permanent link">¶</a></h2>
+<figure>
+<img src="imagenes/serverless/4.png" width="900">
+</figure>
+
+<ul>
+<li>
+<p><strong>Runtime</strong>: Es el entorno de ejecución, básicamente para nosotros será el lenguaje de programación y su versión.</p>
+</li>
+<li>
+<p><strong>Handler</strong>: Es la función que se ejecuta al invocar al código lambda.</p>
+<p>🔥 event: Datos recibidos (payload). Por ejemplo un fichero JSON.</p>
+<p>🔥 context: Información sobre el entorno de ejecución (tiempo restante, request_id, etc).</p>
+</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Una función lambda no es un código que ejecutamos, si no que se ejecuta como respuesta a un evento.</p>
 </div>
-<h2 id="denegar-acceso-durante-ciertas-horas">Denegar acceso durante ciertas horas.<a class="headerlink" href="#denegar-acceso-durante-ciertas-horas" title="Permanent link">¶</a></h2>
-<div class="highlight"><pre><span></span><code>{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "AllowDuringWorkHours",
-      "Effect": "Deny",
-      "Principal": "*",
-      "Action": "s3:*",
-      "Resource": "arn:aws:s3:::mi-bucket-unico/*",
-      "Condition": {
-        "DateNotEquals": {
-          "aws:CurrentTime": [
-            "2025-11-08T08:00:00Z",
-            "2025-11-08T18:00:00Z"
-          ]
-        }
-      }
-    }
-  ]
-}
+<ul>
+<li>
+<p>Pueden ejecutarse concurrentemente cientos de invocaciones de una función lambda.</p>
+</li>
+<li>
+<p>AWS asigna potencia de CPU de forma proporcional a la memoria configurada. Actualmente Lambda permite configurar entre 128 MB y 10.240 MB.</p>
+</li>
+<li>
+<p>El timeout por defecto es de 3 segundos y puede configurarse hasta 15 minutos para las funciones Lambda tradicionales.</p>
+</li>
+<li>
+<p>Existe un almacenamiento volátil /tmp que puede configurarse entre 512 MB y 10.240 MB.</p>
+</li>
+</ul>
+<h2 id="ejemplos-teoricos">Ejemplos Teóricos:<a class="headerlink" href="#ejemplos-teoricos" title="Permanent link">¶</a></h2>
+<ul>
+<li>Procesamiento de imágenes desde un <strong>S3</strong>.</li>
+</ul>
+<figure>
+<img src="imagenes/serverless/5.png" width="700">
+</figure>
+
+<ul>
+<li>
+<p>Procesar peticiones de páginas webs (<strong>API Gateway</strong>) y posteriormente almacenarlas en una base de datos.</p>
+</li>
+<li>
+<p>Programar (<strong>EventBridge</strong>) que el código se ejecute a ciertas horas, por ejemplo hacer una copia de seguridad a las 02:00 am. </p>
+</li>
+</ul>
+<h2 id="tipos-de-invocaciones">Tipos de Invocaciones.<a class="headerlink" href="#tipos-de-invocaciones" title="Permanent link">¶</a></h2>
+<h3 id="sincrona">Síncrona.<a class="headerlink" href="#sincrona" title="Permanent link">¶</a></h3>
+<ul>
+<li>
+<p>El elemento que genera la petición a la función lambda espera la respuesta. </p>
+</li>
+<li>
+<p>Por ejemplo en el uso de una API Gateway con una web.</p>
+</li>
+</ul>
+<h3 id="asincrona">Asíncrona.<a class="headerlink" href="#asincrona" title="Permanent link">¶</a></h3>
+<ul>
+<li>
+<p>El emisor de la petición no espera una respuesta.</p>
+</li>
+<li>
+<p>Por ejemplo un S3 que manda ficheros para que sean procesados.</p>
+</li>
+</ul>
+<h2 id="cloudwatch">CloudWatch.<a class="headerlink" href="#cloudwatch" title="Permanent link">¶</a></h2>
+<ul>
+<li>
+<p>Se pueden ver los registros (<strong>logs</strong>) de todas las peticiones que solicitan la ejecución de la función lambda.</p>
+</li>
+<li>
+<p>Aporta visibilidad sobre <strong>depuración de errores</strong> que pueden estar ocurriendo.</p>
+</li>
+</ul>
+<figure>
+<img src="imagenes/serverless/6.png" width="700">
+</figure>
+
+<h2 id="ejemplo-practico-desde-aws">Ejemplo Práctico desde AWS.<a class="headerlink" href="#ejemplo-practico-desde-aws" title="Permanent link">¶</a></h2>
+<h4 id="1-creamos-una-funcion-lambda">1. Creamos una función Lambda:<a class="headerlink" href="#1-creamos-una-funcion-lambda" title="Permanent link">¶</a></h4>
+<ul>
+<li>
+<p>Nombre de la Función.</p>
+</li>
+<li>
+<p>Lenguaje de Programación.</p>
+</li>
+<li>
+<p>Especificar nuestro IAM (usuario): LabRole.</p>
+</li>
+</ul>
+<figure>
+<img src="imagenes/serverless/1.png" width="1200">
+</figure>
+
+<h4 id="2-programamos-la-funcion">2. Programamos la Función.<a class="headerlink" href="#2-programamos-la-funcion" title="Permanent link">¶</a></h4>
+<p>En el siguiente ejemplo la función va a recibir un payload con los valores de "nombre" y "edad" y devolverá un saludo.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Función Lambda de ejemplo que recibe un payload JSON.</span>
+
+<span class="sd">    - 'event' contiene los datos de entrada (el payload JSON).</span>
+<span class="sd">    - 'context' contiene información sobre el entorno de ejecución</span>
+<span class="sd">      (tiempo restante, request_id, etc).</span>
+<span class="sd">    """</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Si la Lambda se invoca desde API Gateway, el JSON real</span>
+        <span class="c1"># suele venir como texto dentro de event["body"]</span>
+        <span class="k">if</span> <span class="s2">"body"</span> <span class="ow">in</span> <span class="n">event</span><span class="p">:</span>
+            <span class="n">body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">event</span><span class="p">[</span><span class="s2">"body"</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Si se invoca directamente (por ejemplo, desde la consola</span>
+            <span class="c1"># de pruebas de Lambda), el payload ya es el propio 'event'</span>
+            <span class="n">body</span> <span class="o">=</span> <span class="n">event</span>
+
+        <span class="n">nombre</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"nombre"</span><span class="p">,</span> <span class="s2">"desconocido"</span><span class="p">)</span>
+        <span class="n">edad</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"edad"</span><span class="p">)</span>
+
+        <span class="n">mensaje</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"Hola, </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">. Tienes </span><span class="si">{</span><span class="n">edad</span><span class="si">}</span><span class="s2"> anyos."</span>
+
+        <span class="n">respuesta</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">"statusCode"</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+            <span class="s2">"headers"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"Content-Type"</span><span class="p">:</span> <span class="s2">"application/json"</span><span class="p">},</span>
+            <span class="s2">"body"</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span>
+                <span class="s2">"mensaje"</span><span class="p">:</span> <span class="n">mensaje</span><span class="p">,</span>
+                <span class="s2">"datos_recibidos"</span><span class="p">:</span> <span class="n">body</span>
+            <span class="p">})</span>
+        <span class="p">}</span>
+
+    <span class="k">except</span> <span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">)</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"Error al procesar el JSON: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+        <span class="n">respuesta</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">"statusCode"</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span>
+            <span class="s2">"headers"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"Content-Type"</span><span class="p">:</span> <span class="s2">"application/json"</span><span class="p">},</span>
+            <span class="s2">"body"</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">"error"</span><span class="p">:</span> <span class="s2">"El payload no es un JSON válido"</span><span class="p">})</span>
+        <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">respuesta</span>
 </code></pre></div>
-<h2 id="permitir-acceso-solo-a-los-objetos-con-la-etiqueta-public">Permitir acceso solo a los objetos con la etiqueta "public".<a class="headerlink" href="#permitir-acceso-solo-a-los-objetos-con-la-etiqueta-public" title="Permanent link">¶</a></h2>
-<div class="highlight"><pre><span></span><code>{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "AllowIfTaggedAsPublic",
-      "Effect": "Allow",
-      "Principal": "*",
-      "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::mi-bucket-unico/*",
-      "Condition": {"StringEquals": {"s3:ExistingObjectTag/Access": "public"}}
-    }
-  ]
-}
+<h4 id="3-creamos-un-test">3. Creamos un Test.<a class="headerlink" href="#3-creamos-un-test" title="Permanent link">¶</a></h4>
+<p>Es importante crear un payload de prueba y lanzarlo para ver que nuestro código se ejecuta correctamente.</p>
+<figure>
+<img src="imagenes/serverless/2.png" width="1200">
+</figure>
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monica"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"edad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54"</span>
+<span class="p">}</span>
 </code></pre></div>
-<div class="admonition tip">
-<p class="admonition-title">Es habitual poner etiquetas en los recursos para luego poder aplicarles políticas a dichos objetos.</p>
-</div>
-<h2 id="permitir-acceso-solo-a-aquellas-maquinas-que-vengan-de-cierta-red-vpc">Permitir acceso solo a aquellas máquinas que vengan de cierta red (VPC).<a class="headerlink" href="#permitir-acceso-solo-a-aquellas-maquinas-que-vengan-de-cierta-red-vpc" title="Permanent link">¶</a></h2>
-<div class="highlight"><pre><span></span><code>{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "AccessFromVPCEndpoint",
-      "Effect": "Allow",
-      "Principal": "*",
-      "Action": "s3:*",
-      "Resource": ["arn:aws:s3:::mi-bucket-unico", "arn:aws:s3:::mi-bucket-unico/*"],
-      "Condition": {
-        "StringEquals": {"aws:SourceVpce": "vpce-1a2b3c4d"}
-      }
-    }
-  ]
-}
-</code></pre></div>
-<div class="admonition tip">
-<p class="admonition-title">Una VPC es una red virtual en AWS.</p>
-</div></div>
+<h4 id="4-hacemos-deploy-para-que-los-cambios-surjan-efecto">4. Hacemos deploy para que los cambios surjan efecto.<a class="headerlink" href="#4-hacemos-deploy-para-que-los-cambios-surjan-efecto" title="Permanent link">¶</a></h4>
+<ul>
+<li>Podemos ejecutar nuestro Test para comprobar que todo es correcto.</li>
+</ul>
+<figure>
+<img src="imagenes/serverless/3.png" width="1200">
+</figure>
+
+<ul>
+<li>También podemos comprobar cuanto tiempo costó lanzar este código, pues el cobro será relativo a dicho tiempo.</li>
+</ul></div>
 
 
 
