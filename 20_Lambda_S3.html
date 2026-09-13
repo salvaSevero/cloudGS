@@ -8,13 +8,11 @@
       
       
       
-        <link rel="canonical" href="https://salvasevero.github.io/cloudGS/3_Caracteristcas.html">
+        <link rel="canonical" href="https://salvasevero.github.io/cloudGS/20_Lambda_S3.html">
       
       
-        <link rel="prev" href="2_Nubes.html">
+        <link rel="prev" href="19_Lambda.html">
       
-      
-        <link rel="next" href="4_EC2.html">
       
       
       <link rel="icon" href="assets/images/favicon.png">
@@ -22,7 +20,7 @@
     
     
       
-        <title>Características - Introducción a la Nube Pública.</title>
+        <title>S3+Lambda - Introducción a la Nube Pública.</title>
       
     
     
@@ -76,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#caracteristicas" class="md-skip">
+        <a href="#s3-y-lambda" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -111,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Características
+              S3+Lambda
             
           </span>
         </div>
@@ -231,10 +229,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -246,11 +242,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
         
           
           <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
@@ -266,7 +262,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1">
             <span class="md-nav__icon md-icon"></span>
             Cloud Computing
@@ -300,32 +296,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Características
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="3_Caracteristcas.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="3_Caracteristcas.html" class="md-nav__link">
         
   
   
@@ -336,53 +310,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tabla de contenidos
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#regiones-y-zonas-de-disponibilidad" class="md-nav__link">
-    <span class="md-ellipsis">
-      Regiones y Zonas de disponibilidad
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#modelo-de-responsabilidad-compartida" class="md-nav__link">
-    <span class="md-ellipsis">
-      Modelo de Responsabilidad Compartida.
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#costes-en-la-nube" class="md-nav__link">
-    <span class="md-ellipsis">
-      Costes en la Nube.
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -399,8 +326,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -422,11 +351,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -442,7 +371,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             AWS
@@ -1091,8 +1020,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -1104,11 +1035,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" checked>
         
           
           <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
@@ -1124,7 +1055,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_7">
             <span class="md-nav__icon md-icon"></span>
             Serverless
@@ -1158,10 +1089,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="20_Lambda_S3.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    S3+Lambda
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="20_Lambda_S3.html" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1172,6 +1125,53 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practica-guiada" class="md-nav__link">
+    <span class="md-ellipsis">
+      Práctica guiada.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practica-no-guiada" class="md-nav__link">
+    <span class="md-ellipsis">
+      Práctica no guiada.
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1208,208 +1208,117 @@
 
 
 
-<div><h1 id="caracteristicas">Características.<a class="headerlink" href="#caracteristicas" title="Permanent link">¶</a></h1>
-<h2 id="regiones-y-zonas-de-disponibilidad">Regiones y Zonas de disponibilidad<a class="headerlink" href="#regiones-y-zonas-de-disponibilidad" title="Permanent link">¶</a></h2>
-<p>Las plataformas Cloud Computing (AWS, Azure, Google Cloud), suelen estar presentes en varias <mark class="critic">zonas y regiones</mark>, es decir, sus servidores se encuentran en diferentes paises y ciudades, incluso en varios CPD diferentes en la misma ciudad.</p>
-<p>Esto les permite:</p>
-<ul>
-<li>
-<p>Una <strong>alta disponibilidad y tolerancia a fallos</strong>, pues podemos tener nuestros servicios replicados en diferentes zonas dentro de una región e incluso en regiones diferentes.</p>
-</li>
-<li>
-<p>Desplegar tu aplicación/servicio en diferentes partes del mundo, mejorando la latencia para los usuarios de esa región.</p>
-</li>
-</ul>
-<div class="admonition warning">
-<p class="admonition-title">Región y Zona</p>
-<p>💥 Una región se compone de varias zonas de disponibilidad donde podemos desplegar nuestros servicios.</p>
-<p>💥 Si una zona deja de estar disponible, podemos mantener el servicio funcionando en otra zona (disponibilidad AZ).</p>
-<p></p><center>
+<div><h1 id="s3-y-lambda">S3 y Lambda.<a class="headerlink" href="#s3-y-lambda" title="Permanent link">¶</a></h1>
+<h2 id="objetivo">Objetivo.<a class="headerlink" href="#objetivo" title="Permanent link">¶</a></h2>
+<p>Crear un servicio donde introducimos una imagen en un Bucket (S3), automáticamente se modificará el tamaño de dicha imagen a través de una función lambda y se volcará en un tercer Bucket (S3).</p>
 <figure>
-<img src="imagenes/nube/4.jpg" width="600">
-<figcaption>Regiones de AWS</figcaption>
+<img src="imagenes/serverless/15.png" width="900">
 </figure>
-</center>
-<p></p><center>
+
+<details class="question">
+<summary>¿Por qué creamos dos servicios S3 en vez de crear uno donde se guardan las imágenes viejas y nuevas?</summary>
+<p>Cada vez que generemos una imagen vamos a redimensionarla y crear una nueva imagen, si esa nueva imagen la guardamos en el mismo S3 volvería a activar la función lambda y redimensionaría de nuevo la imagen ya redimensionada entrando en un bucle infinito.</p>
+<p>No obstante hay formas de hacerlo con un único S3 haciendo uso de prefijos en los nombres de las imágenes, pero AWS recomienda usar dos servicios S3.</p>
+</details>
+<h2 id="practica-guiada">Práctica guiada.<a class="headerlink" href="#practica-guiada" title="Permanent link">¶</a></h2>
+<h3 id="crear-s3">Crear S3.<a class="headerlink" href="#crear-s3" title="Permanent link">¶</a></h3>
+<p>Vamos a crear dos servicios S3:</p>
+<ul>
+<li>
+<p><strong>nombre-s3-input</strong>: Aquí subiremos las imágenes originales.</p>
+</li>
+<li>
+<p><strong>nombre-s3-input</strong>: Aquí subiremos las imágenes redimensionadas.</p>
+</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Los buckets deben ser creado con la configuración por defecto, es decir, serán privados.</p>
+</div>
+<h3 id="crear-funcion-lambda">Crear Función Lambda.<a class="headerlink" href="#crear-funcion-lambda" title="Permanent link">¶</a></h3>
+<p>Creamos la función lambda:</p>
+<ul>
+<li>
+<p><strong>Nombre</strong>: ModificadorImagenes.</p>
+</li>
+<li>
+<p><strong>Runtime</strong>: node.js 24.x.</p>
+</li>
+<li>
+<p><strong>Execution role</strong>: Labrole.</p>
+</li>
+</ul>
+<h4 id="anadimos-el-proyecto-de-nodejs">Añadimos el proyecto de Node.js.<a class="headerlink" href="#anadimos-el-proyecto-de-nodejs" title="Permanent link">¶</a></h4>
+<ul>
+<li>
+<p>Descarga el Proyecto Node.js para Lambda.</p>
+<p>🟢 <a download="modificaImagen.zip" href="practicas/modificaImagen.zip">Proyecto Lambda</a></p>
+</li>
+</ul>
 <figure>
-<img src="imagenes/nube/13.png" width="800">
-<figcaption>Disponibilidad dentro de una región</figcaption>
+<img src="imagenes/serverless/7.png" width="1200">
 </figure>
-</center>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">CPD</p>
-<p>Un <ins class="critic">Centro de Procesamiento de Datos (CPD)</ins> es una instalación física donde se alojan servidores, sistemas de almacenamiento, bases de datos, etc.</p>
-<p></p><center>
+
+<ul>
+<li>Crea la variable de entorno <strong>DEST_BUCKET</strong> con el nombre de tu S3 que se usará de salida (nombre-s3-input).</li>
+</ul>
 <figure>
-<img src="imagenes/nube/1.jpeg" width="500">
+<img src="imagenes/serverless/8.png" width="1200">
 </figure>
-</center>
-</div>
-<h3 id="redundancia">Redundancia.<a class="headerlink" href="#redundancia" title="Permanent link">¶</a></h3>
-<p>Contar con diferentes regiones que a su vez disponen de varias zonas de disponibilidad nos permiten generar varias estrategias que nos aportan redundancia de nuestros servicios.</p>
-<ul>
-<li>
-<p><strong>Alta Disponibilidad (HA)</strong>: Tener dos o más servicios ejecutándose en diferentes zonas de una misma región. En caso de fallo en una zona el resto de zonas seguirían funcionando y no habría problema.</p>
-</li>
-<li>
-<p><strong>Backup</strong>: Tener almacenado una copia de nuestro servicio en un almacenamiento estático, en caso de fallo se podría restarurar manualmente.</p>
-</li>
-<li>
-<p><strong>Disaster Recovery (DR)</strong>: Ante un desastre grave en una región restaura el servicio en otra región.</p>
-</li>
-</ul>
-<div class="center-table">
-<table>
-<thead>
-<tr>
-<th>Concepto</th>
-<th>¿Qué busca?</th>
-<th>Ejemplo</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>🟢 <strong>Alta disponibilidad (HA)</strong></td>
-<td>Que el servicio siga funcionando ante un fallo</td>
-<td>Servidores repartidos entre varias AZ</td>
-</tr>
-<tr>
-<td>🟠 <strong>Disaster Recovery (DR)</strong></td>
-<td>Recuperar el servicio después de un desastre grave</td>
-<td>Restaurar la aplicación en otra región</td>
-</tr>
-<tr>
-<td>🔵 <strong>Backup</strong></td>
-<td>Disponer de una copia de los datos</td>
-<td>Copia diaria de una base de datos</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="modelo-de-responsabilidad-compartida">Modelo de Responsabilidad Compartida.<a class="headerlink" href="#modelo-de-responsabilidad-compartida" title="Permanent link">¶</a></h2>
-<p>Ante un fallo en nuestro servidor, ya sea por un ataque cibernético o por un error en el hardware, existe un <strong>Modelo de Responsabilidad Compartida</strong> que indica quién es el responsable, nosotros o nuestro proveedor de la nube (AWS, Azure, Google Cloud, ...).</p>
-<p>Esta responsabilidad variará dependiendo del tipo de servicio que estemos contratando (IaaS, PaaS, SaaS).</p>
-<h3 id="responsabilidad-del-proveedor-aws-azure-google-cloud-huawei-cloud">Responsabilidad del proveedor (AWS, Azure, Google Cloud, Huawei Cloud, ...).<a class="headerlink" href="#responsabilidad-del-proveedor-aws-azure-google-cloud-huawei-cloud" title="Permanent link">¶</a></h3>
-<ul>
-<li>
-<p><strong>Infraestructura física</strong>: El proveedor es responsable de la seguridad de la infraestructura que gestiona: servidores, electricidad, refrigeración, seguridad física de los racks, cableado e interconexiones, equipos de red, ... </p>
-</li>
-<li>
-<p><strong>Software</strong>: Si el software ha sido suministrado por el proveedor, debe estar bien actualizado, configurado y libre de malware.</p>
-</li>
-</ul>
-<h3 id="responsabilidades-del-cliente-nosotros">Responsabilidades del cliente (nosotros).<a class="headerlink" href="#responsabilidades-del-cliente-nosotros" title="Permanent link">¶</a></h3>
-<ul>
-<li>
-<p>El mantenimiento y gestión del sistema operativo, así como de cualquier <strong>software</strong> instalado por nosotros.</p>
-</li>
-<li>
-<p>El <strong>acceso a la plataforma</strong>, es decir, usuarios que tienen acceso a la gestión de nuestras máquinas en la plataforma (Ej: AWS).</p>
-</li>
-<li>
-<p>Configuración adecuada de los <strong>grupo de seguridad</strong>.</p>
-</li>
-<li>
-<p>Configuración lógica de la <strong>red</strong>.</p>
-</li>
-<li>
-<p>Correcto <strong>almacenamiento de los datos</strong> de nuestros clientes, por ejemplo si los queremos cifrados.</p>
-</li>
-</ul>
-<center>
-    <figure>
-    <img src="imagenes/nube/7.png" width="900">
-    <figcaption>Responsabilidad Compartida AWS.</figcaption>
-    </figure>
-</center>
 
-<h2 id="costes-en-la-nube">Costes en la Nube.<a class="headerlink" href="#costes-en-la-nube" title="Permanent link">¶</a></h2>
-<p>Uno de los apartados más importantes como arquitectos/diseñadores de entornos en un sistema en la nube es el <mark class="critic"><strong>control/cálculo de costes</strong></mark>.</p>
-<p>Para ello debemos tener dos cosas en cuenta:</p>
-<p><strong>1.</strong> Cuánto nos vamos a ahorrar de no montar el sistema físicamente: servidores, cableado, electricidad, refrigeración, personal de mantenimiento, etc.</p>
-<center>
-    <figure>
-    <img src="imagenes/nube/5.png" width="800">
-    <figcaption>Costes de levantar servidores en local.</figcaption>
-    </figure>
-</center>
+<h3 id="crea-un-test">Crea un Test.<a class="headerlink" href="#crea-un-test" title="Permanent link">¶</a></h3>
+<ul>
+<li>
+<p>Mete una imagen en el S3 input para realizar pruebas: </p>
+<p>🟢 <a download="lambda.png" href="practicas/lambda.png">Imagen Prueba</a></p>
+</li>
+<li>
+<p>Crea un Test poniendo un template de <strong>tipo S3 Put</strong>.</p>
+</li>
+</ul>
+<figure>
+<img src="imagenes/serverless/9.png" width="900">
+</figure>
 
-<p><strong>2.</strong> Calcular aproximadamente cuánto va a costar mensualmente el tener funcionando el servicio en la plataforma Cloud que hayamos elegido.</p>
-<h3 id="calculadora-de-costes">Calculadora de costes.<a class="headerlink" href="#calculadora-de-costes" title="Permanent link">¶</a></h3>
-<p>La mayoría de plataformas de Cloud Computing nos permiten hacer uso de una <ins class="critic">Calculadora de Costes</ins> para ver en el tiempo cuanto nos costaría levantar los servicios que tenemos en mente.</p>
-<p>Habitualmente hay 4 aspectos que son los que generan el precio final de un servidor/servicio:</p>
 <ul>
-<li>
-<p><strong>Procesamiento</strong>: Se refiere a la cantidad y calidad de las CPUs y Memoria RAM seleccionadas. Se suele cobrar únicamente cuando la máquina está encendida (se cobra, mayormente, por uso).</p>
-</li>
-<li>
-<p><strong>Almacenamiento</strong>: Dependiendo de la calidad y capacidad del almacenamiento seleccionado. Este cobro es constante pues aunque desconectemos la máquina el almacenamiento sigue siendo usado.</p>
-</li>
-<li>
-<p><strong>Red</strong>: Suele acarrear costes por el tráfico de salida que genere nuestro servicio. </p>
-</li>
-<li>
-<p><strong>Licencias</strong>: En caso de que estemos haciendo uso de algún software con licencias de pago.</p>
-</li>
+<li>Asegúrate de cambiar: <strong>nombre del bucket input, el arn y el nombre de la imagen</strong>.</li>
 </ul>
-<div class="admonition warning">
-<p class="admonition-title">Calculadoras</p>
-<p>🌩️ <a href="https://calculator.aws/#/">Calculadora AWS</a></p>
-<p>🌩️ <a href="https://azure.microsoft.com/en-us/pricing/calculator/">Calculadora AZURE</a></p>
-<p>🌩️ <a href="https://cloud.google.com/products/calculator?hl=es">Calculadora GOOGLE CLOUD</a></p>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">Escalar los Servicios</p>
-<p>Nuestros <mark class="critic">requisitos</mark> como empresa pueden variar a lo largo de las semanas o incluso en el mismo día.</p>
-<p>Por ello se pueden <mark class="critic">automatizar procesos</mark> que nos permitan ampliar los recursos cuando la demanda sea mayor y reducirlos cuando sea menor, ahorrando así costes, al no pagar de más por un sistema sobredimensionado.</p>
-</div>
-<h4 id="reserva-de-recursos">Reserva de recursos.<a class="headerlink" href="#reserva-de-recursos" title="Permanent link">¶</a></h4>
-<p>En AWS es posible <ins class="critic"><strong>reservar recursos</strong></ins> de cara al futuro, de esta forma el coste será menor, aunque necesitaremos una buena previsión de qué vamos a necesitar.</p>
-<p>También podemos seleccionar <ins class="critic"><strong>pago anticipado</strong></ins> de estos recursos reservados a cambio de un <mark class="critic">descuento en los precios</mark>.</p>
-<p>Tipos de reservas:</p>
-<ul>
-<li>
-<p><strong>AURI</strong> (All Upfront Reserved Instance): Reserva de recursos + Pago Anticipado 100%.</p>
-</li>
-<li>
-<p><strong>PURI</strong> (Partial Upfront Reserved Instance): Reserva de recursos + Pago Parcial por adelantado.</p>
-</li>
-<li>
-<p><strong>NURI</strong> (No Upfront Payments Reserved Instance): Reserva de recursos pero pago cuando esta reserva se hace efectiva.</p>
-</li>
-<li>
-<p><strong>Bajo Demanda</strong>: Sin reserva y por tanto sin pago anticipado.</p>
-</li>
-</ul>
-<center>
-    <figure>
-    <img src="imagenes/nube/8.png" width="500">
-    </figure>
-</center>
+<figure>
+<img src="imagenes/serverless/10.png" width="900">
+</figure>
 
-<div class="admonition tip">
-<p class="admonition-title">En algunos servicios, especialmente los relacionados con almacenamiento el coste del GB es menor cuanta más capacidad contrates.</p>
+<ul>
+<li>Dale a Test y comprueba que en S3 de salida se ha generado la misma imagen pero más pequeña.</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Recuerda que puedes ir a CloudWatch para buscar errores producidos.</p>
 </div>
-<h4 id="instancias-spot">Instancias Spot.<a class="headerlink" href="#instancias-spot" title="Permanent link">¶</a></h4>
-<p>Las instancias spot hacen referencia a aquellas instancias que se ejecutan con el <strong>exceso de capacidad de AWS</strong>, suelen tener un descuento muy grande pero <strong>no tenemos garantizado ningún recurso</strong>.</p>
-<p>El cliente selecciona unas necesidades para su instancia, unas horas de funcionamiento y si en esas horas hay un exceso de capacidad considerable por parte de amazon entonces levanta la instancia durante el tiempo indicado a un precio muy reducido.</p>
-<div class="admonition note">
-<p class="admonition-title">Ejemplo</p>
+<h3 id="crea-un-trigger">Crea un Trigger.<a class="headerlink" href="#crea-un-trigger" title="Permanent link">¶</a></h3>
+<ul>
+<li>Crea un S3 trigger, para que cuando introduzcamos una imagen en dicho S3 automáticamente se ejecute la función lambda.</li>
+</ul>
+<figure>
+<img src="imagenes/serverless/11.png" width="900">
+</figure>
+
+<ul>
+<li>Preffix y Suffix es para evitar bucles infinitos pues le estaríamos diciendo que solo llame a la función lambda cuando la imagen introducida en el S3 empezara por cierto nombre.</li>
+</ul>
+<figure>
+<img src="imagenes/serverless/12.png" width="1200">
+</figure>
+
+<h3 id="comprobacion">Comprobación.<a class="headerlink" href="#comprobacion" title="Permanent link">¶</a></h3>
 <ul>
 <li>
-<p>Una empresa quiere analizar millones de datos de sus clientes y proveedores para entrenar una IA que le ayude en la toma de decisiones.</p>
-</li>
-<li>
-<p>Esta tarea es computacionalmente muy costosa y necesita mucho tiempo, no obstante se puede pausar e ir ejecutando paulatinamente.</p>
-</li>
-<li>
-<p>La empresa contrata una instancia spot, es decir, cuando haya un exceso de recursos en AWS (no tienen suficientes clientes y los servidores de AWS están parados y perdiendo dinero), se levanta automáticamente la instancia y comienza a ejecutar/entrenar a esa IA.</p>
+<p>Comprueba añadiendo imágenes al S3 de entrada y comprobando que se genera más pequeña en el S3 de salida. </p>
+<p>🟢 <a download="lambda.png" href="practicas/lambda.png">Imagen Prueba</a></p>
 </li>
 </ul>
+<div class="admonition important">
+<p class="admonition-title">Recuerda que en el código no se permiten todos los formatos.</p>
 </div>
-<h3 id="preguntas-aws">Preguntas AWS.<a class="headerlink" href="#preguntas-aws" title="Permanent link">¶</a></h3>
-<p><a download="Nube.docx" href="practicas/Nube.docx">Ejercicios AWS</a></p></div>
+<h2 id="practica-no-guiada">Práctica no guiada.<a class="headerlink" href="#practica-no-guiada" title="Permanent link">¶</a></h2>
+<p>Partiendo de la práctica guiada, establece una página web estática en el S3_input, en dicha página habrá un selector de archivos que nos permita cargar la imagen, una vez cargada se subirá al s3 y se descargará la imagen modificada.</p></div>
 
 
 
