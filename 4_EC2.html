@@ -1383,6 +1383,43 @@
 <p>Conservación de los datos al eliminar la instancia.</p>
 </li>
 </ul>
+<h3 id="opciones-de-arranque">Opciones de Arranque.<a class="headerlink" href="#opciones-de-arranque" title="Permanent link">¶</a></h3>
+<ul>
+<li>
+<p>Dentro de las opciones avanzadas tenemos un apartado que es <strong>User Data</strong>.</p>
+</li>
+<li>
+<p>Se pueden introducir comandos que se ejecutarán al crearse la máquina por primera vez.</p>
+</li>
+</ul>
+<h4 id="ejemplo-de-instalar-el-servicio-apache-y-establecer-un-banner-al-acceder-por-ssh">Ejemplo de instalar el servicio Apache y establecer un banner al acceder por ssh.<a class="headerlink" href="#ejemplo-de-instalar-el-servicio-apache-y-establecer-un-banner-al-acceder-por-ssh" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+
+<span class="c1">#Actualizar repositorios</span>
+apt-get<span class="w"> </span>update<span class="w"> </span>-y
+
+<span class="c1">#Instalar Apache</span>
+apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>apache2
+
+<span class="c1">#Arrancar Apache y hacer que se inicie automáticamente</span>
+systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>apache2
+systemctl<span class="w"> </span>start<span class="w"> </span>apache2
+
+<span class="c1">#Crear banner SSH</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>/etc/issue.net<span class="w"> </span><span class="s">&lt;&lt;'EOF'</span>
+<span class="s">============================================================</span>
+<span class="s">⚠ EQUIPO DE SALVA ⚠</span>
+<span class="s">Este equipo pertenece a SALVA.</span>
+<span class="s">Acceso exclusivo para usuarios autorizados.</span>
+<span class="s">============================================================</span>
+<span class="s">EOF</span>
+
+<span class="c1">#Activar el banner en SSH</span>
+sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s/^#Banner none/Banner \/etc\/issue.net/'</span><span class="w"> </span>/etc/ssh/sshd_config
+
+<span class="c1">#Reiniciar SSH para aplicar la configuración</span>
+systemctl<span class="w"> </span>restart<span class="w"> </span>ssh
+</code></pre></div>
 <h2 id="gestion-de-la-ec2">Gestión de la EC2.<a class="headerlink" href="#gestion-de-la-ec2" title="Permanent link">¶</a></h2>
 <p>Para la gestión de la EC2, deberemos ir al apartado de <ins class="critic"><strong>Instancias</strong></ins> dentro del bloque EC2.</p>
 <center>

@@ -8,10 +8,8 @@
       
       
       
-        <link rel="canonical" href="https://salvasevero.github.io/cloudGS/20_Lambda_S3.html">
+        <link rel="canonical" href="https://salvasevero.github.io/cloudGS/21_API_Lambda_DynamoDB.html">
       
-      
-        <link rel="prev" href="19_Lambda.html">
       
       
       
@@ -20,7 +18,7 @@
     
     
       
-        <title>S3+Lambda - Introducción a la Nube Pública.</title>
+        <title>APIGW + Lambda + DynamoDB. - Introducción a la Nube Pública.</title>
       
     
     
@@ -74,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#s3-y-lambda" class="md-skip">
+        <a href="#apigw-lambda-dynamodb" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -109,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              S3+Lambda
+              APIGW + Lambda + DynamoDB.
             
           </span>
         </div>
@@ -326,10 +324,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -351,11 +347,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -371,7 +367,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             AWS
@@ -1020,10 +1016,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -1035,11 +1029,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
         
           
           <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
@@ -1055,7 +1049,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_7">
             <span class="md-nav__icon md-icon"></span>
             Serverless
@@ -1089,32 +1083,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    S3+Lambda
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="20_Lambda_S3.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="20_Lambda_S3.html" class="md-nav__link">
         
   
   
@@ -1125,53 +1097,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tabla de contenidos
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#practica-guiada" class="md-nav__link">
-    <span class="md-ellipsis">
-      Práctica guiada.
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cors-cross-origin-resource-sharing" class="md-nav__link">
-    <span class="md-ellipsis">
-      CORS (Cross-Origin Resource Sharing).
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#practica-semiguiada" class="md-nav__link">
-    <span class="md-ellipsis">
-      Práctica semiguiada.
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1208,160 +1133,50 @@
 
 
 
-<div><h1 id="s3-y-lambda">S3 y Lambda.<a class="headerlink" href="#s3-y-lambda" title="Permanent link">¶</a></h1>
-<h2 id="practica-guiada">Práctica guiada.<a class="headerlink" href="#practica-guiada" title="Permanent link">¶</a></h2>
-<h3 id="1-objetivo">1. Objetivo.<a class="headerlink" href="#1-objetivo" title="Permanent link">¶</a></h3>
-<p>Crear un servicio donde introducimos una imagen en un Bucket (S3), automáticamente se modificará el tamaño de dicha imagen a través de una función lambda y se volcará en un tercer Bucket (S3).</p>
+<div><h1 id="apigw-lambda-dynamodb">APIGW + Lambda + DynamoDB.<a class="headerlink" href="#apigw-lambda-dynamodb" title="Permanent link">¶</a></h1>
+<h2 id="objetivo">Objetivo.<a class="headerlink" href="#objetivo" title="Permanent link">¶</a></h2>
 <figure>
-<img src="imagenes/serverless/15.png" width="900">
+<img src="imagenes/serverless/17.png" width="1200">
 </figure>
 
-<details class="question">
-<summary>¿Por qué creamos dos servicios S3 en vez de crear uno donde se guardan las imágenes viejas y nuevas?</summary>
-<p>Cada vez que generemos una imagen vamos a redimensionarla y crear una nueva imagen, si esa nueva imagen la guardamos en el mismo S3 volvería a activar la función lambda y redimensionaría de nuevo la imagen ya redimensionada entrando en un bucle infinito.</p>
-<p>No obstante hay formas de hacerlo con un único S3 haciendo uso de prefijos en los nombres de las imágenes, pero AWS recomienda usar dos servicios S3.</p>
-</details>
-<h3 id="2-crear-s3">2. Crear S3.<a class="headerlink" href="#2-crear-s3" title="Permanent link">¶</a></h3>
-<p>Vamos a crear dos servicios S3:</p>
+<h3 id="por-que-no-enlazar-la-web-directamente-con-dynamodb">¿Por qué no enlazar la web directamente con DynamoDB?<a class="headerlink" href="#por-que-no-enlazar-la-web-directamente-con-dynamodb" title="Permanent link">¶</a></h3>
 <ul>
-<li>
-<p><strong>nombre-s3-input</strong>: Aquí subiremos las imágenes originales.</p>
-</li>
-<li>
-<p><strong>nombre-s3-input</strong>: Aquí subiremos las imágenes redimensionadas.</p>
-</li>
-</ul>
-<div class="admonition tip">
-<p class="admonition-title">Los buckets deben ser creado con la configuración por defecto, es decir, serán privados.</p>
-</div>
-<h3 id="3-crear-funcion-lambda">3. Crear Función Lambda.<a class="headerlink" href="#3-crear-funcion-lambda" title="Permanent link">¶</a></h3>
-<p>Creamos la función lambda:</p>
-<ul>
-<li>
-<p><strong>Nombre</strong>: ModificadorImagenes.</p>
-</li>
-<li>
-<p><strong>Runtime</strong>: node.js 24.x.</p>
-</li>
-<li>
-<p><strong>Execution role</strong>: Labrole.</p>
-</li>
-</ul>
-<h4 id="anadimos-el-proyecto-de-nodejs">Añadimos el proyecto de Node.js.<a class="headerlink" href="#anadimos-el-proyecto-de-nodejs" title="Permanent link">¶</a></h4>
-<ul>
-<li>
-<p>Descarga el Proyecto Node.js para Lambda.</p>
-<p>🟢 <a download="modificaImagen.zip" href="practicas/modificaImagen.zip">Proyecto Lambda</a></p>
-</li>
-</ul>
-<figure>
-<img src="imagenes/serverless/7.png" width="1200">
-</figure>
+<li><strong>Seguridad</strong>: <div class="highlight"><pre><span></span><code>🟢 Tendrías que cargar la autentificación a la base de datos en el javascript, por tanto en el navegador de cada cliente y en consecuencia éste tendría acceso al código.
 
-<ul>
-<li>Crea la variable de entorno <strong>DEST_BUCKET</strong> con el nombre de tu S3 que se usará de salida (nombre-s3-input).</li>
-</ul>
-<figure>
-<img src="imagenes/serverless/8.png" width="1200">
-</figure>
-
-<h3 id="4-crea-un-test">4. Crea un Test.<a class="headerlink" href="#4-crea-un-test" title="Permanent link">¶</a></h3>
-<ul>
-<li>
-<p>Mete una imagen en el S3 input para realizar pruebas: </p>
-<p>🟢 <a download="lambda.png" href="practicas/lambda.png">Imagen Prueba</a></p>
-</li>
-<li>
-<p>Crea un Test poniendo un template de <strong>tipo S3 Put</strong>.</p>
+🟢 Aunque hicieses la autentificación de alguna forma "segura" estamos dando acceso a los clientes directamente a la base de datos, si dicha base de datos permite funciones GetItem, DeleteItem, PutItem, etc podría dar pie a que desde el cliente se lanzaran dichas llamadas.
+</code></pre></div>
 </li>
 </ul>
-<figure>
-<img src="imagenes/serverless/9.png" width="900">
-</figure>
-
-<ul>
-<li>Asegúrate de cambiar: <strong>nombre del bucket input, el arn y el nombre de la imagen</strong>.</li>
-</ul>
-<figure>
-<img src="imagenes/serverless/10.png" width="900">
-</figure>
-
-<ul>
-<li>Dale a Test y comprueba que en S3 de salida se ha generado la misma imagen pero más pequeña.</li>
-</ul>
-<div class="admonition important">
-<p class="admonition-title">Recuerda que puedes ir a CloudWatch para buscar errores producidos.</p>
-</div>
-<h3 id="5-crea-un-trigger">5. Crea un Trigger.<a class="headerlink" href="#5-crea-un-trigger" title="Permanent link">¶</a></h3>
-<ul>
-<li>Crea un S3 trigger, para que cuando introduzcamos una imagen en dicho S3 automáticamente se ejecute la función lambda.</li>
-</ul>
-<figure>
-<img src="imagenes/serverless/11.png" width="900">
-</figure>
-
-<ul>
-<li>Preffix y Suffix es para evitar bucles infinitos pues le estaríamos diciendo que solo llame a la función lambda cuando la imagen introducida en el S3 empezara por cierto nombre.</li>
-</ul>
-<figure>
-<img src="imagenes/serverless/12.png" width="1200">
-</figure>
-
-<h3 id="6-comprobacion">6. Comprobación.<a class="headerlink" href="#6-comprobacion" title="Permanent link">¶</a></h3>
+<h3 id="por-que-usar-una-api-gw-y-no-directamente-llamadas-a-funciones-lambda-desde-la-web">¿Por qué usar una API GW y no directamente llamadas a funciones lambda desde la web?<a class="headerlink" href="#por-que-usar-una-api-gw-y-no-directamente-llamadas-a-funciones-lambda-desde-la-web" title="Permanent link">¶</a></h3>
 <ul>
 <li>
-<p>Comprueba añadiendo imágenes al S3 de entrada y comprobando que se genera más pequeña en el S3 de salida. </p>
-<p>🟢 <a download="lambda.png" href="practicas/lambda.png">Imagen Prueba</a></p>
+<p>API Gateway proporciona llamadas HTTP para que los clientes puedan utilizar las funcionalidades programadas en lambda (por ejemplo GET Alumnos). </p>
+</li>
+<li>
+<p>Un programador de la parte cliente tiene acceso a las funcionalidades sin tocar el código del servidor y sin saber cómo se hacen las llamadas a base de datos, dónde se almacena la información, ni qué tecnología se usa en el backend. Es decir se se separa totalmente la parte cliente de la del servidor.</p>
 </li>
 </ul>
-<div class="admonition important">
-<p class="admonition-title">Recuerda que en el código no se permiten todos los formatos.</p>
-</div>
-<h2 id="cors-cross-origin-resource-sharing">CORS (Cross-Origin Resource Sharing).<a class="headerlink" href="#cors-cross-origin-resource-sharing" title="Permanent link">¶</a></h2>
+<p>API Gateway permite:</p>
 <ul>
 <li>
-<p>Es un instrumento de seguridad que se establece en los navegadores.</p>
+<p><strong>Seguridad</strong>: autenticar/autorizar clientes (JWT) y limitar el tráfico/peticiones.</p>
 </li>
 <li>
-<p>Se activa cuando una página realiza una petición a un servidor externo.</p>
+<p><strong>Punto de entrada centralizado</strong>: Es la puerta de entrada para tus servicios, organiza el tráfico, simplifica el mantenimiento y oculta la estructura interna de tu backend.</p>
 </li>
 <li>
-<p>El servidor contesta al navegador si ese origen está autorizado o no a realizarle peticiones.</p>
-</li>
-</ul>
-<h3 id="ejemplo-de-error-cors">Ejemplo de error CORS.<a class="headerlink" href="#ejemplo-de-error-cors" title="Permanent link">¶</a></h3>
-<ul>
-<li>En el navegador podemos ver en la consola si se trata de un error de CORS.</li>
-</ul>
-<figure>
-<img src="imagenes/serverless/16.png" width="1200">
-</figure>
-
-<h2 id="practica-semiguiada">Práctica semiguiada.<a class="headerlink" href="#practica-semiguiada" title="Permanent link">¶</a></h2>
-<ul>
-<li>
-<p>Crea una página web estática en el S3_input:</p>
-<p>🟢 <a download="redimensionarImagen.zip" href="practicas/redimensionarImagen.zip">Descarga Web</a></p>
+<p><strong>Control de versiones/entornos</strong>: Facilita la gestión de versiones y la separación de entornos (desarrollo, pruebas o producción).</p>
 </li>
 <li>
-<p>Haz que el S3 input aloje dicha página web.</p>
+<p><strong>Coste por peticiones</strong>: Se paga por número de peticiones.</p>
 </li>
 <li>
-<p>Modifica los <strong>permisos del S3 input</strong> para que puedan leer  objetos (GET) para que la web pueda cargar y se puedan poner objetos (PUT) para subir las imágenes.</p>
+<p>Posibilidad de <strong>almacenamiento caché</strong>: Mejora el rendimiento y disminuye la carga del backend.</p>
 </li>
 <li>
-<p>Modifica los <strong>permisos del S3 output</strong> para que sea público pero que solo se permitan funciones PUT.</p>
+<p><strong>Flexibilidad</strong>: Con una misma APIGW puedes dar servicio a diferentes tipos de clientes: una página web, una aplicación para iOS, otra para Android, etc.</p>
 </li>
-<li>
-<p>Modifica el <strong>CORS del S3 output</strong> para que se permitan peticiones HEAD, PUT y GET.</p>
-</li>
-<li>
-<p>Modifica el index.html para que las constantes <strong>SOURCE_BUCKET_URL</strong> y <strong>DESTINATION_BUCKET_URL</strong> apunten a tus S3, recuerda volver a subirlo al S3.</p>
-</li>
-</ul>
-<div class="admonition warning">
-<p class="admonition-title">Por seguridad cuando hayáis terminado la práctica volved a bloquear el acceso público.</p>
-</div></div>
+</ul></div>
 
 
 

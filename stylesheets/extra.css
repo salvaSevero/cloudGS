@@ -11,6 +11,84 @@
     color: #ae5025;
   }
 
+  .md-typeset pre {
+        background-color: #f5f6f7;
+    }
+
+    .md-typeset pre code {
+        color: #24292f;
+    }
+
+    /* Comentarios */
+    .highlight .c,
+    .highlight .c1,
+    .highlight .cm,
+    .highlight .ch {
+        color: #6a737d;
+        font-style: italic;
+    }
+
+    /* Strings */
+    .highlight .s,
+    .highlight .s1,
+    .highlight .s2,
+    .highlight .sa,
+    .highlight .sb {
+        color: #0b6e3e;
+    }
+
+    /* Números */
+    .highlight .m,
+    .highlight .mi,
+    .highlight .mf,
+    .highlight .mh {
+        color: #b35c00;
+    }
+
+    /* Palabras clave */
+    .highlight .k,
+    .highlight .kd,
+    .highlight .kn,
+    .highlight .kp,
+    .highlight .kr {
+        color: #8250df;
+        font-weight: 600;
+    }
+
+    /* Funciones */
+    .highlight .nf {
+        color: #0969da;
+    }
+
+    /* Variables */
+    .highlight .nv {
+        color: #953800;
+    }
+
+    /* Operadores */
+    .highlight .o,
+    .highlight .ow {
+        color: #0550ae;
+    }
+
+    /* Comandos / nombres */
+    .highlight .nb,
+    .highlight .nc,
+    .highlight .nd {
+        color: #0550ae;
+    }
+
+    /* Decoradores */
+    .highlight .nd {
+        color: #8250df;
+    }
+
+    /* Booleanos */
+    .highlight .kc {
+        color: #cf222e;
+        font-weight: 600;
+    }
+
 }
 /*
 [data-md-color-scheme="slate"] {
@@ -186,6 +264,223 @@ ins, .critic {
     .md-typeset a:hover {
         color: #90e0ef;
     }
+
+    /* Fondo del bloque */
+
+    .md-typeset pre {
+        background-color: #1e1e1e;
+        border: 1px solid #3a3a3a;
+    }
+
+    /* Texto general */
+
+    .md-typeset pre code {
+        color: #d4d4d4;
+    }
+
+
+    /* -----------------------------------------------------
+       Comentarios
+       ----------------------------------------------------- */
+
+    .highlight .c,
+    .highlight .c1,
+    .highlight .cm,
+    .highlight .ch {
+        color: #6a9955;
+        font-style: italic;
+    }
+
+
+    /* -----------------------------------------------------
+       Strings
+       ----------------------------------------------------- */
+
+    .highlight .s,
+    .highlight .s1,
+    .highlight .s2,
+    .highlight .sa,
+    .highlight .sb {
+        color: #ce9178;
+    }
+
+
+    /* -----------------------------------------------------
+       Números
+       ----------------------------------------------------- */
+
+    .highlight .m,
+    .highlight .mi,
+    .highlight .mf,
+    .highlight .mh {
+        color: #b5cea8;
+    }
+
+
+    /* -----------------------------------------------------
+       Palabras clave
+       ----------------------------------------------------- */
+
+    .highlight .k,
+    .highlight .kd,
+    .highlight .kn,
+    .highlight .kp,
+    .highlight .kr {
+        color: #c586c0;
+        font-weight: 600;
+    }
+
+
+    /* -----------------------------------------------------
+       Funciones
+       ----------------------------------------------------- */
+
+    .highlight .nf {
+        color: #dcdcaa;
+    }
+
+
+    /* -----------------------------------------------------
+       Variables
+       ----------------------------------------------------- */
+
+    .highlight .nv {
+        color: #9cdcfe;
+    }
+
+
+    /* -----------------------------------------------------
+       Operadores
+       ----------------------------------------------------- */
+
+    .highlight .o,
+    .highlight .ow {
+        color: #d4d4d4;
+    }
+
+
+    /* -----------------------------------------------------
+       Comandos / built-ins
+       ----------------------------------------------------- */
+
+    .highlight .nb {
+        color: #4ec9b0;
+    }
+
+
+    /* -----------------------------------------------------
+       Clases
+       ----------------------------------------------------- */
+
+    .highlight .nc {
+        color: #4ec9b0;
+        font-weight: 600;
+    }
+
+
+    /* -----------------------------------------------------
+       Decoradores
+       ----------------------------------------------------- */
+
+    .highlight .nd {
+        color: #dcdcaa;
+    }
+
+
+    /* -----------------------------------------------------
+       Booleanos y constantes
+       ----------------------------------------------------- */
+
+    .highlight .kc,
+    .highlight .no {
+        color: #569cd6;
+        font-weight: 600;
+    }
+
+
+    /* -----------------------------------------------------
+       Errores
+       ----------------------------------------------------- */
+
+    .highlight .err {
+        color: #f44747;
+    }
+
+
+    /* -----------------------------------------------------
+       Nombres de atributos
+       ----------------------------------------------------- */
+
+    .highlight .na {
+        color: #9cdcfe;
+    }
+
+
+    /* -----------------------------------------------------
+       Etiquetas HTML / XML
+       ----------------------------------------------------- */
+
+    .highlight .nt {
+        color: #569cd6;
+    }
+
+
+    /* -----------------------------------------------------
+       Valores de atributos
+       ----------------------------------------------------- */
+
+    .highlight .s1,
+    .highlight .s2 {
+        color: #ce9178;
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   4. BOTÓN COPIAR
+   --------------------------------------------------------- */
+
+.md-clipboard {
+    color: inherit;
+    opacity: 0.6;
+}
+
+.md-clipboard:hover {
+    opacity: 1;
+}
+
+
+/* ---------------------------------------------------------
+   5. SCROLL HORIZONTAL
+   --------------------------------------------------------- */
+
+.md-typeset pre {
+    scrollbar-width: thin;
+}
+
+
+/* ---------------------------------------------------------
+   6. CÓDIGO INLINE
+   No afecta a los bloques ``` ```
+   --------------------------------------------------------- */
+
+.md-typeset code:not(pre code) {
+    border-radius: 4px;
+    padding: 0.1em 0.35em;
+    font-size: 0.9em;
+}
+
+
+/* Modo oscuro: código inline */
+
+[data-md-color-scheme="slate"] {
+
+    .md-typeset code:not(pre code) {
+        background-color: #2d2d2d;
+        color: #e6db74;
+        border: 1px solid #3a3a3a;
+    }
 }
 
 
@@ -289,3 +584,24 @@ ins, .critic {
     font-size: 1.2em;
 }
 
+.md-typeset pre {
+    border-radius: 8px;
+    border: 1px solid var(--md-default-fg-color--lightest);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+
+/* Código dentro del bloque */
+
+.md-typeset pre code {
+    font-family:
+        "Cascadia Code",
+        "Fira Code",
+        "JetBrains Mono",
+        Consolas,
+        monospace;
+
+    font-size: 0.88rem;
+    line-height: 1.55;
+}
