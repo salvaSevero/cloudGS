@@ -11,6 +11,8 @@
         <link rel="canonical" href="https://salvasevero.github.io/cloudGS/21_API_Lambda_DynamoDB.html">
       
       
+        <link rel="prev" href="20_Lambda_S3.html">
+      
       
       
       <link rel="icon" href="assets/images/favicon.png">
@@ -18,7 +20,7 @@
     
     
       
-        <title>APIGW + Lambda + DynamoDB. - Introducción a la Nube Pública.</title>
+        <title>APIGW+Lambda - Introducción a la Nube Pública.</title>
       
     
     
@@ -107,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              APIGW + Lambda + DynamoDB.
+              APIGW+Lambda
             
           </span>
         </div>
@@ -324,8 +326,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -347,11 +351,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -367,7 +371,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             AWS
@@ -1016,8 +1020,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -1025,15 +1031,17 @@
       
         
       
+        
+      
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" checked>
         
           
           <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
@@ -1049,7 +1057,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_7">
             <span class="md-nav__icon md-icon"></span>
             Serverless
@@ -1102,6 +1110,80 @@
 
               
             
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    APIGW+Lambda
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="21_API_Lambda_DynamoDB.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    APIGW+Lambda
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo.
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1136,15 +1218,18 @@
 <div><h1 id="apigw-lambda-dynamodb">APIGW + Lambda + DynamoDB.<a class="headerlink" href="#apigw-lambda-dynamodb" title="Permanent link">¶</a></h1>
 <h2 id="objetivo">Objetivo.<a class="headerlink" href="#objetivo" title="Permanent link">¶</a></h2>
 <figure>
-<img src="imagenes/serverless/17.png" width="1200">
+<img src="imagenes/serverless/17.png" width="700">
 </figure>
 
+<p>Vamos a generar una web que hará llamadas a una API GW, que a su vez le pasará las llamadas a una función lambda que hará nuestro trabajo de servidor y almacenará los datos en una base de datos (DynamoDB).</p>
 <h3 id="por-que-no-enlazar-la-web-directamente-con-dynamodb">¿Por qué no enlazar la web directamente con DynamoDB?<a class="headerlink" href="#por-que-no-enlazar-la-web-directamente-con-dynamodb" title="Permanent link">¶</a></h3>
+<h4 id="seguridad">Seguridad:<a class="headerlink" href="#seguridad" title="Permanent link">¶</a></h4>
 <ul>
-<li><strong>Seguridad</strong>: <div class="highlight"><pre><span></span><code>🟢 Tendrías que cargar la autentificación a la base de datos en el javascript, por tanto en el navegador de cada cliente y en consecuencia éste tendría acceso al código.
-
-🟢 Aunque hicieses la autentificación de alguna forma "segura" estamos dando acceso a los clientes directamente a la base de datos, si dicha base de datos permite funciones GetItem, DeleteItem, PutItem, etc podría dar pie a que desde el cliente se lanzaran dichas llamadas.
-</code></pre></div>
+<li>
+<p>Evitas cargar la <strong>autentificación a la base de datos</strong> en el javascript, por tanto en el navegador de cada cliente y en consecuencia éste tendría acceso al código.</p>
+</li>
+<li>
+<p>Aunque hicieses la autentificación de alguna forma "segura" estamos dando acceso a los clientes directamente a la base de datos, si dicha base de datos permite funciones GetItem, DeleteItem, PutItem, etc podría dar pie a que desde el cliente se lanzaran dichas llamadas.</p>
 </li>
 </ul>
 <h3 id="por-que-usar-una-api-gw-y-no-directamente-llamadas-a-funciones-lambda-desde-la-web">¿Por qué usar una API GW y no directamente llamadas a funciones lambda desde la web?<a class="headerlink" href="#por-que-usar-una-api-gw-y-no-directamente-llamadas-a-funciones-lambda-desde-la-web" title="Permanent link">¶</a></h3>
@@ -1156,7 +1241,7 @@
 <p>Un programador de la parte cliente tiene acceso a las funcionalidades sin tocar el código del servidor y sin saber cómo se hacen las llamadas a base de datos, dónde se almacena la información, ni qué tecnología se usa en el backend. Es decir se se separa totalmente la parte cliente de la del servidor.</p>
 </li>
 </ul>
-<p>API Gateway permite:</p>
+<h4 id="api-gateway-permite">API Gateway permite:<a class="headerlink" href="#api-gateway-permite" title="Permanent link">¶</a></h4>
 <ul>
 <li>
 <p><strong>Seguridad</strong>: autenticar/autorizar clientes (JWT) y limitar el tráfico/peticiones.</p>
@@ -1175,6 +1260,168 @@
 </li>
 <li>
 <p><strong>Flexibilidad</strong>: Con una misma APIGW puedes dar servicio a diferentes tipos de clientes: una página web, una aplicación para iOS, otra para Android, etc.</p>
+</li>
+</ul>
+<h1 id="practica-guiada">Práctica Guiada.<a class="headerlink" href="#practica-guiada" title="Permanent link">¶</a></h1>
+<h2 id="dynamobd">DynamoBD.<a class="headerlink" href="#dynamobd" title="Permanent link">¶</a></h2>
+<ul>
+<li>
+<p>Crea una tabla, llámala como quieras, por ejemplo alumnos.</p>
+</li>
+<li>
+<p>Únicamente tendrá una clave principal llamada dni de tipo string.</p>
+</li>
+</ul>
+<h2 id="lambda">Lambda.<a class="headerlink" href="#lambda" title="Permanent link">¶</a></h2>
+<ul>
+<li>
+<p><a download="lambda_alumnos.txt" href="practicas/Instituto/lambda_alumnos.txt">Descarga Función Lambda</a></p>
+</li>
+<li>
+<p>Crea una función lambda para <strong>Python</strong> y recuerda asociarle el <strong>LabRole</strong> como "Rol de Ejecución".</p>
+</li>
+<li>
+<p>Crea una variable de entorno "TABLE_NAME" que apunte a tu tabla de DynamoDB.</p>
+</li>
+<li>
+<p>Añade el código y crea Test para comprobar que funciona correctamente y tiene conectividad con la tabla de DynamoDB.</p>
+</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Esto son ejemplos de test para la tabla "alumnos".</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="err">#Ejemplos</span><span class="w"> </span><span class="err">para</span><span class="w"> </span><span class="err">la</span><span class="w"> </span><span class="kc">ta</span><span class="err">bla</span><span class="w"> </span><span class="err">alum</span><span class="kc">n</span><span class="err">os.</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nt">"httpMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/alumnos"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/alumnos"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"Content-Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/json"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"pathParameters"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"queryStringParameters"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"isBase64Encoded"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{\"dni\":\"12345678A\",\"nombre\":\"Lucía\",\"apellidos\":\"Ferrer Blasco\",\"edad\":16,\"optativa\":\"Robótica\"}"</span>
+<span class="p">}</span>
+
+<span class="p">{</span>
+<span class="w">  </span><span class="nt">"httpMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/alumnos"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/alumnos"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">  </span><span class="nt">"pathParameters"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"queryStringParameters"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"isBase64Encoded"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="p">}</span>
+
+<span class="p">{</span>
+<span class="w">  </span><span class="nt">"httpMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/alumnos/{dni}"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/alumnos/12345678A"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">  </span><span class="nt">"pathParameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"dni"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678A"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"queryStringParameters"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"isBase64Encoded"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="p">}</span>
+
+<span class="p">{</span>
+<span class="w">  </span><span class="nt">"httpMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUT"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/alumnos/{dni}"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/alumnos/12345678A"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"Content-Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/json"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"pathParameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"dni"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678A"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"queryStringParameters"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"isBase64Encoded"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{\"edad\":17,\"optativa\":\"Inteligencia Artificial\"}"</span>
+<span class="p">}</span>
+
+<span class="p">{</span>
+<span class="w">  </span><span class="nt">"httpMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELETE"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/alumnos/{dni}"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/alumnos/12345678A"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">  </span><span class="nt">"pathParameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"dni"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678A"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"queryStringParameters"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"isBase64Encoded"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="api-rest-api-gw">API REST (API GW).<a class="headerlink" href="#api-rest-api-gw" title="Permanent link">¶</a></h2>
+<ul>
+<li>
+<p>Crear dos <strong>recursos</strong> /alumnos y /alumnos/{dni}.</p>
+</li>
+<li>
+<p>Dentro de cada recurso añadimos los <strong>métodos</strong> necesarios con la integración de <strong>proxy de Lambda</strong> activada:</p>
+<p><code>GET /alumnos</code>: Para listar todos los alumnos.</p>
+<p><code>POST/alumnos</code>: Para crear un nuevo alumno.</p>
+<p><code>DELETE/alumnos/{dni}</code>: Eliminar un alumno en concreto.</p>
+<p><code>GET/alumnos/{dni}</code>: Buscar un alumno en concreto.</p>
+<p><code>PUT/alumnos/{dni}</code>: Editar un alumno.</p>
+</li>
+</ul>
+<figure>
+<img src="imagenes/serverless/18.png" width="300" alt="Operaciones de la API REST de alumnos">
+</figure>
+
+<ul>
+<li>Habilitar <strong>CORS en ambos recursos</strong> para todos sus métodos.</li>
+</ul>
+<figure>
+    <img src="imagenes/serverless/20.png" width="600">
+</figure>
+
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANTE.</p>
+<ul>
+<li>Recuerda crear cada método con la integración de <strong>proxy de Lambda</strong>.</li>
+</ul>
+<p><figure>
+    <img src="imagenes/serverless/19.png" width="400">
+</figure></p>
+</div>
+<ul>
+<li>Crea una <strong>etapa</strong>, puedes llamarla como quieras, por ejemplo: Desarrollo.</li>
+</ul>
+<figure>
+    <img src="imagenes/serverless/21.png" width="1200">
+</figure>
+
+<ul>
+<li><strong>Despliega la API</strong> y asóciala a la etapa creada en el apartado anterior.</li>
+</ul>
+<figure>
+    <img src="imagenes/serverless/22.png" width="1200">
+</figure>
+
+<ul>
+<li>Guarda el <strong>enlace de llamada</strong> a tu API REST:</li>
+</ul>
+<figure>
+    <img src="imagenes/serverless/23.png" width="1200">
+</figure>
+
+<h2 id="crea-un-s3-web-estatica">Crea un S3 (web estática).<a class="headerlink" href="#crea-un-s3-web-estatica" title="Permanent link">¶</a></h2>
+<p>Vamos a almacenar nuestra web estática en un S3:</p>
+<ul>
+<li>
+<p><a download="index.html" href="practicas/Instituto/index.html">Descarga Web</a></p>
+</li>
+<li>
+<p>Edita el "index.html" para que apunte a tu API GW (<strong>DEFAULT_API_BASE_URL</strong>).</p>
+</li>
+<li>
+<p>Hacer que el S3 sea público, con alojamiento web activad y con una política de permisos permita únicamente las funciones GetObject().</p>
+</li>
+</ul>
+<h2 id="troubleshoot">Troubleshoot.<a class="headerlink" href="#troubleshoot" title="Permanent link">¶</a></h2>
+<p>Para ayudarte a procesar los errores acuérdate de:</p>
+<ul>
+<li>
+<p>Mirar la consola y network de la ventana de desarrollador en el navegador (F12).</p>
+</li>
+<li>
+<p>Mirar en Lambda la parte de monitorización de CloudWatch con los errores e invocaciones recibidas.</p>
 </li>
 </ul></div>
 

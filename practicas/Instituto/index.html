@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Registro de alumnos · IES Severo Ochoa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #efebe2;
+    --paper-raised: #faf8f3;
+    --ink: #24322e;
+    --ink-soft: #5a6b62;
+    --green: #3b5d50;
+    --green-dark: #2b4438;
+    --red: #9b3b2b;
+    --red-dark: #7c2e21;
+    --line: #c7bfa9;
+    --line-soft: #ddd6c4;
+    --focus: #1f6feb;
+    --radius: 3px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* ---------- Letterhead ---------- */
+  header.letterhead {
+    border-bottom: 3px solid var(--ink);
+    padding: 40px 0 20px;
+    margin-bottom: 36px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .letterhead .mark {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .letterhead .monogram {
+    width: 52px;
+    height: 52px;
+    border: 2px solid var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+
+  .letterhead h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(26px, 4vw, 34px);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .letterhead .sub {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+
+  .letterhead .count-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-align: right;
+  }
+
+  .letterhead .count-badge strong {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-size: 30px;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* ---------- Layout ---------- */
+  .layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  @media (max-width: 760px) {
+    .layout { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Ficha (form) ---------- */
+  .ficha {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 22px;
+    position: sticky;
+    top: 24px;
+  }
+
+  @media (max-width: 760px) {
+    .ficha { position: static; }
+  }
+
+  .ficha h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 18px;
+    margin: 0 0 2px;
+  }
+
+  .ficha .ficha-hint {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin: 0 0 18px;
+  }
+
+  .field { margin-bottom: 14px; }
+
+  .field label {
+    display: block;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    margin-bottom: 5px;
+  }
+
+  .field input {
+    width: 100%;
+    padding: 9px 10px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: #fff;
+    font: inherit;
+    color: var(--ink);
+  }
+
+  .field input:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 1px;
+  }
+
+  .field input.dni-input {
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.02em;
+  }
+
+  .field input:disabled {
+    background: var(--line-soft);
+    color: var(--ink-soft);
+  }
+
+  .field-error {
+    font-size: 12px;
+    color: var(--red);
+    margin-top: 4px;
+    display: none;
+  }
+
+  .field.has-error input { border-color: var(--red); }
+  .field.has-error .field-error { display: block; }
+
+  .ficha-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  button {
+    font: inherit;
+    cursor: pointer;
+    border-radius: var(--radius);
+    border: 1px solid transparent;
+    padding: 10px 16px;
+    font-weight: 500;
+  }
+
+  button:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+  .btn-primary {
+    background: var(--green);
+    color: #fff;
+    flex: 1;
+  }
+  .btn-primary:hover { background: var(--green-dark); }
+  .btn-primary:disabled { background: var(--line-soft); color: var(--ink-soft); cursor: not-allowed; }
+
+  .btn-ghost {
+    background: transparent;
+    border-color: var(--line);
+    color: var(--ink-soft);
+  }
+  .btn-ghost:hover { border-color: var(--ink-soft); color: var(--ink); }
+
+  .form-msg {
+    font-size: 13px;
+    margin-top: 14px;
+    padding: 8px 10px;
+    border-radius: var(--radius);
+    display: none;
+  }
+  .form-msg.show { display: block; }
+  .form-msg.ok { background: #e4ede7; color: var(--green-dark); }
+  .form-msg.err { background: #f3e3e0; color: var(--red-dark); }
+
+  /* ---------- Config panel ---------- */
+  details.config {
+    margin-top: 18px;
+    border-top: 1px dashed var(--line);
+    padding-top: 12px;
+  }
+  details.config summary {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    cursor: pointer;
+  }
+  details.config .field { margin-top: 12px; margin-bottom: 8px; }
+  details.config small {
+    color: var(--ink-soft);
+    font-size: 11.5px;
+    line-height: 1.5;
+    display: block;
+  }
+
+  /* ---------- Registro (table) ---------- */
+  .registro-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .registro-head h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 19px;
+    margin: 0;
+  }
+
+  .search {
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--paper-raised);
+    font: inherit;
+    font-size: 13.5px;
+    width: 220px;
+    max-width: 100%;
+  }
+  .search:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+
+  .table-scroll {
+    overflow-x: auto;
+    border-top: 1px solid var(--ink);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 640px;
+  }
+
+  thead th {
+    text-align: left;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+  }
+
+  tbody td {
+    padding: 12px;
+    border-bottom: 1px solid var(--line-soft);
+    font-size: 14px;
+    vertical-align: middle;
+  }
+
+  tbody tr:hover { background: rgba(59, 93, 80, 0.05); }
+  tbody tr.editing { background: rgba(59, 93, 80, 0.09); }
+
+  td.col-dni { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--ink-soft); }
+  td.col-num { color: var(--ink-soft); font-size: 12.5px; font-family: 'IBM Plex Mono', monospace; }
+
+  .row-actions { display: flex; gap: 6px; justify-content: flex-end; }
+
+  .icon-btn {
+    background: transparent;
+    border: 1px solid var(--line);
+    padding: 6px 10px;
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+  .icon-btn:hover { border-color: var(--ink-soft); color: var(--ink); }
+  .icon-btn.danger:hover { border-color: var(--red); color: var(--red); }
+
+  .empty-state, .load-state {
+    padding: 48px 12px;
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 14px;
+  }
+  .empty-state strong, .load-state strong {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    color: var(--ink);
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .toolbar-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 14px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="letterhead">
+    <div class="mark">
+      <div class="monogram">SO</div>
+      <div>
+        <h1>Registro de alumnos</h1>
+        <div class="sub">IES Severo Ochoa</div>
+      </div>
+    </div>
+    <div class="count-badge">
+      <strong id="countTotal">—</strong>
+      alumnos matriculados
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- FICHA: formulario alta / edición -->
+    <section class="ficha">
+      <h2 id="fichaTitle">Nueva ficha</h2>
+      <p class="ficha-hint" id="fichaHint">Da de alta a un alumno del centro.</p>
+
+      <form id="alumnoForm" novalidate>
+        <div class="field" id="field-dni">
+          <label for="dni">DNI</label>
+          <input type="text" id="dni" class="dni-input" placeholder="12345678A" autocomplete="off">
+          <div class="field-error">Escribe un DNI válido.</div>
+        </div>
+
+        <div class="field" id="field-nombre">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" placeholder="Lucía" autocomplete="off">
+          <div class="field-error">El nombre no puede estar vacío.</div>
+        </div>
+
+        <div class="field" id="field-apellidos">
+          <label for="apellidos">Apellidos</label>
+          <input type="text" id="apellidos" placeholder="Ferrer Blasco" autocomplete="off">
+          <div class="field-error">Los apellidos no pueden estar vacíos.</div>
+        </div>
+
+        <div class="field" id="field-edad">
+          <label for="edad">Edad</label>
+          <input type="number" id="edad" min="1" max="119" placeholder="16" autocomplete="off">
+          <div class="field-error">Indica una edad entre 1 y 119.</div>
+        </div>
+
+        <div class="field" id="field-optativa">
+          <label for="optativa">Optativa elegida</label>
+          <input type="text" id="optativa" list="optativas" placeholder="Robótica" autocomplete="off">
+          <datalist id="optativas">
+            <option value="Robótica">
+            <option value="Teatro">
+            <option value="Francés">
+            <option value="Cultura clásica">
+            <option value="Tecnología">
+          </datalist>
+          <div class="field-error">Indica la optativa elegida.</div>
+        </div>
+
+        <div class="ficha-actions">
+          <button type="submit" class="btn-primary" id="submitBtn">Guardar alumno</button>
+          <button type="button" class="btn-ghost" id="cancelBtn" hidden>Cancelar</button>
+        </div>
+
+        <div class="form-msg" id="formMsg"></div>
+      </form>
+
+      <details class="config">
+        <summary>Conexión a la API</summary>
+        <div class="field">
+          <label for="apiUrl">URL base del API Gateway</label>
+          <input type="text" id="apiUrl" placeholder="https://xxxxxxxxxx.execute-api.eu-west-1.amazonaws.com/prod">
+        </div>
+        <small>Se guarda en este navegador. Sin barra final, apuntando al stage (p. ej. <code>/prod</code>), sin <code>/alumnos</code>.</small>
+      </details>
+    </section>
+
+    <!-- REGISTRO: tabla de alumnos -->
+    <section class="registro">
+      <div class="registro-head">
+        <h2>Listado</h2>
+        <input type="search" class="search" id="searchInput" placeholder="Buscar por nombre, apellidos o DNI…">
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:32px">#</th>
+              <th>DNI</th>
+              <th>Nombre</th>
+              <th>Apellidos</th>
+              <th>Edad</th>
+              <th>Optativa</th>
+              <th style="width:96px"></th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <tr><td colspan="7">
+              <div class="load-state"><strong>Cargando…</strong>Consultando el registro.</div>
+            </td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="toolbar-footer">
+        <span id="listStatus"></span>
+        <button type="button" class="btn-ghost" id="refreshBtn">Actualizar listado</button>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ------------------------------------------------------------------
+  // CONFIGURACIÓN — cambia este valor por la URL de tu API Gateway.
+  // Debe apuntar al stage, sin barra final y sin el recurso "/alumnos".
+  // Ejemplo: https://abc123xyz.execute-api.eu-west-1.amazonaws.com/prod
+  // ------------------------------------------------------------------
+  const DEFAULT_API_BASE_URL = "";
+
+  const STORAGE_KEY = "severo-ochoa-api-url";
+
+  function getApiBaseUrl() {
+    return (localStorage.getItem(STORAGE_KEY) || DEFAULT_API_BASE_URL).replace(/\/+$/, "");
+  }
+
+  // ------------------------------------------------------------------
+  // Estado y referencias al DOM
+  // ------------------------------------------------------------------
+  let alumnos = [];
+  let editingDni = null; // null = modo alta; si no, DNI que se está editando
+
+  const form = document.getElementById("alumnoForm");
+  const dniInput = document.getElementById("dni");
+  const nombreInput = document.getElementById("nombre");
+  const apellidosInput = document.getElementById("apellidos");
+  const edadInput = document.getElementById("edad");
+  const optativaInput = document.getElementById("optativa");
+  const apiUrlInput = document.getElementById("apiUrl");
+  const submitBtn = document.getElementById("submitBtn");
+  const cancelBtn = document.getElementById("cancelBtn");
+  const fichaTitle = document.getElementById("fichaTitle");
+  const fichaHint = document.getElementById("fichaHint");
+  const formMsg = document.getElementById("formMsg");
+  const tableBody = document.getElementById("tableBody");
+  const searchInput = document.getElementById("searchInput");
+  const refreshBtn = document.getElementById("refreshBtn");
+  const listStatus = document.getElementById("listStatus");
+  const countTotal = document.getElementById("countTotal");
+
+  apiUrlInput.value = localStorage.getItem(STORAGE_KEY) || "";
+  apiUrlInput.addEventListener("change", function () {
+    const v = apiUrlInput.value.trim();
+    if (v) localStorage.setItem(STORAGE_KEY, v);
+    else localStorage.removeItem(STORAGE_KEY);
+    cargarAlumnos();
+  });
+
+  // ------------------------------------------------------------------
+  // Llamadas a la API
+  // ------------------------------------------------------------------
+  async function llamarApi(path, options) {
+    const base = getApiBaseUrl();
+    const res = await fetch(base + path, Object.assign({
+      headers: { "Content-Type": "application/json" }
+    }, options));
+
+    let data = null;
+    try { data = await res.json(); } catch (e) { /* respuesta sin cuerpo */ }
+
+    if (!res.ok) {
+      const mensaje = (data && data.error) ? data.error : `Error ${res.status} al contactar con la API`;
+      throw new Error(mensaje);
+    }
+    return data;
+  }
+
+  async function cargarAlumnos() {
+    listStatus.textContent = "Cargando…";
+    tableBody.innerHTML = `<tr><td colspan="7"><div class="load-state"><strong>Cargando…</strong>Consultando el registro.</div></td></tr>`;
+    try {
+      const data = await llamarApi("/alumnos", { method: "GET" });
+      alumnos = (data && data.alumnos) || [];
+      pintarTabla();
+      listStatus.textContent = "";
+    } catch (err) {
+      tableBody.innerHTML = `<tr><td colspan="7"><div class="empty-state"><strong>No se pudo cargar el registro</strong>${escapeHtml(err.message)}</div></td></tr>`;
+      countTotal.textContent = "—";
+      listStatus.textContent = "";
+    }
+  }
+
+  // ------------------------------------------------------------------
+  // Render de la tabla
+  // ------------------------------------------------------------------
+  function pintarTabla() {
+    const filtro = searchInput.value.trim().toLowerCase();
+    const filtrados = !filtro ? alumnos : alumnos.filter(function (a) {
+      return [a.dni, a.nombre, a.apellidos, a.optativa].join(" ").toLowerCase().includes(filtro);
+    });
+
+    countTotal.textContent = alumnos.length;
+
+    if (filtrados.length === 0) {
+      const mensaje = alumnos.length === 0
+        ? "Añade el primer alumno desde la ficha de la izquierda."
+        : "Ningún alumno coincide con la búsqueda.";
+      const titulo = alumnos.length === 0 ? "El registro está vacío" : "Sin resultados";
+      tableBody.innerHTML = `<tr><td colspan="7"><div class="empty-state"><strong>${titulo}</strong>${mensaje}</div></td></tr>`;
+      return;
+    }
+
+    tableBody.innerHTML = filtrados.map(function (a, i) {
+      const editando = a.dni === editingDni;
+      return `
+        <tr class="${editando ? "editing" : ""}">
+          <td class="col-num">${i + 1}</td>
+          <td class="col-dni">${escapeHtml(a.dni)}</td>
+          <td>${escapeHtml(a.nombre)}</td>
+          <td>${escapeHtml(a.apellidos)}</td>
+          <td>${escapeHtml(String(a.edad))}</td>
+          <td>${escapeHtml(a.optativa)}</td>
+          <td>
+            <div class="row-actions">
+              <button type="button" class="icon-btn" data-action="edit" data-dni="${escapeHtml(a.dni)}">Editar</button>
+              <button type="button" class="icon-btn danger" data-action="delete" data-dni="${escapeHtml(a.dni)}">Borrar</button>
+            </div>
+          </td>
+        </tr>`;
+    }).join("");
+  }
+
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  // ------------------------------------------------------------------
+  // Validación de la ficha
+  // ------------------------------------------------------------------
+  function marcarError(campo, hayError) {
+    document.getElementById("field-" + campo).classList.toggle("has-error", hayError);
+  }
+
+  function validarFicha() {
+    let valido = true;
+
+    const dniOk = /^[0-9A-Za-z]{5,15}$/.test(dniInput.value.trim());
+    marcarError("dni", !dniOk);
+    if (!dniOk) valido = false;
+
+    const nombreOk = nombreInput.value.trim().length > 0;
+    marcarError("nombre", !nombreOk);
+    if (!nombreOk) valido = false;
+
+    const apellidosOk = apellidosInput.value.trim().length > 0;
+    marcarError("apellidos", !apellidosOk);
+    if (!apellidosOk) valido = false;
+
+    const edad = Number(edadInput.value);
+    const edadOk = Number.isInteger(edad) && edad > 0 && edad < 120;
+    marcarError("edad", !edadOk);
+    if (!edadOk) valido = false;
+
+    const optativaOk = optativaInput.value.trim().length > 0;
+    marcarError("optativa", !optativaOk);
+    if (!optativaOk) valido = false;
+
+    return valido;
+  }
+
+  function mostrarMensaje(texto, tipo) {
+    formMsg.textContent = texto;
+    formMsg.className = "form-msg show " + tipo;
+  }
+
+  function limpiarFicha() {
+    form.reset();
+    editingDni = null;
+    dniInput.disabled = false;
+    fichaTitle.textContent = "Nueva ficha";
+    fichaHint.textContent = "Da de alta a un alumno del centro.";
+    submitBtn.textContent = "Guardar alumno";
+    cancelBtn.hidden = true;
+    ["dni", "nombre", "apellidos", "edad", "optativa"].forEach(function (c) { marcarError(c, false); });
+    formMsg.className = "form-msg";
+  }
+
+  function cargarFichaParaEditar(dni) {
+    const alumno = alumnos.find(function (a) { return a.dni === dni; });
+    if (!alumno) return;
+
+    editingDni = dni;
+    dniInput.value = alumno.dni;
+    dniInput.disabled = true;
+    nombreInput.value = alumno.nombre;
+    apellidosInput.value = alumno.apellidos;
+    edadInput.value = alumno.edad;
+    optativaInput.value = alumno.optativa;
+
+    fichaTitle.textContent = "Editar ficha";
+    fichaHint.textContent = "Modifica los datos de " + alumno.nombre + " " + alumno.apellidos + ".";
+    submitBtn.textContent = "Guardar cambios";
+    cancelBtn.hidden = false;
+    formMsg.className = "form-msg";
+    pintarTabla();
+    nombreInput.focus();
+    document.querySelector(".ficha").scrollIntoView({ block: "nearest" });
+  }
+
+  // ------------------------------------------------------------------
+  // Eventos
+  // ------------------------------------------------------------------
+  form.addEventListener("submit", async function (ev) {
+    ev.preventDefault();
+    if (!validarFicha()) {
+      mostrarMensaje("Revisa los campos marcados en rojo.", "err");
+      return;
+    }
+
+    const payload = {
+      nombre: nombreInput.value.trim(),
+      apellidos: apellidosInput.value.trim(),
+      edad: Number(edadInput.value),
+      optativa: optativaInput.value.trim()
+    };
+
+    submitBtn.disabled = true;
+    try {
+      if (editingDni) {
+        await llamarApi("/alumnos/" + encodeURIComponent(editingDni), {
+          method: "PUT",
+          body: JSON.stringify(payload)
+        });
+        mostrarMensaje("Cambios guardados.", "ok");
+      } else {
+        payload.dni = dniInput.value.trim();
+        await llamarApi("/alumnos", {
+          method: "POST",
+          body: JSON.stringify(payload)
+        });
+        mostrarMensaje("Alumno añadido al registro.", "ok");
+      }
+      await cargarAlumnos();
+      limpiarFicha();
+    } catch (err) {
+      mostrarMensaje(err.message, "err");
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+
+  cancelBtn.addEventListener("click", limpiarFicha);
+
+  tableBody.addEventListener("click", async function (ev) {
+    const btn = ev.target.closest("button[data-action]");
+    if (!btn) return;
+    const dni = btn.dataset.dni;
+
+    if (btn.dataset.action === "edit") {
+      cargarFichaParaEditar(dni);
+      return;
+    }
+
+    if (btn.dataset.action === "delete") {
+      const alumno = alumnos.find(function (a) { return a.dni === dni; });
+      const nombreCompleto = alumno ? (alumno.nombre + " " + alumno.apellidos) : dni;
+      if (!confirm("¿Borrar a " + nombreCompleto + " del registro? Esta acción no se puede deshacer.")) return;
+
+      btn.disabled = true;
+      try {
+        await llamarApi("/alumnos/" + encodeURIComponent(dni), { method: "DELETE" });
+        if (editingDni === dni) limpiarFicha();
+        await cargarAlumnos();
+      } catch (err) {
+        alert("No se pudo borrar: " + err.message);
+        btn.disabled = false;
+      }
+    }
+  });
+
+  searchInput.addEventListener("input", pintarTabla);
+  refreshBtn.addEventListener("click", cargarAlumnos);
+
+  // ------------------------------------------------------------------
+  // Arranque
+  // ------------------------------------------------------------------
+  cargarAlumnos();
+})();
+</script>
+
+</body>
+</html>

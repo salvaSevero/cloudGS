@@ -1,0 +1,255 @@
+"""
+Lambda CRUD de alumnos sobre DynamoDB.
+ 
+Rutas esperadas (API Gateway con integración proxy):
+    POST   /alumnos          -> añadir
+    GET    /alumnos          -> listar (soporta ?limit= y ?next=)
+    GET    /alumnos/{dni}    -> obtener uno
+    PUT    /alumnos/{dni}    -> editar (parcial)
+    DELETE /alumnos/{dni}    -> borrar
+ 
+Variables de entorno:
+    TABLE_NAME  Nombre de la tabla DynamoDB (por defecto "alumnos")
+"""
+ 
+import base64
+import json
+import logging
+import os
+from decimal import Decimal
+ 
+import boto3
+from botocore.exceptions import ClientError
+ 
+LOG = logging.getLogger()
+LOG.setLevel(logging.INFO)
+ 
+TABLE_NAME = os.environ.get("TABLE_NAME", "alumnos")
+dynamodb = boto3.resource("dynamodb")
+table = dynamodb.Table(TABLE_NAME)
+ 
+# Campos obligatorios al crear un alumno
+CAMPOS_REQUERIDOS = ("dni", "nombre", "apellidos", "edad", "optativa")
+# Campos que se pueden modificar (el dni es la clave, no se toca)
+CAMPOS_EDITABLES = ("nombre", "apellidos", "edad", "optativa")
+ 
+ 
+# --------------------------------------------------------------------------- #
+# Utilidades
+# --------------------------------------------------------------------------- #
+class DecimalEncoder(json.JSONEncoder):
+    """DynamoDB devuelve los números como Decimal; json no sabe serializarlos."""
+ 
+    def default(self, o):
+        if isinstance(o, Decimal):
+            return int(o) if o % 1 == 0 else float(o)
+        return super().default(o)
+ 
+ 
+class ErrorPeticion(Exception):
+    """Error controlado que se traduce en una respuesta HTTP."""
+ 
+    def __init__(self, mensaje, status=400):
+        super().__init__(mensaje)
+        self.mensaje = mensaje
+        self.status = status
+ 
+ 
+def respuesta(status, body):
+    return {
+        "statusCode": status,
+        "headers": {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+        },
+        "body": json.dumps(body, cls=DecimalEncoder, ensure_ascii=False),
+    }
+ 
+ 
+def leer_body(event):
+    raw = event.get("body")
+    if not raw:
+        raise ErrorPeticion("El cuerpo de la peticion esta vacio")
+    if event.get("isBase64Encoded"):
+        raw = base64.b64decode(raw).decode("utf-8")
+    try:
+        datos = json.loads(raw)
+    except (ValueError, TypeError):
+        raise ErrorPeticion("El cuerpo no es un JSON valido")
+    if not isinstance(datos, dict):
+        raise ErrorPeticion("Se esperaba un objeto JSON")
+    return datos
+ 
+ 
+def normaliza_dni(valor):
+    if not isinstance(valor, str) or not valor.strip():
+        raise ErrorPeticion("El dni es obligatorio y debe ser una cadena")
+    return valor.strip().upper()
+ 
+ 
+def valida_campo(nombre, valor):
+    """Valida y normaliza un campo individual. Devuelve el valor listo para DynamoDB."""
+    if nombre == "edad":
+        if isinstance(valor, bool) or not isinstance(valor, (int, float)):
+            raise ErrorPeticion("La edad debe ser un numero")
+        edad = int(valor)
+        if not 0 < edad < 120:
+            raise ErrorPeticion("La edad debe estar entre 1 y 119")
+        return edad
+    if not isinstance(valor, str) or not valor.strip():
+        raise ErrorPeticion(f"El campo '{nombre}' debe ser un texto no vacio")
+    return valor.strip()
+ 
+ 
+# --------------------------------------------------------------------------- #
+# Operaciones
+# --------------------------------------------------------------------------- #
+def anadir_alumno(event):
+    datos = leer_body(event)
+ 
+    faltan = [c for c in CAMPOS_REQUERIDOS if c not in datos]
+    if faltan:
+        raise ErrorPeticion(f"Faltan campos obligatorios: {', '.join(faltan)}")
+ 
+    alumno = {"dni": normaliza_dni(datos["dni"])}
+    for campo in CAMPOS_EDITABLES:
+        alumno[campo] = valida_campo(campo, datos[campo])
+ 
+    try:
+        table.put_item(
+            Item=alumno,
+            # Evita sobrescribir un alumno ya existente
+            ConditionExpression="attribute_not_exists(dni)",
+        )
+    except ClientError as err:
+        if err.response["Error"]["Code"] == "ConditionalCheckFailedException":
+            raise ErrorPeticion(f"Ya existe un alumno con dni {alumno['dni']}", 409)
+        raise
+ 
+    return respuesta(201, {"mensaje": "Alumno creado", "alumno": alumno})
+ 
+ 
+def obtener_alumno(dni):
+    resultado = table.get_item(Key={"dni": dni})
+    alumno = resultado.get("Item")
+    if not alumno:
+        raise ErrorPeticion(f"No existe el alumno con dni {dni}", 404)
+    return respuesta(200, alumno)
+ 
+ 
+def listar_alumnos(event):
+    """Scan paginado. Con tablas grandes conviene usar un indice o paginar siempre."""
+    params = event.get("queryStringParameters") or {}
+ 
+    limite = params.get("limit")
+    if limite:
+        try:
+            limite = max(1, min(int(limite), 100))
+        except ValueError:
+            raise ErrorPeticion("El parametro 'limit' debe ser un entero")
+        kwargs = {"Limit": limite}
+    else:
+        kwargs = {}
+ 
+    if params.get("next"):
+        kwargs["ExclusiveStartKey"] = {"dni": params["next"]}
+ 
+    resultado = table.scan(**kwargs)
+    cuerpo = {
+        "alumnos": resultado.get("Items", []),
+        "total": resultado.get("Count", 0),
+    }
+    if "LastEvaluatedKey" in resultado:
+        cuerpo["next"] = resultado["LastEvaluatedKey"]["dni"]
+    return respuesta(200, cuerpo)
+ 
+ 
+def editar_alumno(dni, event):
+    datos = leer_body(event)
+ 
+    cambios = {c: valida_campo(c, datos[c]) for c in CAMPOS_EDITABLES if c in datos}
+    if not cambios:
+        raise ErrorPeticion(
+            f"Indica al menos un campo a modificar: {', '.join(CAMPOS_EDITABLES)}"
+        )
+ 
+    # Se usan alias (#c0, :v0) porque algunos nombres podrian ser palabras reservadas
+    partes, nombres, valores = [], {}, {}
+    for i, (campo, valor) in enumerate(cambios.items()):
+        partes.append(f"#c{i} = :v{i}")
+        nombres[f"#c{i}"] = campo
+        valores[f":v{i}"] = valor
+ 
+    try:
+        resultado = table.update_item(
+            Key={"dni": dni},
+            UpdateExpression="SET " + ", ".join(partes),
+            ExpressionAttributeNames=nombres,
+            ExpressionAttributeValues=valores,
+            ConditionExpression="attribute_exists(dni)",
+            ReturnValues="ALL_NEW",
+        )
+    except ClientError as err:
+        if err.response["Error"]["Code"] == "ConditionalCheckFailedException":
+            raise ErrorPeticion(f"No existe el alumno con dni {dni}", 404)
+        raise
+ 
+    return respuesta(
+        200, {"mensaje": "Alumno actualizado", "alumno": resultado["Attributes"]}
+    )
+ 
+ 
+def borrar_alumno(dni):
+    try:
+        table.delete_item(
+            Key={"dni": dni},
+            ConditionExpression="attribute_exists(dni)",
+        )
+    except ClientError as err:
+        if err.response["Error"]["Code"] == "ConditionalCheckFailedException":
+            raise ErrorPeticion(f"No existe el alumno con dni {dni}", 404)
+        raise
+ 
+    return respuesta(200, {"mensaje": f"Alumno {dni} borrado"})
+ 
+ 
+# --------------------------------------------------------------------------- #
+# Handler
+# --------------------------------------------------------------------------- #
+def metodo_http(event):
+    """Compatible con REST API (v1) y HTTP API (v2) de API Gateway."""
+    if "httpMethod" in event:
+        return event["httpMethod"].upper()
+    return event["requestContext"]["http"]["method"].upper()
+ 
+ 
+def lambda_handler(event, context):
+    LOG.info("Evento recibido: %s", json.dumps(event, default=str))
+ 
+    try:
+        metodo = metodo_http(event)
+        path_params = event.get("pathParameters") or {}
+        dni = normaliza_dni(path_params["dni"]) if path_params.get("dni") else None
+ 
+        if metodo == "OPTIONS":                       # preflight CORS
+            return respuesta(200, {})
+        if metodo == "POST" and dni is None:
+            return anadir_alumno(event)
+        if metodo == "GET":
+            return obtener_alumno(dni) if dni else listar_alumnos(event)
+        if metodo == "PUT" and dni:
+            return editar_alumno(dni, event)
+        if metodo == "DELETE" and dni:
+            return borrar_alumno(dni)
+ 
+        raise ErrorPeticion(f"Operacion no soportada: {metodo}", 405)
+ 
+    except ErrorPeticion as err:
+        return respuesta(err.status, {"error": err.mensaje})
+    except ClientError as err:
+        LOG.exception("Error de DynamoDB")
+        return respuesta(502, {"error": "Error accediendo a la base de datos"})
+    except Exception:
+        LOG.exception("Error inesperado")
+        return respuesta(500, {"error": "Error interno del servidor"})
+ 

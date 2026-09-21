@@ -605,3 +605,38 @@ ins, .critic {
     font-size: 0.88rem;
     line-height: 1.55;
 }
+
+.dos-columnas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.dos-columnas > div {
+    min-width: 0;
+}
+
+.imagen-columna {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagen-columna figure {
+    margin: 0;
+}
+
+.imagen-columna img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Pantallas pequeñas */
+@media screen and (max-width: 768px) {
+    .dos-columnas {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
