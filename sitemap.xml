@@ -2,90 +2,90 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://salvasevero.github.io/cloudGS/index.html</loc>
-         <lastmod>2026-09-21</lastmod>
+         <lastmod>2026-09-24</lastmod>
     </url>
     <url>
          <loc>https://salvasevero.github.io/cloudGS/10_WebEstaticaS3.html</loc>
-         <lastmod>2026-09-21</lastmod>
+         <lastmod>2026-09-24</lastmod>
     </url>
     <url>
          <loc>https://salvasevero.github.io/cloudGS/11_aws_cli.html</loc>
-         <lastmod>2026-09-21</lastmod>
+         <lastmod>2026-09-24</lastmod>
     </url>
     <url>
          <loc>https://salvasevero.github.io/cloudGS/12_Policies.html</loc>
-         <lastmod>2026-09-21</lastmod>
+         <lastmod>2026-09-24</lastmod>
     </url>
     <url>
          <loc>https://salvasevero.github.io/cloudGS/13_AMI.html</loc>
-         <lastmod>2026-09-21</lastmod>
+         <lastmod>2026-09-24</lastmod>
     </url>
     <url>
          <loc>https://salvasevero.github.io/cloudGS/14_ELB.html</loc>
-         <lastmod>2026-09-21</lastmod>
+         <lastmod>2026-09-24</lastmod>
     </url>
     <url>
          <loc>https://salvasevero.github.io/cloudGS/15_ELB_Practica.html</loc>
-         <lastmod>2026-09-21</lastmod>
+         <lastmod>2026-09-24</lastmod>
     </url>
     <url>
          <loc>https://salvasevero.github.io/cloudGS/16_VPC.html</loc>
-         <lastmod>2026-09-21</lastmod>
+         <lastmod>2026-09-24</lastmod>
     </url>
     <url>
          <loc>https://salvasevero.github.io/cloudGS/17_RDS.html</loc>
-         <lastmod>2026-09-21</lastmod>
+         <lastmod>2026-09-24</lastmod>
     </url>
     <url>
          <loc>https://salvasevero.github.io/cloudGS/18_WP_RDS.html</loc>
-         <lastmod>2026-09-21</lastmod>
+         <lastmod>2026-09-24</lastmod>
     </url>
     <url>
          <loc>https://salvasevero.github.io/cloudGS/19_Lambda.html</loc>
-         <lastmod>2026-09-21</lastmod>
+         <lastmod>2026-09-24</lastmod>
     </url>
     <url>
          <loc>https://salvasevero.github.io/cloudGS/20_Lambda_S3.html</loc>
-         <lastmod>2026-09-21</lastmod>
+         <lastmod>2026-09-24</lastmod>
     </url>
     <url>
          <loc>https://salvasevero.github.io/cloudGS/20_Lambda_S3_solucion.html</loc>
-         <lastmod>2026-09-21</lastmod>
+         <lastmod>2026-09-24</lastmod>
     </url>
     <url>
          <loc>https://salvasevero.github.io/cloudGS/21_API_Lambda_DynamoDB.html</loc>
-         <lastmod>2026-09-21</lastmod>
+         <lastmod>2026-09-24</lastmod>
     </url>
     <url>
          <loc>https://salvasevero.github.io/cloudGS/2_Nubes.html</loc>
-         <lastmod>2026-09-21</lastmod>
+         <lastmod>2026-09-24</lastmod>
     </url>
     <url>
          <loc>https://salvasevero.github.io/cloudGS/3_Caracteristcas.html</loc>
-         <lastmod>2026-09-21</lastmod>
+         <lastmod>2026-09-24</lastmod>
     </url>
     <url>
          <loc>https://salvasevero.github.io/cloudGS/4_EC2.html</loc>
-         <lastmod>2026-09-21</lastmod>
+         <lastmod>2026-09-24</lastmod>
     </url>
     <url>
          <loc>https://salvasevero.github.io/cloudGS/5_WP.html</loc>
-         <lastmod>2026-09-21</lastmod>
+         <lastmod>2026-09-24</lastmod>
     </url>
     <url>
          <loc>https://salvasevero.github.io/cloudGS/6_S3.html</loc>
-         <lastmod>2026-09-21</lastmod>
+         <lastmod>2026-09-24</lastmod>
     </url>
     <url>
          <loc>https://salvasevero.github.io/cloudGS/7_EBS.html</loc>
-         <lastmod>2026-09-21</lastmod>
+         <lastmod>2026-09-24</lastmod>
     </url>
     <url>
          <loc>https://salvasevero.github.io/cloudGS/8_Almacenamiento.html</loc>
-         <lastmod>2026-09-21</lastmod>
+         <lastmod>2026-09-24</lastmod>
     </url>
     <url>
          <loc>https://salvasevero.github.io/cloudGS/9_EFS.html</loc>
-         <lastmod>2026-09-21</lastmod>
+         <lastmod>2026-09-24</lastmod>
     </url>
 </urlset>

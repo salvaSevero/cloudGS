@@ -1236,47 +1236,99 @@
 
 
 <div><h1 id="ebs-amazon-elastic-block-store">EBS (Amazon Elastic Block Store).<a class="headerlink" href="#ebs-amazon-elastic-block-store" title="Permanent link">¶</a></h1>
-<p>Almacenamiento a nivel de Bloque <mark class="critic"><strong>asociada a una instancia EC2.</strong></mark></p>
+<p>Almacenamiento a nivel de <strong>Bloque</strong> asociada a una instancia <strong>EC2</strong>.</p>
 <h2 id="ventajas">Ventajas:<a class="headerlink" href="#ventajas" title="Permanent link">¶</a></h2>
 <ul>
 <li><strong>Replicación automática</strong> dentro de la misma zona de disponibilidad.</li>
-<li>El almacenamiento es <strong>persistente</strong>, incluso cuando la EC2 es eliminada.</li>
+<li>El almacenamiento es <strong>persistente</strong>, incluso cuando la EC2 es eliminada (al no ser que hayamos modificado dicho comportamiento DeleteOnTermination).</li>
 <li>Se pueden <strong>cifrar</strong> los datos de forma sencilla.</li>
 <li>Fácilmente <strong>escalables</strong>, es decir, se puede aumentar su tamaño (no reducir).</li>
 </ul>
 <h2 id="tipos-de-volumenes-discos">Tipos de volúmenes (discos).<a class="headerlink" href="#tipos-de-volumenes-discos" title="Permanent link">¶</a></h2>
-<div class="admonition tip">
-<p class="admonition-title">IOPS</p>
-<p></p><center>
-<strong>Es el número de la cantidad de entrada/salida por segundo. Es un indicador del rendimiento del disco.</strong>
-</center>
-</div>
-<ul>
-<li>
-<p><mark class="critic"><strong>Unidades de estado solido (SSD)</strong></mark>:</p>
-<p>💥 Genéricos: Los tipos existentes son <strong>gp3 (1.000 MiB/s) y gp2(128-250 MiB/s)</strong> ambas con un máximo de <strong>16.000 IOPS.</strong></p>
-<p>💥 Alto rendimiento IOPS: Los tipos existentes con <strong>io2 Block Express (4.000 MiB/s con un máximo 246.000 IOPS) e io2 (1.000 MiB/s con 64.000 IOPS)</strong>.</p>
-</li>
-<li>
-<p><mark class="critic"><strong>Unidades de disco duro (HDD)</strong></mark>:</p>
-<p>💥 Optimizadas para grandes cargas de trabajo de streaming. </p>
-<p>💥 Los tipos existentes con <strong>st1 (Throughput Optimized HDD, con 500 MiB/s y 500 IOPS) y sc1 (Cold HDD, con 250 MiB/s y 250 IOPS)</strong>.</p>
-<p>💥 Existen los <strong>EBS Cold HDD</strong> que hace referencia a discos muy baratos aunque lentos que en principio no van a ser accedidos de forma habitual, por ejemplo para almacenar copias de seguridad más antiguas.</p>
-</li>
-</ul>
 <center>
 <figure>
 <img src="imagenes/s3/2.jpg" width="800">
 </figure>
 </center>
 
+<div class="admonition tip">
+<p class="admonition-title">IOPS</p>
+<p></p><center>
+Es el número de operaciones de entrada/salida por segundo. Es un indicador del rendimiento del disco.
+<code>Ejemplo</code>: Una base de datos con muchos accesos de lectura y escrituras de pequeños tamaño priorizarán un disco con alto IOPS.
+</center>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Throughput</p>
+<p></p><center>
+Es la cantidad de datos que puede transferir por segundo, se mide en MB/s o GB/s.
+<code>Ejemplo</code>: Un servicio que sirve ficheros de gran tamaño tendrán que priorizar el throughput al IOPS.
+</center>
+</div>
+<ul>
+<li>
+<p><mark class="critic">Unidades de estado solido (SSD)</mark>:</p>
+<p>💥 <strong>Genéricos</strong>: Los tipos existentes son <code>gp3</code> (125-2000 MiB/s) y <code>gp2</code>(128-250 MiB/s) ambas con un máximo de 16.000 IOPS.</p>
+<p>💥 <strong>Alto rendimiento IOPS</strong>: Los tipos existentes con <code>io2 Block Express</code> (4.000 MiB/s con un máximo 246.000 IOPS) e <code>io2</code> (1.000 MiB/s con 64.000 IOPS).</p>
+</li>
+<li>
+<p><mark class="critic">Unidades de disco duro (HDD)</mark>:</p>
+<p>💥 Optimizadas para grandes transferencias de datos:<code>st1</code> (Throughput Optimized HDD, con 500 MiB/s y 500 IOPS) y <code>sc1</code> (Cold HDD, con 250 MiB/s y 250 IOPS).</p>
+<p>💥 Existen los <code>EBS Cold HDD</code> que hace referencia a discos muy baratos aunque lentos que en principio no van a ser accedidos de forma habitual, por ejemplo para almacenar copias de seguridad más antiguas.</p>
+</li>
+</ul>
+<div class="center-table">
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Tipo</th>
+<th style="text-align: center;">Tecnología</th>
+<th style="text-align: center;">Característica principal</th>
+<th style="text-align: center;">Uso típico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>gp3</strong></td>
+<td style="text-align: center;">SSD</td>
+<td style="text-align: center;">Uso general, configurable</td>
+<td style="text-align: center;">Servidores, aplicaciones, BD</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>gp2</strong></td>
+<td style="text-align: center;">SSD</td>
+<td style="text-align: center;">Generación anterior</td>
+<td style="text-align: center;">Sistemas existentes</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>io2</strong></td>
+<td style="text-align: center;">SSD</td>
+<td style="text-align: center;">IOPS provisionadas</td>
+<td style="text-align: center;">BD y cargas críticas</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>st1</strong></td>
+<td style="text-align: center;">HDD</td>
+<td style="text-align: center;">Alto throughput</td>
+<td style="text-align: center;">Big Data, logs</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>sc1</strong></td>
+<td style="text-align: center;">HDD</td>
+<td style="text-align: center;">Bajo coste</td>
+<td style="text-align: center;">Datos poco utilizados</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Un volumen EBS sólo se puede asociar a una instancia EC2 de su misma zona de disponibilidad.</p>
 </div>
 <h2 id="practica">Práctica.<a class="headerlink" href="#practica" title="Permanent link">¶</a></h2>
+<p><a download="EBS.docx" href="practicas/EBS.docx">Enunciado</a></p>
 <h3 id="crea-un-volumen-ebs">Crea un volumen EBS:<a class="headerlink" href="#crea-un-volumen-ebs" title="Permanent link">¶</a></h3>
 <ul>
-<li>Tipo <strong>gp3</strong> (3000 IOPS) de 100GB. </li>
+<li>Tipo <strong>gp3</strong> (3000 IOPS) de 10GB. </li>
 <li>Crea una <strong>etiqueta (tag)</strong> con el par "Nombre --&gt; EBS_Practica" para identificar el volumen.</li>
 <li>La <strong>zona de disponibilidad</strong> debe ser la misma que nuestra máquina.</li>
 </ul>
@@ -1322,8 +1374,23 @@
 sudo<span class="w"> </span>mount<span class="w"> </span>/dev/nvme1n1<span class="w"> </span>/mnt
 sudo<span class="w"> </span>mkdir<span class="w"> </span>/mnt/prueba_ebs
 </code></pre></div>
-<h3 id="incrementar-volumen">Incrementar volumen.<a class="headerlink" href="#incrementar-volumen" title="Permanent link">¶</a></h3>
-<p>Menus EBS ➡️ Seleccionamos el volumen ➡️ Actions ➡️ Modify Volume ➡️ Aumentamos la capacidad (120GB).</p>
+<h4 id="hacerlo-autoarrancable">Hacerlo autoarrancable.<a class="headerlink" href="#hacerlo-autoarrancable" title="Permanent link">¶</a></h4>
+<p>Actualmente si reiniciaramos la máquina el disco habría que volver a montarlo manualmente.</p>
+<p>Para que arrancara automáticamente deberíamos averiguar su identificador (UUID) con el comando <code>blkid</code> y añadir su línea de montaje en el fichero <strong>/etc/fstab</strong>.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">UUID</span><span class="o">=</span>cac49809-b7c0-4ef0-9501-a0e05dad237f<span class="w"> </span>/mnt<span class="w"> </span>ext4<span class="w"> </span>defaults,nofail<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">2</span>
+</code></pre></div>
+<p>Puedes comprobar que funciona reiniciando o con los siguientes comandos:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#Desmontar si estaba previamente montado.</span>
+sudo<span class="w"> </span>umount<span class="w"> </span>/mnt
+<span class="c1">#Montar desde el fichero fstab.</span>
+sudo<span class="w"> </span>mount<span class="w"> </span>-a
+<span class="c1">#Comprobar si efectivamente se ha montado.</span>
+lsblk<span class="w"> </span>-f
+</code></pre></div>
+<h3 id="incrementar-un-volumen-ya-asociado">Incrementar un volumen ya asociado.<a class="headerlink" href="#incrementar-un-volumen-ya-asociado" title="Permanent link">¶</a></h3>
+<ul>
+<li>EBS ➡️ Seleccionamos el volumen ➡️ Actions ➡️ Modify Volume ➡️ Aumentamos la capacidad (15GB).</li>
+</ul>
 <p>Con el comando "<strong>lsblk</strong>" podemos comprobar que efectivamente se ha producido el cambio.</p>
 <div class="admonition warning">
 <p class="admonition-title">No obstante tenemos que redimensionar la partición para que ocupe todo el disco.</p>
@@ -1340,7 +1407,24 @@ sudo<span class="w"> </span>mkdir<span class="w"> </span>/mnt/prueba_ebs
 </code></pre></div>
 <p>Posteriormente podremos comprobar con "<strong>df -h</strong>" que efectivamente ya se está haciendo uso de todo el disco.</p>
 <h3 id="instantaneas-snapshots">Instantáneas (Snapshots).<a class="headerlink" href="#instantaneas-snapshots" title="Permanent link">¶</a></h3>
-<p>Para hacer <mark class="critic"><strong>réplicas</strong></mark> de los volúmenes EBS se usan las instanáneas.</p>
+<ul>
+<li>
+<p>Son <strong>copias incrementales</strong> del volumen EBS, es decir, después de la primera, se almacenan los bloques que han cambiado, no se copia todo de nuevo.</p>
+</li>
+<li>
+<p>Permite restaurar los datos del disco en otro EBS, incluso en otra zona de disponibilidad.</p>
+</li>
+<li>
+<p>Se almacenan de forma redundante, incluso se pueden copiar a otras regiones.</p>
+</li>
+<li>
+<p>Se pueden compartir con otras cuentas de AWS.</p>
+</li>
+<li>
+<p>Se puede automatizar la creación de las instantáneas con LifeCycle Manager.</p>
+</li>
+</ul>
+<h4 id="funcionamiento">Funcionamiento.<a class="headerlink" href="#funcionamiento" title="Permanent link">¶</a></h4>
 <ul>
 <li>
 <p>Para crear una instantánea vamos a EBS ➡️ Snapshots ➡️ Create Snapshot.</p>
@@ -1358,7 +1442,6 @@ sudo<span class="w"> </span>mkdir<span class="w"> </span>/mnt/prueba_ebs
 <div class="admonition warning">
 <p class="admonition-title">Recuerda crear el volumen en la misma zona que tus EC2.</p>
 </div>
-<p>Desgraciadamente no tenemos permisos como estudiantes a generar volúmenes a partir de instantáneas.</p>
 <div class="admonition tip">
 <p class="admonition-title">LifeCycle Manager</p>
 <p></p><center>
