@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://salvasevero.github.io/cloudGS/11_aws_cli.html">
+        <link rel="canonical" href="https://salvasevero.github.io/cloudGS/22_EventBridge.html">
       
       
-        <link rel="prev" href="12_Policies.html">
+        <link rel="prev" href="20_Lambda_S3.html">
       
       
-        <link rel="next" href="13_AMI.html">
+        <link rel="next" href="21_API_Lambda_DynamoDB.html">
       
       
       <link rel="icon" href="assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Configuración - Introducción a la Nube Pública.</title>
+        <title>EventBridge - Introducción a la Nube Pública.</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#aws-cli" class="md-skip">
+        <a href="#eventbridge" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Configuración
+              EventBridge
             
           </span>
         </div>
@@ -680,8 +680,6 @@
                 
   
   
-    
-  
   
   
     
@@ -693,11 +691,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
         
           
           <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
@@ -713,7 +711,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_3">
             <span class="md-nav__icon md-icon"></span>
             AWS CLI
@@ -724,32 +722,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Configuración
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="11_aws_cli.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="11_aws_cli.html" class="md-nav__link">
         
   
   
@@ -760,80 +736,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tabla de contenidos
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#ques-es-aws-cli" class="md-nav__link">
-    <span class="md-ellipsis">
-      ¿Qués es AWS CLI?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#instalacion" class="md-nav__link">
-    <span class="md-ellipsis">
-      Instalación.
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configuracion" class="md-nav__link">
-    <span class="md-ellipsis">
-      Configuración.
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creacion-de-ec2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Creación de EC2.
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#crear-una-regla-de-seguridad" class="md-nav__link">
-    <span class="md-ellipsis">
-      Crear una regla de seguridad.
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#crear-un-s3" class="md-nav__link">
-    <span class="md-ellipsis">
-      Crear un S3.
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1120,8 +1022,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -1137,11 +1041,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" checked>
         
           
           <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
@@ -1157,7 +1061,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_7">
             <span class="md-nav__icon md-icon"></span>
             Serverless
@@ -1214,10 +1118,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="22_EventBridge.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    EventBridge
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="22_EventBridge.html" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1228,6 +1154,35 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo.
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1287,269 +1242,58 @@
 
 
 
-<div><h1 id="aws-cli">AWS CLI.<a class="headerlink" href="#aws-cli" title="Permanent link">¶</a></h1>
-<h2 id="ques-es-aws-cli">¿Qués es AWS CLI?<a class="headerlink" href="#ques-es-aws-cli" title="Permanent link">¶</a></h2>
-<p>AWS CLI (Command Line Interface) es una herramienta que se ejecuta desde la línea de comandos que permite gestionar todos los servicios de Amazon Web Services, es decir, <mark class="critic"><strong>crear y gestionar EC2, S3, EFS, EBS, a través de comandos</strong></mark>.</p>
-<h2 id="instalacion">Instalación.<a class="headerlink" href="#instalacion" title="Permanent link">¶</a></h2>
-<p><a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">Descarga AWS CLI</a></p>
-<h2 id="configuracion">Configuración.<a class="headerlink" href="#configuracion" title="Permanent link">¶</a></h2>
-<ul>
-<li>Abrimos un terminal y ejecutamos <ins class="critic"><strong>aws configure</strong></ins></li>
-</ul>
-<div class="admonition tip">
-<p class="admonition-title">El comando nos preguntará por información, la cual podemos dejar en blanco para el caso de AWS Academy.</p>
-</div>
-<div class="highlight"><pre><span></span><code>AWS<span class="w"> </span>Access<span class="w"> </span>Key<span class="w"> </span>ID<span class="w"> </span><span class="o">[</span>None<span class="o">]</span>:<span class="w"> </span>
-AWS<span class="w"> </span>Secret<span class="w"> </span>Access<span class="w"> </span>Key<span class="w"> </span><span class="o">[</span>None<span class="o">]</span>:<span class="w"> </span>
-Default<span class="w"> </span>region<span class="w"> </span>name<span class="w"> </span><span class="o">[</span>None<span class="o">]</span>:<span class="w"> </span>
-Default<span class="w"> </span>output<span class="w"> </span>format<span class="w"> </span><span class="o">[</span>None<span class="o">]</span>:<span class="w"> </span>
-</code></pre></div>
-<ul>
-<li>Esto crea el fichero <ins class="critic"><strong>.aws/credentials</strong></ins>, que editaremos. </li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Credentials</p>
-<ul>
-<li>En Linux/macOs el archivo estará en la ruta: ~/.aws/credentials.</li>
-<li>En Windows estará en la ruta: C:\Users\usuario\.aws\credentials.</li>
-</ul>
-</div>
-<ul>
-<li>Dentro de ➡️ AWS Details ➡️ Cloud Access ➡️ AWS CLI podemos recabar la información necesaria:</li>
-</ul>
-<center>
+<div><h1 id="eventbridge">EventBridge.<a class="headerlink" href="#eventbridge" title="Permanent link">¶</a></h1>
+<h2 id="objetivo">Objetivo.<a class="headerlink" href="#objetivo" title="Permanent link">¶</a></h2>
+<p>Permite ejecutar acciones programadas, ya sea debido a un momento en el tiempo o a una situación producida en una máquina o servicio.</p>
 <figure>
-<img src="imagenes/cli/1.png" width="1200">
+<img src="imagenes/serverless/25.png" width="900">
 </figure>
-</center>
 
+<h4 id="evento">Evento.<a class="headerlink" href="#evento" title="Permanent link">¶</a></h4>
+<p>Un evento es una notificación de que algo ha ocurrido:</p>
+<ul>
+<li>
+<p>Una EC2 ha cambiado de estado (detenida/terminada/arrancada).</p>
+</li>
+<li>
+<p>Se ha subido un objeto a un S3.</p>
+</li>
+<li>
+<p>Una aplicación ha generado un evento.</p>
+</li>
+<li>
+<p>Se ha producido un evento de seguridad.</p>
+</li>
+</ul>
+<p>A través de <code>EventBrdige Scheduler</code> podemos también programar:</p>
+<figure>
+<img src="imagenes/serverless/24.png" width="700">
+</figure>
+
+<ul>
+<li>
+<p>Cada cuánto tiempo se debe ejecutar.</p>
+</li>
+<li>
+<p>Pasar una expresión de cron.</p>
+</li>
+<li>
+<p>Ejecución única.</p>
+</li>
+</ul>
+<h4 id="reglas">Reglas.<a class="headerlink" href="#reglas" title="Permanent link">¶</a></h4>
+<p>Revisan los eventos y dependiendo de éste lo envían a uno u otro servicio (Lambda, SQS, API, etc).</p>
 <div class="admonition danger">
-<p class="admonition-title">Solo es necesario copiar y pegar todo el texto en el fichero credentials.</p>
+<p class="admonition-title">EventBridge no tiene porque estar asociado a una función Lambda.</p>
 </div>
-<ul>
-<li>
-<p>Una vez editado el fichero con la nueva información ejecutamos de nuevo <mark class="critic"><strong>aws configure</strong></mark></p>
-<p>💥 Región: us-east-1</p>
-<p>💥 Formato: json</p>
-</li>
-</ul>
-<center>
-<figure>
-<img src="imagenes/cli/2.png" width="500">
-</figure>
-</center>
-
-<h2 id="creacion-de-ec2">Creación de EC2.<a class="headerlink" href="#creacion-de-ec2" title="Permanent link">¶</a></h2>
-<div class="highlight"><pre><span></span><code>aws ec2 run-instances \
-    --image-id ami-0360c520857e3138f \
-    --count 1 \
-    --instance-type t2.micro \
-    --key-name vockey \
-    --security-groups PermiteSSH \
-    --user-data "sudo apt update &amp;&amp; sudo apt install -y nginx" \
-    --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=mi-servidor-web}]'
-</code></pre></div>
-<ul>
-<li><strong>image-id</strong>: El ID de la imagen AMI.</li>
-</ul>
-<center>
-<figure>
-<img src="imagenes/cli/3.png" width="700">
-</figure>
-</center>
-
-<ul>
-<li>
-<p><strong>count</strong>: Número de instancias a crear.</p>
-</li>
-<li>
-<p><strong>instance-type</strong>: Tipo de máquina (CPU / RAM)</p>
-</li>
-</ul>
-<center>
-<figure>
-<img src="imagenes/cli/4.png" width="700">
-</figure>
-</center>
-
-<ul>
-<li><strong>key-name</strong>: Claves de acceso ssh (vockey).</li>
-</ul>
-<center>
-<figure>
-<img src="imagenes/cli/5.png" width="700">
-</figure>
-</center>
-
-<ul>
-<li><strong>security-groups</strong>: Filtros de seguridad que aplicas.</li>
-</ul>
-<center>
-<figure>
-<img src="imagenes/cli/6.png" width="700">
-</figure>
-</center>
-
-<ul>
-<li>
-<p><strong>user-data</strong>: Comandos a ejecutar al crear la máquina.</p>
-</li>
-<li>
-<p><strong>tag-specifications</strong>: Se usa para información de etiquetas como el nombre de la EC2 (mi-servidor-web).</p>
-</li>
-</ul>
-<div class="admonition tip">
-<p class="admonition-title">AYUDA.</p>
-<p>aws ec2 run-instances help</p>
-</div>
-<h2 id="crear-una-regla-de-seguridad">Crear una regla de seguridad.<a class="headerlink" href="#crear-una-regla-de-seguridad" title="Permanent link">¶</a></h2>
-<p>Vamos a crear una regla que permita el tráfico de entrada para SSH(22), HTTP(80), HTTPS(443).</p>
-<h4 id="primero-creamos-el-grupo-de-seguridad-que-incluira-todas-las-reglas">Primero creamos el grupo de seguridad que incluirá todas las reglas.<a class="headerlink" href="#primero-creamos-el-grupo-de-seguridad-que-incluira-todas-las-reglas" title="Permanent link">¶</a></h4>
-<div class="highlight"><pre><span></span><code>aws ec2 create-security-group \
-    --group-name permite-web \
-    --description "Permite acceso ssh y web"
-</code></pre></div>
-<h4 id="anadimos-regla-de-entrada-que-permita-el-ssh">Añadimos regla de entrada  que permita el SSH.<a class="headerlink" href="#anadimos-regla-de-entrada-que-permita-el-ssh" title="Permanent link">¶</a></h4>
-<div class="highlight"><pre><span></span><code>aws ec2 authorize-security-group-ingress \
-    --group-name permite-web \
-    --protocol tcp \
-    --port 22 \
-    --cidr 0.0.0.0/0
-</code></pre></div>
-<h4 id="anadimos-regla-de-entrada-que-permita-el-http">Añadimos regla de entrada que permita el HTTP.<a class="headerlink" href="#anadimos-regla-de-entrada-que-permita-el-http" title="Permanent link">¶</a></h4>
-<div class="highlight"><pre><span></span><code>aws ec2 authorize-security-group-ingress \
-    --group-name permite-web \
-    --protocol tcp \
-    --port 80 \
-    --cidr 0.0.0.0/0
-</code></pre></div>
-<h4 id="anadimos-regla-de-entrada-que-permita-el-https">Añadimos regla de entrada  que permita el HTTPS.<a class="headerlink" href="#anadimos-regla-de-entrada-que-permita-el-https" title="Permanent link">¶</a></h4>
-<div class="highlight"><pre><span></span><code>aws ec2 authorize-security-group-ingress \
-    --group-name permite-web \
-    --protocol tcp \
-    --port 443 \
-    --cidr 0.0.0.0/0
-</code></pre></div>
-<ul>
-<li>
-<p><strong>aws ec2 authorize-security-group-ingress</strong>: Crea una regla de seguridad de entrada  sobre el tráfico entrante (ingress) a tu máquina.</p>
-</li>
-<li>
-<p><strong>group-name</strong>: Nombre del grupo de seguridad al que se le añade la regla.</p>
-</li>
-<li>
-<p><strong>cidr</strong>: Direcciones IP o Red a la que afecta la regla.</p>
-</li>
-</ul>
-<div class="admonition tipo">
-<p class="admonition-title">El CIDR 0.0.0.0/0 indica cualquier dirección IP.</p>
-</div>
-<center>
-<figure>
-<img src="imagenes/cli/7.png" width="1200">
-</figure>
-</center>
-
-<h2 id="crear-un-s3">Crear un S3.<a class="headerlink" href="#crear-un-s3" title="Permanent link">¶</a></h2>
-<h4 id="crea-un-cubo">Crea un cubo.<a class="headerlink" href="#crea-un-cubo" title="Permanent link">¶</a></h4>
-<div class="highlight"><pre><span></span><code>aws s3 mb s3://mibucket-unico-total
-</code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Recuerda que los nombres de cubos deben ser únicos en todo AWS.</p>
-</div>
-<h4 id="lista-los-cubos-existentes">Lista los cubos existentes.<a class="headerlink" href="#lista-los-cubos-existentes" title="Permanent link">¶</a></h4>
-<div class="highlight"><pre><span></span><code>aws s3 ls
-</code></pre></div>
-<details>
-<summary>¿Cómo listarías el contenido de un cubo?</summary>
-<div class="highlight"><pre><span></span><code>aws s3 ls s3://mibucket-unico-total
-</code></pre></div>
-</details>
-<h4 id="subir-un-fichero">Subir un fichero.<a class="headerlink" href="#subir-un-fichero" title="Permanent link">¶</a></h4>
-<div class="highlight"><pre><span></span><code>aws s3 cp labS3.csv s3://mibucket-unico-total
-</code></pre></div>
-<details>
-<summary>¿Cómo descargarías un fichero desde el S3?</summary>
-<div class="highlight"><pre><span></span><code>aws s3 cp s3://mibucket-unico-total/labS3.csv copiaLabS3.csv
-</code></pre></div>
-</details>
-<h4 id="subir-una-carpeta">Subir una carpeta.<a class="headerlink" href="#subir-una-carpeta" title="Permanent link">¶</a></h4>
-<div class="highlight"><pre><span></span><code>aws s3 sync nombreCarpeta s3://mibucket-unico-total
-</code></pre></div>
-<h4 id="borrar-un-bucket-s3">Borrar un Bucket S3.<a class="headerlink" href="#borrar-un-bucket-s3" title="Permanent link">¶</a></h4>
-<div class="highlight"><pre><span></span><code>aws s3 rb --force s3://mibucket-unico-total
-</code></pre></div>
-<details>
-<summary>¿Cómo eliminarías un fichero de un cubo?</summary>
-<div class="highlight"><pre><span></span><code>aws s3 rm s3://mibucket-unico-total/Fichero
-</code></pre></div>
-</details>
-<h3 id="no-puedes-usar-aws-s3-para">No puedes usar aws s3 para:<a class="headerlink" href="#no-puedes-usar-aws-s3-para" title="Permanent link">¶</a></h3>
-<ul>
-<li>
-<p>Desactivar el <ins class="critic"><strong>bloqueo de acceso público</strong></ins>.</p>
-</li>
-<li>
-<p>Aplicar una <ins class="critic"><strong>política</strong></ins> de bucket (bucket policy).</p>
-</li>
-<li>
-<p>Activar el modo de alojamiento <ins class="critic"><strong>web estático</strong></ins>.</p>
-</li>
-<li>
-<p>Avtivar el  <ins class="critic"><strong>versionado</strong></ins>.</p>
-</li>
-</ul>
-<div class="admonition tip">
-<p class="admonition-title">Para todo eso necesitas aws s3api.</p>
-</div>
-<h3 id="uso-de-s3api">Uso de s3api.<a class="headerlink" href="#uso-de-s3api" title="Permanent link">¶</a></h3>
-<h4 id="hacer-busquedas-de-archivos-filtradas">Hacer búsquedas de archivos filtradas.<a class="headerlink" href="#hacer-busquedas-de-archivos-filtradas" title="Permanent link">¶</a></h4>
-<div class="highlight"><pre><span></span><code>aws s3api list-objects --bucket mibucket-unico-total --prefix "nombre"
-</code></pre></div>
-<h4 id="activar-versionado">Activar versionado.<a class="headerlink" href="#activar-versionado" title="Permanent link">¶</a></h4>
-<div class="highlight"><pre><span></span><code>aws s3api put-bucket-versioning --bucket mibucket-unico-total --versioning-configuration Status=Enabled
-</code></pre></div>
-<h4 id="activar-modo-web-estatica">Activar modo web estática<a class="headerlink" href="#activar-modo-web-estatica" title="Permanent link">¶</a></h4>
-<div class="highlight"><pre><span></span><code>aws s3 website s3://mibucket-unico-total/ \
-  --index-document index.html \
-  --error-document error.html
-</code></pre></div>
-<div class="admonition tip">
-<p class="admonition-title">El error-document no es obligatorio.</p>
-</div>
-<h4 id="habilitar-el-acceso-publico">Habilitar el acceso público.<a class="headerlink" href="#habilitar-el-acceso-publico" title="Permanent link">¶</a></h4>
-<div class="highlight"><pre><span></span><code>aws s3api put-public-access-block \
-  --bucket mibucket-unico-total \
-  --public-access-block-configuration \
-  "BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=false,RestrictPublicBuckets=false"
-</code></pre></div>
-<h4 id="crear-politicas">Crear políticas.<a class="headerlink" href="#crear-politicas" title="Permanent link">¶</a></h4>
-<div class="highlight"><pre><span></span><code>aws s3api put-bucket-policy --bucket mibucket-unico-total   --policy '{
-    "Version": "2012-10-17",
-    "Statement": [{
-      "Sid": "PublicReadGetObject",
-      "Effect": "Allow",
-      "Principal": "*",
-      "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::mibucket-unico-total/*"
-    }]
-  }'
-</code></pre></div>
-<details class="danger">
-<summary>En Windows es diferente, pincha para ver el ejemplo.</summary>
-<p>En el caso de Windows es necesario escapar las comillas dobles y poner doble.
-</p><div class="highlight"><pre><span></span><code>aws s3api put-bucket-policy --bucket mibucket-unico-total   --policy '{
-    \""Version\"": \""2012-10-17\"",
-    \""Statement\"": [{
-    \""Sid\"": \""PublicReadGetObject\"",
-    \""Effect\"": \""Allow\"",
-    \""Principal\"": \""*\"",
-    \""Action\"": \""s3:GetObject\"",
-    \""Resource\"": \""arn:aws:s3:::mibucket-unico-total/*\""
-    }]
-}'
-</code></pre></div>
-</details></div>
+<h3 id="ejemplo">Ejemplo.<a class="headerlink" href="#ejemplo" title="Permanent link">¶</a></h3>
+<p>Lambda podría:</p>
+<ol>
+<li>Consultar DynamoDB.</li>
+<li>Generar un informe.</li>
+<li>Crear un PDF/CSV.</li>
+<li>Guardarlo en S3.</li>
+</ol></div>
 
 
 

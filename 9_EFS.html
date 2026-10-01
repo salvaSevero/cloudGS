@@ -644,9 +644,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#practica" class="md-nav__link">
+  <a href="#ejemplo-de-uso" class="md-nav__link">
     <span class="md-ellipsis">
-      Práctica.
+      Ejemplo de uso.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ebs-vs-efs" class="md-nav__link">
+    <span class="md-ellipsis">
+      EBS vs EFS.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demostracion-practica" class="md-nav__link">
+    <span class="md-ellipsis">
+      Demostración Práctica.
     </span>
   </a>
   
@@ -1095,6 +1113,8 @@
       
         
       
+        
+      
     
     
     
@@ -1179,6 +1199,29 @@
   
   
     <li class="md-nav__item">
+      <a href="22_EventBridge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    EventBridge
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="21_API_Lambda_DynamoDB.html" class="md-nav__link">
         
   
@@ -1230,36 +1273,61 @@
 <h2 id="caracteristicas">Características.<a class="headerlink" href="#caracteristicas" title="Permanent link">¶</a></h2>
 <ul>
 <li>
-<p>Ofrece almacenaje para <ins class="critic"><strong>múltiples EC2</strong></ins>, a diferencia de los EBS que es para una única EC2.</p>
+<p>Ofrece almacenaje para <ins class="critic"><strong>múltiples EC2</strong></ins>, a diferencia de los EBS que es para una única EC2. Funciona como si fuera un <mark class="critic"><strong>NAS (Network Area Storage)</strong></mark>.</p>
 </li>
 <li>
-<p>Funciona como si fuera un <mark class="critic"><strong>NAS (Network Area Storage)</strong></mark>.</p>
-</li>
-<li>
-<p>Utiliza  el protocolo de sistema de archivos NFS.</p>
+<p>Utiliza  el protocolo de sistema de archivos <strong>NFS</strong>.</p>
 </li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">NFS</p>
 <p>Al usar NFS deberemos tener instalado nuestros paquetes de NFS en los servidores.</p>
-<p>💥 Ubuntu/Debian: <strong>nfs-common</strong></p>
-<p>💥 Otras distribuciones: <strong>nfs-utils</strong></p>
+<p>💥 Ubuntu/Debian: nfs-common</p>
+<p>💥 Otras distribuciones: nfs-utils</p>
 </div>
 <ul>
 <li>
-<p>El <strong>espacio escala automáticamente</strong> (aumentar y reducir) a medida que necesitemos más o menos espacio en disco.</p>
+<p><code>Escalado automático</code>: Tanto el espacio en disco como el rendimiento (IOPS) escalan automáticamente (aumentar y reducir) dependiendo de la carga de trabajo.</p>
 </li>
 <li>
-<p>El <strong>rendimiento (IOPS) también escala automáticamente</strong> dependiendo del trabajo y del tamaño.</p>
+<p><code>Accesible</code>: Pueden interconectarse con EC2 de mútiples zonas de disponibilidad dentro de la misma región.</p>
+</li>
+</ul>
+<figure>
+<img src="imagenes/s3/33.png" width="700">
+</figure>
+
+<ul>
+<li>
+<p><code>Disponibilidad</code>: Permite elegir entre Regional o One Zone.</p>
+<p>💥 Regional: Se crea un efs por cada región, pudiendo tener más redundancia en caso que una zona caiga.</p>
+<p>💥 One Zone: Solamente se crea una EFS en una zona.</p>
+</li>
+</ul>
+<figure>
+<img src="imagenes/s3/34.png" width="900">
+</figure>
+
+<div class="admonition warning">
+<p class="admonition-title">IMPORTANTE</p>
+<ul>
+<li>
+<p>Independientemente del tipo de disponibilidad una EC2 en cualquier zona puede acceder a un EFS de su misma región. </p>
 </li>
 <li>
-<p>Pueden interconectarse con máquinas de <strong>cualquier zona de disponibilidad</strong> dentro de la misma región.</p>
+<p>Acceder a servicios en zonas de disponibilidad diferentes es más caro.</p>
 </li>
 <li>
-<p>No puede ser accedido desde fuera de la región de AWS.</p>
+<p>Se reduce la redundancia, si hubiera una avería en dicha zona el EFS quedaría inaccesible.</p>
+</li>
+</ul>
+</div>
+<ul>
+<li>
+<p><code>Cifrado</code>: Es posible tener los datos cifrados.</p>
 </li>
 <li>
-<p>El <strong>coste</strong> varía respecto a la frecuencia con la que se producen las transferencias.</p>
+<p><code>Coste</code>: Varía respecto a la frecuencia con la que se producen las transferencias.</p>
 </li>
 </ul>
 <center>
@@ -1269,7 +1337,83 @@
 </figure>
 </center>
 
-<div class="admonition note">
+<ul>
+<li>
+<p><code>LifeCycle</code>: Nos permite automatizar qué ficheros, bajo qué condiciones, pasan a un almacenamiento más lento pero barato.</p>
+<p>💥 EFS Standard.</p>
+<p>💥 EFS Infrequent Access (IA).</p>
+<p>💥 EFS Archive.</p>
+</li>
+</ul>
+<figure>
+<img src="imagenes/s3/36.png" width="1000">
+</figure>
+
+<h2 id="ejemplo-de-uso">Ejemplo de uso.<a class="headerlink" href="#ejemplo-de-uso" title="Permanent link">¶</a></h2>
+<ul>
+<li>Un balanceador de carga que envía las peticiones de clientes entre dos webs idénticas. Para que tengan los mismos recursos (imágenes/vídeos) éstos deben accederse desde un mismo sistema de almacenamiento.</li>
+</ul>
+<figure>
+<img src="imagenes/s3/35.png" width="400">
+</figure>
+
+<details class="question">
+<summary>Tengo una EC2 y necesito un disco para instalar Ubuntu.</summary>
+<p>EBS.</p>
+</details>
+<details class="question">
+<summary>Tengo tres servidores web y necesitan compartir archivos..</summary>
+<p>EFS.</p>
+</details>
+<details class="question">
+<summary>Quiero almacenar miles de imágenes y servirlas como objetos a clientes externos.</summary>
+<p>S3.</p>
+</details>
+<h2 id="ebs-vs-efs">EBS vs EFS.<a class="headerlink" href="#ebs-vs-efs" title="Permanent link">¶</a></h2>
+<div class="center-table">
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Característica</th>
+<th style="text-align: center;">EBS</th>
+<th style="text-align: center;">EFS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>Tipo</code></td>
+<td style="text-align: center;">Bloques</td>
+<td style="text-align: center;">Archivos</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>Protocolo</code></td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">NFS</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>Asociado a</code></td>
+<td style="text-align: center;">Una EC2</td>
+<td style="text-align: center;">Múltiples EC2</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>Escalado</code></td>
+<td style="text-align: center;">Gestionado por capacidad del volumen</td>
+<td style="text-align: center;">Automático</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>Uso</code></td>
+<td style="text-align: center;">SO, aplicaciones, BD</td>
+<td style="text-align: center;">Datos compartidos</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>Acceso desde varias AZ</code></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Sí</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition tip">
 <p class="admonition-title">EBS vs EFS</p>
 <ul>
 <li>
@@ -1280,7 +1424,7 @@
 </li>
 </ul>
 </div>
-<h2 id="practica">Práctica.<a class="headerlink" href="#practica" title="Permanent link">¶</a></h2>
+<h2 id="demostracion-practica">Demostración Práctica.<a class="headerlink" href="#demostracion-practica" title="Permanent link">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">La práctica consistirá en crear un EFS que sea solo accesible desde una de nuestras máquinas EC2.</p>
 </div>
@@ -1348,24 +1492,23 @@
 <div class="admonition tip">
 <p class="admonition-title">Los siguientes comandos ya se ejecutan en la instancia EC2 donde queremos montar el EFS.</p>
 </div>
-<p>Para montar el EFS necesitaremos los paquetes necesarios para usar el protocolo <strong>NFS</strong>.</p>
+<ul>
+<li>Para montar el EFS necesitaremos los paquetes necesarios para usar el protocolo <strong>NFS</strong>.</li>
+</ul>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>nfs-common
 </code></pre></div>
-<p>También vamos a instalar unos <strong>paquetes de Amazon para la gestión de EFS</strong> dentro de Ubuntu:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
-sudo<span class="w"> </span>apt-get<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>binutils<span class="w"> </span>rustc<span class="w"> </span>cargo<span class="w"> </span>pkg-config<span class="w"> </span>libssl-dev<span class="w"> </span>gettext
-git<span class="w"> </span>clone<span class="w"> </span>https://github.com/aws/efs-utils
-<span class="nb">cd</span><span class="w"> </span>efs-utils
-./build-deb.sh
-sudo<span class="w"> </span>apt-get<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>./build/amazon-efs-utils*deb
-</code></pre></div>
-<p>Dentro de la carpeta que queremos que se enlace con el sistema EFS deberemos ejecutar:</p>
+<div class="admonition tip">
+<p class="admonition-title">Existe una herramienta amazon-efs que nos permite también montar dichos servicios en nuestros servidores.</p>
+</div>
+<ul>
+<li>Dentro de la carpeta que queremos que se enlace con el sistema EFS deberemos ejecutar:</li>
+</ul>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </span>nfs4<span class="w"> </span>-o<span class="w"> </span><span class="nv">nfsvers</span><span class="o">=</span><span class="m">4</span>.1,rsize<span class="o">=</span><span class="m">1048576</span>,wsize<span class="o">=</span><span class="m">1048576</span>,hard,timeo<span class="o">=</span><span class="m">600</span>,retrans<span class="o">=</span><span class="m">2</span>,noresvport<span class="w"> </span>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX:/<span class="w"> </span>.
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">IMPORTANTE</p>
 <p></p><center>
-<strong>Sustituye las XXXXXXXXXXXXXXX por el DNS de tu EFS.</strong>
+Sustituye las XXXXXXXXXXXXXXX por el DNS de tu EFS.
 </center>
 </div>
 <p>Podemos comprobar que está todo montado con "df -h"</p>
@@ -1377,7 +1520,7 @@ sudo<span class="w"> </span>apt-get<span class="w"> </span>-y<span class="w"> </
 
 <h3 id="automatizar-el-montaje-en-el-arranque">Automatizar el montaje en el arranque.<a class="headerlink" href="#automatizar-el-montaje-en-el-arranque" title="Permanent link">¶</a></h3>
 <p>Al iniciar la máquina el sistema de archivos EFS no está montado.</p>
-<p>Para que podamos montarlo de forma automática deberemos editar el fichero /etc/fstab y añadir:</p>
+<p>Para que podamos montarlo de forma automática deberemos editar el fichero <strong>/etc/fstab</strong> y añadir:</p>
 <div class="highlight"><pre><span></span><code><span class="o">[</span>fs-XXXXXXXX<span class="o">]</span>.efs.<span class="o">[</span>REGION<span class="o">]</span>.amazonaws.com:/<span class="w"> </span>/path/to/mount/dir<span class="w"> </span>nfs4<span class="w"> </span>defaults,_netdev<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
 </code></pre></div>
 <h3 id="comprobar-el-rendimiento">Comprobar el Rendimiento.<a class="headerlink" href="#comprobar-el-rendimiento" title="Permanent link">¶</a></h3>
