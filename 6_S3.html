@@ -14,7 +14,7 @@
         <link rel="prev" href="9_EFS.html">
       
       
-        <link rel="next" href="10_WebEstaticaS3.html">
+        <link rel="next" href="12_Policies.html">
       
       
       <link rel="icon" href="assets/images/favicon.png">
@@ -658,9 +658,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#caracteristicas" class="md-nav__link">
+  <a href="#que-son-los-buckets-s3" class="md-nav__link">
     <span class="md-ellipsis">
-      Características.
+      ¿Qué son los Buckets S3?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caracteristicas-de-s3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Características de S3.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caracteristicas-de-los-objetos-alnmacenados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Características de los objetos alnmacenados.
     </span>
   </a>
   
@@ -693,33 +711,37 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#versioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Versioning.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replicacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Replicación.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      Seguridad.
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="10_WebEstaticaS3.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Web Estática
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -738,6 +760,29 @@
   
   <span class="md-ellipsis">
     S3 Policies
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10_WebEstaticaS3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Web Estática
     
   </span>
   
@@ -1270,11 +1315,14 @@
 
 
 <div><h1 id="amazon-simple-storage-service-s3-o-buckets">Amazon Simple Storage Service (S3) o Buckets.<a class="headerlink" href="#amazon-simple-storage-service-s3-o-buckets" title="Permanent link">¶</a></h1>
-<p>Servico de almacenamiento de objetos que pueden ser accedidos a través de una URL.</p>
+<h2 id="que-son-los-buckets-s3">¿Qué son los Buckets S3?<a class="headerlink" href="#que-son-los-buckets-s3" title="Permanent link">¶</a></h2>
+<ul>
+<li>Servico de <code>almacenamiento de objetos accesible a través de una URL</code>.</li>
+</ul>
 <div class="admonition tip">
 <p class="admonition-title">EFS vs S3</p>
 <p></p><center>
-<strong>A diferencia de EFS un almacenamiento de S3 puede ser accedido desde cualquier parte, mientras que los EFS solo pueden ser accedidos por ECS de la misma región.</strong>
+A diferencia de EFS un almacenamiento de S3 puede ser accedido desde cualquier parte, mientras que los EFS solo pueden ser accedidos por EC2 de la misma región.
 </center>
 </div>
 <center>
@@ -1283,33 +1331,36 @@
 </figure>
 </center>
 
-<div class="admonition note">
-<p class="admonition-title">Programación</p>
-<p></p><center>
-<strong>Al ser accesibles desde una URL también pueden ser accedidos desde el código de nuestros programas.</strong>
-</center>
-</div>
-<h2 id="caracteristicas">Características.<a class="headerlink" href="#caracteristicas" title="Permanent link">¶</a></h2>
 <ul>
-<li>El <strong>nombre debe ser único en todo AWS</strong>.</li>
-<li>Puede almacenar cantidades de <strong>datos ilimitadas</strong>.</li>
-<li>Un mismo objeto no puede pesar más de 5TB.</li>
+<li>También pueden ser accedidos desde código, por ejemplo desde nuestras aplicaciones.</li>
+</ul>
+<h2 id="caracteristicas-de-s3">Características de S3.<a class="headerlink" href="#caracteristicas-de-s3" title="Permanent link">¶</a></h2>
+<ul>
+<li><code>Nombre único</code>: El nombre del S3 debe ser único en todo AWS.</li>
+<li><code>Datos ilimitados</code>: Puede almacenar cantidades de datos ilimitadas.</li>
+<li><code>Límite por objeto</code>: Un mismo objeto no puede pesar más de 5TB.</li>
+<li><code>Alta Disponibilidad</code>: Por defecto los S3 se <strong>replican automáticamente</strong> en diferentes zonas de la misma región.</li>
+<li><code>Velocidad</code>: Son más lentos que los EBS (almacenamiento en bloque).</li>
+<li><code>Cifrado</code>: Los objetos almacenados están cifrados.</li>
 <li>
-<p>Todos los objetos guardados cuentan con <mark class="critic"><strong>una clave, un ID de versión, un valor</strong></mark>, metadatos y subrecursos.</p>
-<p>💥 La <strong>clave</strong> es el nombre con el cual puedes descargar el fichero o con el que lo guardas en el bucket.</p>
-<p>💥 El <strong>ID de versión</strong> se usa porque podemos almacenar diferentes versiones, por ejemplo de un documento.</p>
-<p>💥 El <strong>valor</strong> es el contenido.</p>
-<p>💥 Los <strong>metadatos</strong> pueden ser creados por los usuarios o por el propio sistema de AWS para la gestión del objeto.</p>
+<p><code>Coste</code>: Se paga por el <strong>tráfico de descarga</strong> desde el cubo y por el <strong>almacenamiento</strong> en si.</p>
+<p>💥 <a href="https://aws.amazon.com/es/s3/pricing/">Precios S3 en España.</a></p>
+</li>
+</ul>
+<h2 id="caracteristicas-de-los-objetos-alnmacenados">Características de los objetos alnmacenados.<a class="headerlink" href="#caracteristicas-de-los-objetos-alnmacenados" title="Permanent link">¶</a></h2>
+<p>Todos los objetos guardados cuentan con:</p>
+<ul>
+<li>
+<p><code>Clave</code>: Identificador con el cual puedes acceder al objeto almacenado.</p>
 </li>
 <li>
-<p>Por defecto los S3 se <strong>replican automáticamente</strong> en diferentes zonas de la misma región.</p>
+<p><code>Versión</code>: Podemos almacenar diferentes versiones del mismo objeto, por ejemplo de un documento.</p>
 </li>
 <li>
-<p>Se cobra por el <strong>tráfico de descarga</strong> desde el cubo y por el <strong>almacenamiento</strong> en si.</p>
-<p>💥<a href="https://aws.amazon.com/es/s3/pricing/">Precios S3 en España.</a></p>
+<p><code>Valor</code>: El contenido del objeto.</p>
 </li>
 <li>
-<p>Son más lentos que el almacenamiento en un EBS.</p>
+<p><code>Metadatos</code>: Pueden ser creados por los usuarios o por el propio sistema de AWS para la gestión del objeto.</p>
 </li>
 </ul>
 <div class="admonition danger">
@@ -1321,13 +1372,13 @@
 <h2 id="casos-de-uso">Casos de uso.<a class="headerlink" href="#casos-de-uso" title="Permanent link">¶</a></h2>
 <ul>
 <li>
-<p><strong>Aplicaciones</strong>: Para el almacenamiento de ciertos recursos de aplicaciones como: archivos multimedia de los usuarios o registros del servicio. </p>
+<p>Aplicaciones: Para el almacenamiento de ciertos recursos de aplicaciones como: archivos multimedia de los usuarios o registros del servicio. </p>
 </li>
 <li>
-<p><strong>Webs Estáticas</strong>: Pueden alojar webs estáticas.</p>
+<p>Webs Estáticas: Pueden alojar webs estáticas.</p>
 </li>
 <li>
-<p><strong>Copias de seguridad</strong>: Permite un almacenaje barato y accesible para almacenar y restaurar copias de seguridad.</p>
+<p>Copias de seguridad: Permite un almacenaje barato y accesible para almacenar y restaurar copias de seguridad.</p>
 </li>
 </ul>
 <h2 id="tipos-de-s3">Tipos de S3:<a class="headerlink" href="#tipos-de-s3" title="Permanent link">¶</a></h2>
@@ -1342,12 +1393,14 @@
 <p><strong>S3 One Zone – Acceso poco frecuente</strong>: Acceso también de alto rendimiento pero sin réplicas, usado en copias de seguridad secundarias.</p>
 </li>
 <li>
-<p><strong>S3 Intelligent-Tiering</strong>: Automáticamente mueve los objetos a diferentes tipos de Buckets (S3) dependiendo de los accesos o necesidades. Por ejemplo si un archivo no se accede en 30 días se pasa a un S3 de Acceso poco frecuente y viceversa si comienza a usarse de forma habitual. </p>
-</li>
-<li>
 <p><strong>S3 Glacier</strong>: Es un almacenamiento lento de bajo coste. Se usa para los datos que es más raros acceder. </p>
 </li>
 </ul>
+<div class="admonition important">
+<p class="admonition-title">S3 Intelligent-Tiering.</p>
+<p></p><center>Automáticamente mueve los objetos a diferentes tipos de Buckets (S3) dependiendo de los accesos o necesidades.
+Por ejemplo si un archivo no se accede en 30 días se pasa a un S3 de Acceso poco frecuente y viceversa si comienza a usarse de forma habitual. <center>
+</center></center></div>
 <center>
 <figure>
 <img src="imagenes/s3/17.png" width="800">
@@ -1362,7 +1415,107 @@
 <figure>
 <img src="imagenes/s3/20.png" width="800">
 </figure>
-</center></div>
+</center>
+
+<h2 id="versioning">Versioning.<a class="headerlink" href="#versioning" title="Permanent link">¶</a></h2>
+<ul>
+<li>
+<p>Es una característica <code>opcional</code> de cada bucket S3.</p>
+</li>
+<li>
+<p>Permite que se generen diferentes objetos de otro al ser modificados. Esto nos permitirá volver a <code>restaurar</code> una versión anterior de un archivo.</p>
+</li>
+<li>
+<p>Activar el versionado es gratis, pero cada versión es un nuevo objeto que se crea dentro del S3 y por tanto el almacenamiento crece y con ello su <code>coste</code>.</p>
+</li>
+</ul>
+<div class="admonition danger">
+<p class="admonition-title">No hay que confundir activar el versionado con tener un backup.</p>
+</div>
+<figure>
+<img src="imagenes/s3/37.png" width="500">
+</figure>
+
+<h2 id="replicacion">Replicación.<a class="headerlink" href="#replicacion" title="Permanent link">¶</a></h2>
+<ul>
+<li>
+<p>Se puede automatizar la réplica entre dos buckets.</p>
+</li>
+<li>
+<p>Existen dos tipos de réplicas:</p>
+<p>💥 <code>Same-Region Replication (SRR)</code>.</p>
+<p>💥 <code>Cross-Region Replication (CRR)</code>.</p>
+</li>
+</ul>
+<figure>
+<img src="imagenes/s3/38.png" width="600">
+</figure>
+
+<h2 id="seguridad">Seguridad.<a class="headerlink" href="#seguridad" title="Permanent link">¶</a></h2>
+<h3 id="politicas">Políticas.<a class="headerlink" href="#politicas" title="Permanent link">¶</a></h3>
+<p>Son estructuras JSON que indican:</p>
+<ul>
+<li>
+<p><code>Principal</code>: ¿Quién?</p>
+<p>💥 <strong>*</strong>: Todo el mundo.</p>
+<p>💥 <strong>IAM</strong>: Usuarios de AWS.</p>
+<p>💥 <strong>Roles</strong>: Grupos de AWS.</p>
+</li>
+<li>
+<p><code>Action</code>: ¿Qué puede hacer?</p>
+<p>💥 <strong>s3:GetObject</strong>: Descargar objetos.</p>
+<p>💥 <strong>s3:PutObject</strong>: Cargar objetos.</p>
+<p>💥 <strong>s3:DeleteObject</strong>: Eliminar objetos.</p>
+<p>💥 ...</p>
+</li>
+<li>
+<p><code>Resource</code>: ¿Sobre qué objetos?</p>
+<p>💥 <strong>ARN</strong>: Es el identificador único del bucket/objeto.</p>
+</li>
+<li>
+<p><code>Effect</code>: ¿Se permite o se deniega dicha acción?</p>
+<p>💥 <strong>Allow</strong>.</p>
+<p>💥 <strong>Deny</strong>.</p>
+</li>
+<li>
+<p><code>Condition</code>: ¿Bajo qué condiciones?</p>
+<p>💥 <strong>IP</strong>: Desde ciertas direcciones IPs.</p>
+<p>💥 <strong>Tiempo</strong>: A ciertas horas.</p>
+<p>💥 <strong>Protocolos</strong>: Mediante ciertos protoclos (HTTPS).</p>
+<p>💥 ...</p>
+</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Por defecto las políticas rechazan cualquier acción.</p>
+</div>
+<h4 id="ejemplo-de-que-cualquier-persona-puede-descargar-cualquier-objeto-del-s3-llamado-salva-web">Ejemplo de que cualquier persona, puede descargar cualquier objeto del S3 llamado salva-web.<a class="headerlink" href="#ejemplo-de-que-cualquier-persona-puede-descargar-cualquier-objeto-del-s3-llamado-salva-web" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-17"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"Principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"Action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"s3:GetObject"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"arn:aws:s3:::salva-web/*"</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="acl-listas-de-acceso">ACL (Listas de Acceso).<a class="headerlink" href="#acl-listas-de-acceso" title="Permanent link">¶</a></h3>
+<div class="admonition important">
+<p class="admonition-title">AWS aconseja el uso de políticas frente a la configuración de ACLs.</p>
+</div>
+<ul>
+<li>
+<p>Son formas de seguridad genéricas que permiten aplicar reglas básicas, son anteriores al perfil IAM de AWS.</p>
+</li>
+<li>
+<p>ACL no permite filtrar por:</p>
+<p>💥 Condiciones.</p>
+<p>💥 Usuarios IAM.</p>
+<p>💥 No puede apliar acciones tan detalladas como las políticas.</p>
+</li>
+</ul></div>
 
 
 

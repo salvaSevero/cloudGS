@@ -11,10 +11,10 @@
         <link rel="canonical" href="https://salvasevero.github.io/cloudGS/10_WebEstaticaS3.html">
       
       
-        <link rel="prev" href="6_S3.html">
+        <link rel="prev" href="12_Policies.html">
       
       
-        <link rel="next" href="12_Policies.html">
+        <link rel="next" href="11_aws_cli.html">
       
       
       <link rel="icon" href="assets/images/favicon.png">
@@ -628,6 +628,29 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="12_Policies.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    S3 Policies
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -681,9 +704,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#crear-el-s3-bucket" class="md-nav__link">
+  <a href="#crea-el-s3-bucket" class="md-nav__link">
     <span class="md-ellipsis">
-      Crear el S3 (Bucket).
+      Crea el S3 (Bucket).
     </span>
   </a>
   
@@ -717,9 +740,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#activar-las-versiones-en-s3" class="md-nav__link">
+  <a href="#versiones-en-s3" class="md-nav__link">
     <span class="md-ellipsis">
-      Activar las versiones en S3.
+      Versiones en S3.
     </span>
   </a>
   
@@ -747,29 +770,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="12_Policies.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    S3 Policies
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1302,13 +1302,14 @@
 </ul>
 <div class="admonition note">
 <p class="admonition-title">¿Qué es una web estática?</p>
-<p>Son páginas que son totalmente idénticas para todos los usuarios. Solo se modifica si el desarrollador edita.</p>
+<p></p><center>Son páginas que son totalmente idénticas para todos los usuarios, no necesitan de un backend.</center>
 </div>
-<h2 id="crear-el-s3-bucket">Crear el S3 (Bucket).<a class="headerlink" href="#crear-el-s3-bucket" title="Permanent link">¶</a></h2>
+<h2 id="crea-el-s3-bucket">Crea el S3 (Bucket).<a class="headerlink" href="#crea-el-s3-bucket" title="Permanent link">¶</a></h2>
+<p>Al crear el S3 ten en cuenta:</p>
 <ul>
-<li>Elige un <strong>nombre único</strong> en todo AWS para tu bucket.</li>
-<li>Permite el <strong>tráfico público</strong>.</li>
-<li>Activa el <strong>versionado</strong>.</li>
+<li><code>Nombre único</code>. ✅</li>
+<li><code>Tráfico Público</code>. ✅</li>
+<li><code>Versionado de Objetos</code>. ✅</li>
 </ul>
 <h2 id="establece-la-pagina-estatica">Establece la página estática.<a class="headerlink" href="#establece-la-pagina-estatica" title="Permanent link">¶</a></h2>
 <ul>
@@ -1340,62 +1341,38 @@
 
 <h2 id="generamos-politicas-de-seguridad">Generamos Políticas de Seguridad.<a class="headerlink" href="#generamos-politicas-de-seguridad" title="Permanent link">¶</a></h2>
 <ul>
-<li>
-<p>Dentro del Bucket accedemos a <ins class="critic"><strong>Permisos ➡️ Política de Bucket</strong></ins>.</p>
-</li>
-<li>
-<p>Vamos a usar el <mark class="critic"><strong>Generador de Políticas</strong></mark> para que nos ayude a confeccionar la medida de seguridad.</p>
-<p>💥 Es importante que tengamos en cuenta el <strong>ARN</strong> de nuestro Bucket.</p>
-</li>
+<li>Dentro del Bucket accedemos a <ins class="critic"><strong>Permisos ➡️ Política de Bucket</strong></ins>.</li>
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">ARN.</p>
 <p></p><center>
-<strong>El ARN es una cadena de texto que identifica de forma única dentro de AWS nuestro objeto, en este caso un S3.</strong>
-</center>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Generador de Políticas.</p>
-<p></p><center>
-<strong>Las políticas creadas con el generador no se aplican automáticamente, son simplemente una muestra que podremos copiar.</strong> 
-</center>
-</div>
-<center>
-<figure>
+El ARN es una cadena de texto que identifica de forma única dentro de AWS nuestro S3 o sus objetos.
+<p><figure>
 <img src="imagenes/s3/23.png" width="1000">
 </figure>
-</center>
-
-<div class="admonition note">
-<p class="admonition-title">Vamos a generar una política que permita a los clientes ver nuestra página pero que no puedan borrar/modificar/crear recursos en el S3.</p>
+</p></center>
+</div>
 <ul>
 <li>
-<p><strong>Principal</strong>: Indica los usuarios que podrán acceder a la página. </p>
-<p>💥 Con * permitimos cualquier usuario.</p>
+<p>Generamos una política que permita a los clientes ver nuestra página pero que no puedan borrar/modificar/crear recursos en el S3."</p>
+<ul>
+<li>
+<p><code>Principal</code>: Indica los usuarios que podrán acceder a la página. </p>
+<p>💥 Con <strong>*</strong> permitimos cualquier usuario.</p>
 </li>
 <li>
-<p><strong>Actions</strong>: Qué acciones permitimos hacer a los usuarios.</p>
-<p>💥 Con GetObject sólo les permitimos leer.</p>
+<p><code>Actions</code>: Qué acciones permitimos hacer a los usuarios.</p>
+<p>💥 Con <strong>GetObject</strong> sólo les permitimos leer.</p>
 </li>
 <li>
-<p><strong>ARN</strong>: Indica dentro del bucket a qué recursos se aplica esta regla.</p>
-<p>💥 Con arn:aws:s3:::mi-cafe-web-cloud/* estamos haciendo referencia a todos los obetos del bucket.</p>
+<p><code>ARN</code>: Indica dentro del bucket a qué recursos se aplica esta regla.</p>
+<p>💥 Con <strong>arn:aws:s3:::mi-cafe-web-cloud/*</strong> estamos haciendo referencia a todos los obetos del bucket.</p>
 </li>
 <li>
-<p><strong>Conditions</strong>: Podemos agregar condiciones, por ejemplo limitar el acceso por IP.</p>
+<p><code>Conditions</code>: Podemos agregar condiciones, por ejemplo limitar el acceso por IP.</p>
 </li>
 </ul>
-<p></p><center>
-<figure>
-<img src="imagenes/s3/24.png" width="700">
-</figure>
-<div class="admonition danger">
-<p class="admonition-title">Recuerda pinchar en add statement para agregar la regla.</p>
-</div>
-</center>
-</div>
-<ul>
-<li><strong>Una vez generada la política debemos copiarla y pegarla en la pestaña de políticas.</strong></li>
+</li>
 </ul>
 <center>
 <figure>
@@ -1403,19 +1380,7 @@
 </figure>
 </center>
 
-<div class="admonition danger">
-<p class="admonition-title">Recuerda guardar los cambios para que se apliquen.</p>
-</div>
-<h2 id="activar-las-versiones-en-s3">Activar las versiones en S3.<a class="headerlink" href="#activar-las-versiones-en-s3" title="Permanent link">¶</a></h2>
-<ul>
-<li>Al activar las versiones se crearán diferentes objetos de otro al ser modificados. Esto nos permitirá volver a restaurar una versión anterior de un archivo.</li>
-</ul>
-<div class="admonition warning">
-<p class="admonition-title">Coste del Versionado.</p>
-<p></p><center>
-<strong>Activar el versionado es gratis, pero cada versión es un nuevo objeto que se crea dentro del S3 y por tanto el almacenamiento crece y con ello su coste.</strong>
-</center>
-</div>
+<h2 id="versiones-en-s3">Versiones en S3.<a class="headerlink" href="#versiones-en-s3" title="Permanent link">¶</a></h2>
 <h3 id="restauracion-automatica">Restauración Automática.<a class="headerlink" href="#restauracion-automatica" title="Permanent link">¶</a></h3>
 <h4 id="vamos-a-crear-una-version-de-un-fichero-y-luego-borrar-el-ultimo-y-ver-como-automaticamente-la-version-que-le-precede-toma-su-lugar">Vamos a crear una versión de un fichero y luego borrar el último y ver como automáticamente la versión que le precede toma su lugar.<a class="headerlink" href="#vamos-a-crear-una-version-de-un-fichero-y-luego-borrar-el-ultimo-y-ver-como-automaticamente-la-version-que-le-precede-toma-su-lugar" title="Permanent link">¶</a></h4>
 <p>1️⃣ Edita el fichero index.html con un bloc de notas. Por ejemplo Cambia el nombre de Javier.</p>
