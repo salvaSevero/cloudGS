@@ -813,18 +813,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#crear-una-regla-de-seguridad" class="md-nav__link">
+  <a href="#grupos-de-seguridad" class="md-nav__link">
     <span class="md-ellipsis">
-      Crear una regla de seguridad.
+      Grupos de Seguridad.
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#crear-un-s3" class="md-nav__link">
+  <a href="#gestion-s3" class="md-nav__link">
     <span class="md-ellipsis">
-      Crear un S3.
+      Gestión S3.
     </span>
   </a>
   
@@ -1289,12 +1289,12 @@
 
 <div><h1 id="aws-cli">AWS CLI.<a class="headerlink" href="#aws-cli" title="Permanent link">¶</a></h1>
 <h2 id="ques-es-aws-cli">¿Qués es AWS CLI?<a class="headerlink" href="#ques-es-aws-cli" title="Permanent link">¶</a></h2>
-<p>AWS CLI (Command Line Interface) es una herramienta que se ejecuta desde la línea de comandos que permite gestionar todos los servicios de Amazon Web Services, es decir, <mark class="critic"><strong>crear y gestionar EC2, S3, EFS, EBS, a través de comandos</strong></mark>.</p>
+<p>AWS CLI (Command Line Interface) es una herramienta que se ejecuta desde la línea de comandos que permite <code>gestionar servicios</code> de Amazon Web Services, es decir, crear y gestionar EC2, S3, EFS, EBS, etc a través de comandos.</p>
 <h2 id="instalacion">Instalación.<a class="headerlink" href="#instalacion" title="Permanent link">¶</a></h2>
 <p><a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">Descarga AWS CLI</a></p>
 <h2 id="configuracion">Configuración.<a class="headerlink" href="#configuracion" title="Permanent link">¶</a></h2>
 <ul>
-<li>Abrimos un terminal y ejecutamos <ins class="critic"><strong>aws configure</strong></ins></li>
+<li>Abrimos un terminal y ejecutamos <code>aws configure</code></li>
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">El comando nos preguntará por información, la cual podemos dejar en blanco para el caso de AWS Academy.</p>
@@ -1305,7 +1305,7 @@ Default<span class="w"> </span>region<span class="w"> </span>name<span class="w"
 Default<span class="w"> </span>output<span class="w"> </span>format<span class="w"> </span><span class="o">[</span>None<span class="o">]</span>:<span class="w"> </span>
 </code></pre></div>
 <ul>
-<li>Esto crea el fichero <ins class="critic"><strong>.aws/credentials</strong></ins>, que editaremos. </li>
+<li>Esto crea el fichero <code>.aws/credentials</code>, que editaremos. </li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Credentials</p>
@@ -1328,7 +1328,7 @@ Default<span class="w"> </span>output<span class="w"> </span>format<span class="
 </div>
 <ul>
 <li>
-<p>Una vez editado el fichero con la nueva información ejecutamos de nuevo <mark class="critic"><strong>aws configure</strong></mark></p>
+<p>Una vez editado el fichero con la nueva información ejecutamos de nuevo <code>aws configure</code>:</p>
 <p>💥 Región: us-east-1</p>
 <p>💥 Formato: json</p>
 </li>
@@ -1336,6 +1336,18 @@ Default<span class="w"> </span>output<span class="w"> </span>format<span class="
 <center>
 <figure>
 <img src="imagenes/cli/2.png" width="500">
+</figure>
+</center>
+
+<div class="admonition important">
+<p class="admonition-title">En el caso del AWS Academy deberemos editar dicha información cada vez que arranquemos el Laboratorio.</p>
+</div>
+<ul>
+<li>Podemos comprobar el usuario con el que estamos registrados con <code>aws sts get-caller-identity</code>.</li>
+</ul>
+<center>
+<figure>
+<img src="imagenes/cli/8.png" width="800">
 </figure>
 </center>
 
@@ -1352,6 +1364,9 @@ Default<span class="w"> </span>output<span class="w"> </span>format<span class="
 <ul>
 <li><strong>image-id</strong>: El ID de la imagen AMI.</li>
 </ul>
+<div class="admonition warning">
+<p class="admonition-title">No todas las AMI están disponibles en todas las regiones.</p>
+</div>
 <center>
 <figure>
 <img src="imagenes/cli/3.png" width="700">
@@ -1393,16 +1408,16 @@ Default<span class="w"> </span>output<span class="w"> </span>format<span class="
 <ul>
 <li>
 <p><strong>user-data</strong>: Comandos a ejecutar al crear la máquina.</p>
+<p>🔥 Se le puede pasar un script directamente: <code>--user-data file://instalar-nginx.sh</code></p>
 </li>
 <li>
 <p><strong>tag-specifications</strong>: Se usa para información de etiquetas como el nombre de la EC2 (mi-servidor-web).</p>
 </li>
 </ul>
 <div class="admonition tip">
-<p class="admonition-title">AYUDA.</p>
-<p>aws ec2 run-instances help</p>
+<p class="admonition-title">Comando de ayuda: <code>aws ec2 run-instances help</code>.</p>
 </div>
-<h2 id="crear-una-regla-de-seguridad">Crear una regla de seguridad.<a class="headerlink" href="#crear-una-regla-de-seguridad" title="Permanent link">¶</a></h2>
+<h2 id="grupos-de-seguridad">Grupos de Seguridad.<a class="headerlink" href="#grupos-de-seguridad" title="Permanent link">¶</a></h2>
 <p>Vamos a crear una regla que permita el tráfico de entrada para SSH(22), HTTP(80), HTTPS(443).</p>
 <h4 id="primero-creamos-el-grupo-de-seguridad-que-incluira-todas-las-reglas">Primero creamos el grupo de seguridad que incluirá todas las reglas.<a class="headerlink" href="#primero-creamos-el-grupo-de-seguridad-que-incluira-todas-las-reglas" title="Permanent link">¶</a></h4>
 <div class="highlight"><pre><span></span><code>aws ec2 create-security-group \
@@ -1450,8 +1465,8 @@ Default<span class="w"> </span>output<span class="w"> </span>format<span class="
 </figure>
 </center>
 
-<h2 id="crear-un-s3">Crear un S3.<a class="headerlink" href="#crear-un-s3" title="Permanent link">¶</a></h2>
-<h4 id="crea-un-cubo">Crea un cubo.<a class="headerlink" href="#crea-un-cubo" title="Permanent link">¶</a></h4>
+<h2 id="gestion-s3">Gestión S3.<a class="headerlink" href="#gestion-s3" title="Permanent link">¶</a></h2>
+<h4 id="crea-un-cubo-s3">Crea un cubo S3.<a class="headerlink" href="#crea-un-cubo-s3" title="Permanent link">¶</a></h4>
 <div class="highlight"><pre><span></span><code>aws s3 mb s3://mibucket-unico-total
 </code></pre></div>
 <div class="admonition warning">
@@ -1460,7 +1475,7 @@ Default<span class="w"> </span>output<span class="w"> </span>format<span class="
 <h4 id="lista-los-cubos-existentes">Lista los cubos existentes.<a class="headerlink" href="#lista-los-cubos-existentes" title="Permanent link">¶</a></h4>
 <div class="highlight"><pre><span></span><code>aws s3 ls
 </code></pre></div>
-<details>
+<details class="question">
 <summary>¿Cómo listarías el contenido de un cubo?</summary>
 <div class="highlight"><pre><span></span><code>aws s3 ls s3://mibucket-unico-total
 </code></pre></div>
@@ -1468,7 +1483,7 @@ Default<span class="w"> </span>output<span class="w"> </span>format<span class="
 <h4 id="subir-un-fichero">Subir un fichero.<a class="headerlink" href="#subir-un-fichero" title="Permanent link">¶</a></h4>
 <div class="highlight"><pre><span></span><code>aws s3 cp labS3.csv s3://mibucket-unico-total
 </code></pre></div>
-<details>
+<details class="question">
 <summary>¿Cómo descargarías un fichero desde el S3?</summary>
 <div class="highlight"><pre><span></span><code>aws s3 cp s3://mibucket-unico-total/labS3.csv copiaLabS3.csv
 </code></pre></div>
@@ -1479,36 +1494,11 @@ Default<span class="w"> </span>output<span class="w"> </span>format<span class="
 <h4 id="borrar-un-bucket-s3">Borrar un Bucket S3.<a class="headerlink" href="#borrar-un-bucket-s3" title="Permanent link">¶</a></h4>
 <div class="highlight"><pre><span></span><code>aws s3 rb --force s3://mibucket-unico-total
 </code></pre></div>
-<details>
+<details class="question">
 <summary>¿Cómo eliminarías un fichero de un cubo?</summary>
 <div class="highlight"><pre><span></span><code>aws s3 rm s3://mibucket-unico-total/Fichero
 </code></pre></div>
 </details>
-<h3 id="no-puedes-usar-aws-s3-para">No puedes usar aws s3 para:<a class="headerlink" href="#no-puedes-usar-aws-s3-para" title="Permanent link">¶</a></h3>
-<ul>
-<li>
-<p>Desactivar el <ins class="critic"><strong>bloqueo de acceso público</strong></ins>.</p>
-</li>
-<li>
-<p>Aplicar una <ins class="critic"><strong>política</strong></ins> de bucket (bucket policy).</p>
-</li>
-<li>
-<p>Activar el modo de alojamiento <ins class="critic"><strong>web estático</strong></ins>.</p>
-</li>
-<li>
-<p>Avtivar el  <ins class="critic"><strong>versionado</strong></ins>.</p>
-</li>
-</ul>
-<div class="admonition tip">
-<p class="admonition-title">Para todo eso necesitas aws s3api.</p>
-</div>
-<h3 id="uso-de-s3api">Uso de s3api.<a class="headerlink" href="#uso-de-s3api" title="Permanent link">¶</a></h3>
-<h4 id="hacer-busquedas-de-archivos-filtradas">Hacer búsquedas de archivos filtradas.<a class="headerlink" href="#hacer-busquedas-de-archivos-filtradas" title="Permanent link">¶</a></h4>
-<div class="highlight"><pre><span></span><code>aws s3api list-objects --bucket mibucket-unico-total --prefix "nombre"
-</code></pre></div>
-<h4 id="activar-versionado">Activar versionado.<a class="headerlink" href="#activar-versionado" title="Permanent link">¶</a></h4>
-<div class="highlight"><pre><span></span><code>aws s3api put-bucket-versioning --bucket mibucket-unico-total --versioning-configuration Status=Enabled
-</code></pre></div>
 <h4 id="activar-modo-web-estatica">Activar modo web estática<a class="headerlink" href="#activar-modo-web-estatica" title="Permanent link">¶</a></h4>
 <div class="highlight"><pre><span></span><code>aws s3 website s3://mibucket-unico-total/ \
   --index-document index.html \
@@ -1517,6 +1507,28 @@ Default<span class="w"> </span>output<span class="w"> </span>format<span class="
 <div class="admonition tip">
 <p class="admonition-title">El error-document no es obligatorio.</p>
 </div>
+<h3 id="s3api">s3api:<a class="headerlink" href="#s3api" title="Permanent link">¶</a></h3>
+<p>El comando s3 se usa para la gestión de los objetos mayormente, mientras que para la gestión del servicio s3 se usa el comando s3api:</p>
+<ul>
+<li>
+<p>Desactivar el <ins class="critic"><strong>bloqueo de acceso público</strong></ins>.</p>
+</li>
+<li>
+<p>Aplicar una <ins class="critic"><strong>política</strong></ins> de bucket (bucket policy).</p>
+</li>
+<li>
+<p>Avtivar el  <ins class="critic"><strong>versionado</strong></ins>.</p>
+</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Para todo eso necesitas aws s3api.</p>
+</div>
+<h4 id="hacer-busquedas-de-archivos-filtradas">Hacer búsquedas de archivos filtradas.<a class="headerlink" href="#hacer-busquedas-de-archivos-filtradas" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code>aws s3api list-objects --bucket mibucket-unico-total --prefix "nombre"
+</code></pre></div>
+<h4 id="activar-versionado">Activar versionado.<a class="headerlink" href="#activar-versionado" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code>aws s3api put-bucket-versioning --bucket mibucket-unico-total --versioning-configuration Status=Enabled
+</code></pre></div>
 <h4 id="habilitar-el-acceso-publico">Habilitar el acceso público.<a class="headerlink" href="#habilitar-el-acceso-publico" title="Permanent link">¶</a></h4>
 <div class="highlight"><pre><span></span><code>aws s3api put-public-access-block \
   --bucket mibucket-unico-total \
@@ -1524,32 +1536,69 @@ Default<span class="w"> </span>output<span class="w"> </span>format<span class="
   "BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=false,RestrictPublicBuckets=false"
 </code></pre></div>
 <h4 id="crear-politicas">Crear políticas.<a class="headerlink" href="#crear-politicas" title="Permanent link">¶</a></h4>
-<div class="highlight"><pre><span></span><code>aws s3api put-bucket-policy --bucket mibucket-unico-total   --policy '{
-    "Version": "2012-10-17",
-    "Statement": [{
-      "Sid": "PublicReadGetObject",
-      "Effect": "Allow",
-      "Principal": "*",
-      "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::mibucket-unico-total/*"
-    }]
-  }'
+<div class="highlight"><pre><span></span><code>aws s3api put-bucket-policy --bucket mibucket-unico-total --policy file://PermiteLectura.json
 </code></pre></div>
-<details class="danger">
-<summary>En Windows es diferente, pincha para ver el ejemplo.</summary>
-<p>En el caso de Windows es necesario escapar las comillas dobles y poner doble.
-</p><div class="highlight"><pre><span></span><code>aws s3api put-bucket-policy --bucket mibucket-unico-total   --policy '{
-    \""Version\"": \""2012-10-17\"",
-    \""Statement\"": [{
-    \""Sid\"": \""PublicReadGetObject\"",
-    \""Effect\"": \""Allow\"",
-    \""Principal\"": \""*\"",
-    \""Action\"": \""s3:GetObject\"",
-    \""Resource\"": \""arn:aws:s3:::mibucket-unico-total/*\""
-    }]
-}'
+<div class="highlight"><pre><span></span><code><span class="c1">//PermiteLectura.json</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-10-17"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span>
+<span class="w">      </span><span class="nt">"Sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PermiteLectura"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"Principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"Action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"s3:GetObject"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"arn:aws:s3:::mibucket-unico-total/*"</span>
+<span class="w">    </span><span class="p">}]</span>
+<span class="p">}</span>
 </code></pre></div>
-</details></div>
+<h3 id="resumen">Resumen.<a class="headerlink" href="#resumen" title="Permanent link">¶</a></h3>
+<div class="center-table">
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Operación</th>
+<th style="text-align: center;">Comando</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>Crear un bucket</code></td>
+<td style="text-align: center;">aws s3 mb</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>Listar buckets</code></td>
+<td style="text-align: center;">aws s3 ls</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>Subir y descargar objetos</code></td>
+<td style="text-align: center;">aws s3 cp</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>Sincronizar carpetas</code></td>
+<td style="text-align: center;">aws s3 sync</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>Eliminar objetos</code></td>
+<td style="text-align: center;">aws s3 rm</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>Alojamiento web estático</code></td>
+<td style="text-align: center;">aws s3 website</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>Activar versionado</code></td>
+<td style="text-align: center;">aws s3api put-bucket-versioning</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>Bucket policy</code></td>
+<td style="text-align: center;">aws s3api put-bucket-policy</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>Bloqueo de acceso público</code></td>
+<td style="text-align: center;">aws s3api put-public-access-block</td>
+</tr>
+</tbody>
+</table>
+</div></div>
 
 
 
