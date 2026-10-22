@@ -14,7 +14,7 @@
         <link rel="prev" href="10_WebEstaticaS3.html">
       
       
-        <link rel="next" href="13_AMI.html">
+        <link rel="next" href="14_ELB.html">
       
       
       <link rel="icon" href="assets/images/favicon.png">
@@ -347,8 +347,6 @@
       
         
       
-        
-      
     
     
     
@@ -388,6 +386,8 @@
   
     
     
+      
+        
       
         
       
@@ -460,6 +460,29 @@
   
   <span class="md-ellipsis">
     WordPress
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13_AMI.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AMI
     
   </span>
   
@@ -822,6 +845,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#creacion-de-una-ami" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creación de una AMI.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#gestion-s3" class="md-nav__link">
     <span class="md-ellipsis">
       Gestión S3.
@@ -858,6 +890,8 @@
       
         
       
+        
+      
     
     
     
@@ -874,7 +908,7 @@
   
   
   <span class="md-ellipsis">
-    AMI
+    Balanceador de Carga
     
   </span>
   
@@ -884,81 +918,6 @@
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_4">
-            <span class="md-nav__icon md-icon"></span>
-            AMI
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="13_AMI.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Crear e Importar
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
-        
-          
-          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    Balanceador de Carga
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_5">
             <span class="md-nav__icon md-icon"></span>
             Balanceador de Carga
           </label>
@@ -1039,10 +998,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
             
   
   
@@ -1055,8 +1014,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_6">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
             <span class="md-nav__icon md-icon"></span>
             RDS
           </label>
@@ -1141,10 +1100,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
         
           
-          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
             
   
   
@@ -1157,8 +1116,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
             <span class="md-nav__icon md-icon"></span>
             Serverless
           </label>
@@ -1465,6 +1424,10 @@ Default<span class="w"> </span>output<span class="w"> </span>format<span class="
 </figure>
 </center>
 
+<h2 id="creacion-de-una-ami">Creación de una AMI.<a class="headerlink" href="#creacion-de-una-ami" title="Permanent link">¶</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1">#Crear imagen de una instancia con AWS-CLI o CloudShell.</span>
+aws<span class="w"> </span>ec2<span class="w"> </span>create-image<span class="w"> </span>--instance-id<span class="w"> </span>INSTANCIA_EC2<span class="w"> </span>--name<span class="w"> </span>NOMBRE_AMI
+</code></pre></div>
 <h2 id="gestion-s3">Gestión S3.<a class="headerlink" href="#gestion-s3" title="Permanent link">¶</a></h2>
 <h4 id="crea-un-cubo-s3">Crea un cubo S3.<a class="headerlink" href="#crea-un-cubo-s3" title="Permanent link">¶</a></h4>
 <div class="highlight"><pre><span></span><code>aws s3 mb s3://mibucket-unico-total
